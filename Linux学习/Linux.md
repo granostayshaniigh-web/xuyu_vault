@@ -273,26 +273,34 @@ sudo 其他命令
 	- 创建用户组：``` groupadd 用户组名```
 	- 删除用户组：``` groupdel 用户组名```
 2. 用户管理
-	- 创建用户：
+	2.1 创建用户：
 	``` bash
 	useradd 用户名 [ -g -d ]
 	例：useradd test2 -g test -d /home/xy/Desktop/test1
 	```
-	
 	选项：
 		-g 指定用户的组，若不指定，则会创建一个与用户名相同的组，并把该用户加入到该组中。若指定则指定的组必须存在。
 		-d 指定用户的HOME路径，若不指定，则HOME目录默认在：/home/用户名 
-	- 删除用户：
+		![](assets/Linux/file-20260706172435294.png)
+		uid:用户名     group：组别
+	
+	2.2 删除用户：
 	``` bash
 	userdel [ -r ] 用户名
 	```
 	选项：
 		-r 删除用户的home目录，若没-r，则删除用户时，HOME目录会被保留
-	- 修改用户所属组：
+	
+	2.3 查看用户所属组：
 	``` bash
 	id [用户名]
 	```
 	参数：
 		用户名，被查看的用户，如果不写
-	- 查看用户所属组：
 	
+	2.4 修改用户所属组：
+	``` bash 
+	usermod -aG 用户组 用户名
+	例：usermod -aG test bb
+	```
+	把 bb 移入test组中
