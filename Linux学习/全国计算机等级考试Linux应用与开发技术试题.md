@@ -309,7 +309,7 @@ do
 
 ---
 
-<br>
+<br/>
 
 ## 试卷（一） 参考答案与解析
 
@@ -1273,7 +1273,7 @@ echo "计算机的出拳是:" $computer
 **12. 分页显示当前目录下所有文件的文件名和目录名、用户组、用户、文件大小、文件或目录权限、文件创建时间等信息的命令是(  )**
 <table>
   <tr><td width="50%">A. more ls -al</td><td>B. more -al ls</td></tr>
-  <tr><td>C. more < ls -al</td><td>D. ls -al | more</td></tr>
+  <tr><td>C. more &lt; ls -al</td><td>D. ls -al | more</td></tr>
 </table>
 
 **13. 系统中有一用户user1和user2，同属于users组。在user1用户目录下有一文件file1，如果user2用户想修改user1用户目录下的file1文件，应拥有(  )权限。**
@@ -1638,56 +1638,37 @@ file1 file2 file3 file4
 </table>
 
 **7. 用 `ps -le` 命令列出系统中所有进程的详细信息如下：**
-<style>
-  .ps-table {
-    border: 1px solid black;
-    border-collapse: collapse;
-    font-family: monospace;
-  }
-  .ps-table th,
-  .ps-table td {
-    border: none;
-    padding: 4px 8px;
-    text-align: left;
-    font-weight: normal; /* 确保所有文字（包括表头）不加粗 */
-  }
-</style>
-
-<table class="ps-table">
-  <!-- 命令提示符行，跨所有列 -->
+<table style="border:1px solid black;border-collapse:collapse;font-family:monospace">
   <tr>
-    <td colspan="14">[root@localhost ~]# ps -le</td>
-  </tr>
-  <!-- 空行（模拟原输出中的空白行） -->
-  <tr>
-    <td colspan="14">&nbsp;</td>
-  </tr>
-  <!-- 表头行 -->
-  <tr>
-    <th>F</th><th>S</th><th>UID</th><th>PID</th><th>PPID</th><th>C</th>
-    <th>PRI</th><th>NI</th><th>ADDR</th><th>SZ</th><th>WCHAN</th>
-    <th>TTY</th><th>TIME</th><th>CMD</th>
-  </tr>
-  <!-- 数据行 -->
-  <tr>
-    <td>4</td><td>S</td><td>0</td><td>1</td><td>0</td><td>0</td>
-    <td>80</td><td>-10</td><td>-</td><td>18</td><td>-</td>
-    <td>?</td><td>00:00:01</td><td>init</td>
+    <td colspan="14" style="border:none;padding:4px 8px;text-align:left;font-weight:normal">[root@localhost ~]# ps -le</td>
   </tr>
   <tr>
-    <td>1</td><td>I</td><td>0</td><td>3</td><td>2</td><td>0</td>
-    <td>60</td><td>15</td><td>-</td><td>12</td><td>-</td>
-    <td>?</td><td>00:00:00</td><td>rcu_gp</td>
+    <td colspan="14" style="border:none;padding:4px 8px;text-align:left;font-weight:normal">&#160;</td>
   </tr>
   <tr>
-    <td>5</td><td>S</td><td>0</td><td>63</td><td>2</td><td>0</td>
-    <td>80</td><td>-15</td><td>-</td><td>10</td><td>-</td>
-    <td>?</td><td>00:00:00</td><td>cpuhp</td>
+    <th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">F</th><th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">S</th><th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">UID</th><th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">PID</th><th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">PPID</th><th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">C</th>
+    <th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">PRI</th><th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">NI</th><th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">ADDR</th><th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">SZ</th><th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">WCHAN</th>
+    <th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">TTY</th><th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">TIME</th><th style="border:none;padding:4px 8px;text-align:left;font-weight:normal">CMD</th>
   </tr>
   <tr>
-    <td>1</td><td>S</td><td>0</td><td>12</td><td>2</td><td>0</td>
-    <td>9</td><td>-</td><td>-</td><td>8</td><td>-</td>
-    <td>?</td><td>00:00:02</td><td>migration</td>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">4</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">S</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">0</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">1</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">0</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">0</td>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">80</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">-10</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">-</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">18</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">-</td>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">?</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">00:00:01</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">init</td>
+  </tr>
+  <tr>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">1</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">I</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">0</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">3</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">2</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">0</td>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">60</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">15</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">-</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">12</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">-</td>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">?</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">00:00:00</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">rcu_gp</td>
+  </tr>
+  <tr>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">5</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">S</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">0</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">63</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">2</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">0</td>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">80</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">-15</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">-</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">10</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">-</td>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">?</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">00:00:00</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">cpuhp</td>
+  </tr>
+  <tr>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">1</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">S</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">0</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">12</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">2</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">0</td>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">9</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">-</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">-</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">8</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">-</td>
+    <td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">?</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">00:00:02</td><td style="border:none;padding:4px 8px;text-align:left;font-weight:normal">migration</td>
   </tr>
 </table>
 
@@ -1776,25 +1757,11 @@ file1 file2 file3 file4
 </table>
 
 **21. 文本文件fruits内容示例如下：**
-<style>
-  .fruit-table {
-    border: 1px solid black;
-    border-collapse: collapse;
-    font-family: monospace;
-  }
-  .fruit-table td {
-    border: none;
-    padding: 4px 8px;
-    font-weight: normal;
-    text-align: left;
-  }
-</style>
-
-<table class="fruit-table">
-  <tr><td>banana:30:5.5</td></tr>
-  <tr><td>apple:10:2.5</td></tr>
-  <tr><td>pear:90:2.3</td></tr>
-  <tr><td>orange:20:3.4</td></tr>
+<table style="border:1px solid black;border-collapse:collapse;font-family:monospace">
+  <tr><td style="border:none;padding:4px 8px;font-weight:normal;text-align:left">banana:30:5.5</td></tr>
+  <tr><td style="border:none;padding:4px 8px;font-weight:normal;text-align:left">apple:10:2.5</td></tr>
+  <tr><td style="border:none;padding:4px 8px;font-weight:normal;text-align:left">pear:90:2.3</td></tr>
+  <tr><td style="border:none;padding:4px 8px;font-weight:normal;text-align:left">orange:20:3.4</td></tr>
 </table>
 
 **该文件有三列（冒号隔开），分别表示水果名称、数量和价格。如果想以水果数量从多到少排序，可执行命令(  )**
@@ -1860,7 +1827,7 @@ file1 file2 file3 file4
 **31. 在Emacs编辑器中，将光标移到当前行的行首的命令是(  )**
 <table>
   <tr><td width="50%">A. &lt;Ctrl&gt;+a</td><td>B. &lt;Ctrl&gt;+e</td></tr>
-  <tr><td>C. &lt;Alt&gt;+<</td><td>D. &lt;Alt&gt;+v</td></tr>
+  <tr><td>C. &lt;Alt&gt;+&lt;</td><td>D. &lt;Alt&gt;+v</td></tr>
 </table>
 
 **32. 在Emacs编辑器中，保存文件并退出的正确做法是(  )**
@@ -1991,7 +1958,7 @@ done
 
 ---
 
-<br>
+<br/>
 
 ## 试卷（五） 参考答案与解析
 
