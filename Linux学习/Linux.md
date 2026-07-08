@@ -377,4 +377,12 @@ chown [ -R ] [用户][:][用户组] 文件或文件夹
 - Ctrl + l/ clear：清屏
 ### 软件安装
 #### yum命令
+1. yum 需要root权限，需要联网
+2. 在centos系统中：
+语法：
+  ```
+  yum [ -y ] [ install | remove | search ] 软件名称
+  例：yum -y install wget
+  ```
+- 选项：-y 自动确认，无需手动确认安装或卸载过程
 
