@@ -446,4 +446,7 @@ sudo ln -s /usr/share/zonrinfo/Asia/Shanghai /etc/localtime
 1. 我们访问百度时，www.baidu.com，是百度的网址 我们称为域名
 2. 域名解析过程（由域名得到IP的过程）：
 ![](assets/Linux/file-20260709094438023.png)
+### 7. 网络请求和下载
+#### 7.1 ping命令
+1. 查看
  
