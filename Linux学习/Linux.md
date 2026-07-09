@@ -429,3 +429,21 @@ rm -f /etc/localtime
 sudo ln -s /usr/share/zonrinfo/Asia/Shanghai /etc/localtime
 ```
 4. ntp的作用：自动联网同步时间
+### 6. IP地址和主机名
+#### 6.1 IP地址
+1. IP地址是==每一台联网的电脑都会有的一个地址 用来和其他的计算机进行通讯==
+2. 版本：ipv4，ipv5，ipv6，下面主要以ipv4为例
+3. 格式：==a.b.c.d== abcd都是0-255的数字
+4. 主网卡ens33
+5. 127.0.0.1这个ip地址指代==本机==
+6. 0.0.0.0 可以指代==本机==  可以在某些端口绑定中确定关系  可以在一些IP地址的限制中，表示所有IP。如放行设置为0.0.0.0表示为允许任意IP访问
+#### 6.2 主机名
+1. hostname 查看主机名
+2. hostnamectl set-hostname 要修改的主机名  修改主机名（需要root）
+3. ![](assets/Linux/file-20260709093608065.png)
+在@后面的就是主机名
+#### 6.3 域名解析（主机名映射）
+1. 我们访问百度时，www.baidu.com，是百度的网址 我们称为域名
+2. 域名解析过程（由域名得到IP的过程）：
+![](assets/Linux/file-20260709094438023.png)
+ 
