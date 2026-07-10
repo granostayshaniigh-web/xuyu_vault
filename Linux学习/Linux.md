@@ -99,7 +99,7 @@ Linux系统命令行终端，在启动的时候，默认加载：
 2. -p（parent）选项的作用：==可选==，表示可以创建不存在的父目录，适用于创建连续的**多层级**的目录
 ps：Ctrl+l-->清空命令行
 ### 7. touch、cat、more命令
-#### 7.1 touch
+#### 7.1 touch（下面的vim也行）
 - 用于创建一个新==文件==(类似于.txt文档，之后可编辑，可不加后缀txt等)
 - 语法
 ``` bash
@@ -591,7 +591,43 @@ echo $cd
 echo $PATH
 输出：PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
 ```
-2. 在环境变量中变量（key）的值（value）后进行拼接-->
+2. 在环境变量中变量（key）的值（value）后进行拼接-->当和其他内容混合在一起时，用{}来标注变量是什么（以PATH为例）
+```
+echo ${PATH}/abc
+输出：PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin/abc
+```
+#### 11.4 自行设置环境变量
+1. 临时设置，语法：```export 变量名=变量值 ```
+2. 永久设置：
+	- 只针对当前用户生效，配置在当前用户的：==~==/==.==bashrc 文件中
+	![](assets/Linux/file-20260710112415294.png)
+	```[xy@centos ~]$ source ~/.bashrc```
+	![](assets/Linux/file-20260710112603609.png)
+	- 针对所有用户生效，配置在系统的：/etc/profile 文件中==(需要root权限）==。
+	- 最后两者生效需要：通过语法：source 配置文件（/etc/profile或~/.bashrc ），立即生效。或重新进入finalshell
+3. 自定义环境变量PATH：
+	[root@centos ~]# mkdir myenv
+	[root@centos ~]# ls
+	anaconda-ks.cfg  myenv  original-ks.cfg
+	[root@centos ~]# cd m*
+	[root@centos myenv]# ls
+	mkha
+	[root@centos myenv]# vim mkha
+	[root@centos myenv]# ls -lah
+	total 16K
+	drwxr-xr-x. 2 root root  35 Jul 10 03:37 .
+	dr-xr-x---. 6 root root 248 Jul 10 03:37 ..
+	-rw-r--r--. 1 root root  19 Jul 10 03:37 mkha
+	-rw-r--r--. 1 root root 12K Jul 10 03:33 .mkha.swp
+	[root@centos myenv]# chmod 755 mkha
+	[root@centos myenv]# ls -lah
+	total 16K
+	drwxr-xr-x. 2 root root  35 Jul 10 03:37 .
+	dr-xr-x---. 6 root root 248 Jul 10 03:37 ..
+	-rwxr-xr-x. 1 root root  19 Jul 10 03:37 mkha
+	-rw-r--r--. 1 root root 12K Jul 10 03:33 .mkha.swp
+
+![](assets/Linux/file-20260710114651048.png)
 ### 12. Linux文件上传和下载
 ### 13. 压缩和解压
 #### 13.1 tar 命令压缩
