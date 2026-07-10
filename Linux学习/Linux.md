@@ -531,13 +531,13 @@ kill [ -9 ] 进程ID
 ```
 - 选项：-9 ，可选，表示强制关闭进程。不使用此选项会向进程发送信号要求关闭，但是是否关闭要看进程本身的处理机制
 ### 10. 主机状态监测
-#### top命令
+#### 10.1 top命令
 1. 类似于Windows的任务管理器，查看CPU、内存、进程的信息
 2. 语法：直接输入```top```即可，其页面每5秒刷新一次，按q或Ctrl+c退出
 3. 输出信息：
 ![](assets/Linux/file-20260709190550818.png)
 ![](assets/Linux/file-20260709191016687.png)
-#### df命令
+#### 10.2 df命令
 1. 查看磁盘的使用率
 2. 语法：
 ```
@@ -545,7 +545,7 @@ df [ -h ]
 ```
 - 选项：-h，以更加人性化的单位显示
 ![](assets/Linux/file-20260709191428855.png)
-#### iostat命令
+#### 10.3 iostat命令
 1. 查看磁盘速率等信息
 2. 语法：
 ```
@@ -555,7 +555,7 @@ iostat [ -x ]  [ num1 ]  [ num2 ]
 - num1：数字，刷新间隔，num2：数字，刷新几次。二者都不写，磁盘信息只显示一次。
 ```iostat -x```得到信息：
 ![](assets/Linux/file-20260709192053085.png)
-#### sar -n DEV 命令
+#### 10.4 sar -n DEV 命令
 1. 查看网络情况
 2. 语法：
 ```
@@ -566,3 +566,36 @@ sar -n DEV num1 num2
 ![](assets/Linux/file-20260709193346985.png)
 rxkB：网卡每秒读取了数据包的大小（kb）
 txkB：网卡每秒发送了数据包的大小（kb）
+
+### 11. 环境变量
+1. 学习的一系列命令本质上是一个个可执行程序，例：cd命令本质是：/usr/bin/cd
+2. 环境变量是一种keyvalue型结构，例如：PWD=/root。key是PWD，value是/root
+#### 11.1 env命令
+1. 查看环境变量
+2. 语法：直接env即可
+#### 11.2 PATH
+**PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin**
+1.  之所以无论什么工作目录都能执行cd命令，是因为有PATH这个项目的值来做的。
+2. PATH记录了系统执行任何命令的搜索路径：
+	- /usr/local/sbin
+	- /usr/local/bin
+	- /sbin
+	……
+	当执行任何命令的时候，都会按照顺序，从上述路径中搜索要执行程序的本体
+	比如执行cd命令时，就从第二个目录/usr/local/bin中搜索到cd命令
+#### 11.3 $符号
+1. 在Linux系统中,$被用于取==环境变量中==变量（key）的值（value）。例如:
+```
+echo $cd
+无输出
+echo $PATH
+输出：PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin
+```
+2. 在环境变量中变量（key）的值（value）后进行拼接-->
+### 12. Linux文件上传和下载
+### 13. 压缩和解压
+#### 13.1 tar 命令压缩
+#### 13.2 tar命令解压
+#### 13.3 zip命令压缩
+#### 13.4 unzip命令解压
+- 解压时，有同名的文件时，解压出来的文件会覆盖原文件
