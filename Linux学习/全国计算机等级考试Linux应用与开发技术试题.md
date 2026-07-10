@@ -79,19 +79,19 @@ D
   <tr><td width="50%">A. a</td><td>B. b</td></tr>
   <tr><td>C. u</td><td>D. x</td></tr>
 </table>
-
+A[Linux](Linux学习/Linux.md#^308w21)
 **14. 下列哪个命令可以终止一个用户的所有进程？(  )**
 <table>
   <tr><td width="50%">A. skillall</td><td>B. skill</td></tr>
   <tr><td>C. kill</td><td>D. killall</td></tr>
 </table>
-
+D
 **15. 在应用程序启动时，可以使用以下哪个命令设置进程的优先级？(  )**
 <table>
   <tr><td width="50%">A. priority</td><td>B. nice</td></tr>
   <tr><td>C. renice</td><td>D. setpri</td></tr>
 </table>
-
+__
 **16. 如何从当前系统中卸载一个已装载的文件系统？(  )**
 <table>
   <tr><td width="50%">A. umount</td><td>B. dismount</td></tr>
@@ -2040,3 +2040,7 @@ done
 【68】 `break` （若输入全为数字，退出死循环往下执行）
 【69】 `-n` （echo使用 `-n` 输出不换行，以便把一行的星号连在一起）
 【70】 `echo` （内层循环完毕后，单独执行echo用于输出换行符）
+
+-e 显示出全部进程
+
+-e 显示出全部进程
