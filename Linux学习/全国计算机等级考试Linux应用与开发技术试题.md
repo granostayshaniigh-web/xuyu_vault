@@ -7,73 +7,73 @@
   <tr><td width="50%">A. 程序</td><td>B. 文件</td></tr>
   <tr><td>C. 资源</td><td>D. 进程</td></tr>
 </table>
-
+A
 **2. 下列哪一个操作系统不属于Linux家族？(  )**
 <table>
   <tr><td width="50%">A. Ubuntu</td><td>B. CentOS</td></tr>
   <tr><td>C. Solaris</td><td>D. RedHat</td></tr>
 </table>
-
+C
 **3. 下列哪一个指令可以设定使用者的密码？(  )**
 <table>
   <tr><td width="50%">A. pwd</td><td>B. newpwd</td></tr>
   <tr><td>C. passwd</td><td>D. password</td></tr>
 </table>
-
+D
 **4. 切换工作目录的命令是(  )**
 <table>
   <tr><td width="50%">A. pwd</td><td>B. cd</td></tr>
   <tr><td>C. who</td><td>D. ls</td></tr>
 </table>
-
+B
 **5. 已知ls命令的结果如下：chapter chapter1 chapter123 oschapter1，执行 `ls chapter[0-9]*` 的结果是(  )**
 <table>
   <tr><td width="50%">A. chapter1 chapter123</td><td>B. chapter chapter1 chapter123</td></tr>
   <tr><td>C. chapter1 chapter123 oschapter1</td><td>D. chapter chapter1 chapter123 oschapter1</td></tr>
 </table>
-
+A
 **6. 在bash中，在一条命令后输入 `"2>&1"`，表示(  )**
 <table>
   <tr><td width="50%">A. 标准错误输出重定向到标准输入</td><td>B. 标准输入重定向到标准错误输出</td></tr>
   <tr><td>C. 标准错误输出重定向到标准输出</td><td>D. 标准输出重定向到标准输入</td></tr>
 </table>
-
+__
 **7. 默认情况下管理员创建了一个用户，就会在(  )目录下创建一个用户主目录。**
 <table>
   <tr><td width="50%">A. /usr</td><td>B. /home</td></tr>
   <tr><td>C. /root</td><td>D. /etc</td></tr>
 </table>
-
+B
 **8. 下列哪个参数可以删除一个用户并同时删除用户的home目录？(  )**
 <table>
   <tr><td width="50%">A. rmuser -r</td><td>B. deluser -r</td></tr>
   <tr><td>C. userdel -r</td><td>D. usermgr -r</td></tr>
 </table>
-
+C
 **9. 使用 `ls -l` 命令列出下面的文件列表，(  )是软链接文件。**
 <table>
   <tr><td width="50%">A. -rw-rw-rw- 2 stu users 56 Sep 09 11:05 file1</td><td>B. -rwxrwxrwx 2 stu users 56 Sep 09 11:05 ex</td></tr>
   <tr><td>C. drwxr-xr-x 1 users 1024 Sep 10 08:10 zhang</td><td>D. lrwxr--r-- 1 users 2024 Sep 12 08:12 cheng</td></tr>
 </table>
-
+D
 **10. 为了使文件的所有者有读和写的权限，而同组用户和其他用户只能进行只读访问。在设置文件的许可权时，应当设为(  )**
 <table>
   <tr><td width="50%">A. 566</td><td>B. 644</td></tr>
   <tr><td>C. 655</td><td>D. 744</td></tr>
 </table>
-
+B
 **11. 用户编写了一个文本文件file，想将该文件名称改为text，下列哪个命令可以实现？(  )**
 <table>
   <tr><td width="50%">A. cd file text</td><td>B. echo file > text</td></tr>
   <tr><td>C. rm file text</td><td>D. cat file > text</td></tr>
 </table>
-
+C
 **12. cd~命令的含义是(  )**
 <table>
   <tr><td width="50%">A. 到当前目录</td><td>B. 到根目录</td></tr>
   <tr><td>C. 到root目录</td><td>D. 到用户的home目录</td></tr>
 </table>
-
+D
 **13. 在ps命令中，以下哪个参数是用来显示所有用户的进程的？(  )**
 <table>
   <tr><td width="50%">A. a</td><td>B. b</td></tr>
