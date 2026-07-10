@@ -606,6 +606,7 @@ echo ${PATH}/abc
 	- 针对所有用户生效，配置在系统的：/etc/profile 文件中==(需要root权限）==。
 	- 最后两者生效需要：通过语法：source 配置文件（/etc/profile或~/.bashrc ），立即生效。或重新进入finalshell
 3. 自定义环境变量PATH：
+```
 	[root@centos ~]# mkdir myenv
 	[root@centos ~]# ls
 	anaconda-ks.cfg  myenv  original-ks.cfg
@@ -613,6 +614,7 @@ echo ${PATH}/abc
 	[root@centos myenv]# ls
 	mkha
 	[root@centos myenv]# vim mkha
+	echo "哈哈哈哈"
 	[root@centos myenv]# ls -lah
 	total 16K
 	drwxr-xr-x. 2 root root  35 Jul 10 03:37 .
@@ -626,8 +628,19 @@ echo ${PATH}/abc
 	dr-xr-x---. 6 root root 248 Jul 10 03:37 ..
 	-rwxr-xr-x. 1 root root  19 Jul 10 03:37 mkha
 	-rw-r--r--. 1 root root 12K Jul 10 03:33 .mkha.swp
-
+	[root@centos myenv]# ./mkha
+	哈哈哈哈
+	[root@centos myenv]# vim /etc/profile!
+```
 ![](assets/Linux/file-20260710114651048.png)
+```
+	[root@centos myenv]# source /etc/profile
+	[root@centos myenv]# echo $PATH
+	/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin:/root/myenv
+	[root@centos myenv]# mkha
+	哈哈哈哈
+```
+
 ### 12. Linux文件上传和下载
 ### 13. 压缩和解压
 #### 13.1 tar 命令压缩
