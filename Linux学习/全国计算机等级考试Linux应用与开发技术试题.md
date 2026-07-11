@@ -7,7 +7,7 @@
   <tr><td width="50%">A. 程序</td><td>B. 文件</td></tr>
   <tr><td>C. 资源</td><td>D. 进程</td></tr>
 </table>
-A
+A C
 **2. 下列哪一个操作系统不属于Linux家族？(  )**
 <table>
   <tr><td width="50%">A. Ubuntu</td><td>B. CentOS</td></tr>
@@ -19,7 +19,7 @@ C
   <tr><td width="50%">A. pwd</td><td>B. newpwd</td></tr>
   <tr><td>C. passwd</td><td>D. password</td></tr>
 </table>
-D
+D C
 **4. 切换工作目录的命令是(  )**
 <table>
   <tr><td width="50%">A. pwd</td><td>B. cd</td></tr>
@@ -37,7 +37,7 @@ A
   <tr><td width="50%">A. 标准错误输出重定向到标准输入</td><td>B. 标准输入重定向到标准错误输出</td></tr>
   <tr><td>C. 标准错误输出重定向到标准输出</td><td>D. 标准输出重定向到标准输入</td></tr>
 </table>
-__
+__ C
 **7. 默认情况下管理员创建了一个用户，就会在(  )目录下创建一个用户主目录。**
 <table>
   <tr><td width="50%">A. /usr</td><td>B. /home</td></tr>
@@ -67,7 +67,7 @@ B
   <tr><td width="50%">A. cd file text</td><td>B. echo file > text</td></tr>
   <tr><td>C. rm file text</td><td>D. cat file > text</td></tr>
 </table>
-C
+C D
 **12. cd~命令的含义是(  )**
 <table>
   <tr><td width="50%">A. 到当前目录</td><td>B. 到根目录</td></tr>
@@ -91,7 +91,7 @@ D
   <tr><td width="50%">A. priority</td><td>B. nice</td></tr>
   <tr><td>C. renice</td><td>D. setpri</td></tr>
 </table>
-__
+__ B
 **16. 如何从当前系统中卸载一个已装载的文件系统？(  )**
 <table>
   <tr><td width="50%">A. umount</td><td>B. dismount</td></tr>
@@ -104,25 +104,25 @@ A
   <tr><td width="50%">A. 子目录</td><td>B. 挂载点</td></tr>
   <tr><td>C. 新分区</td><td>D. 目录树</td></tr>
 </table>
-__
+__ B
 **19. 在大多数Linux发行版本中，以下哪个属于块设备(block devices)？(  )**
 <table>
   <tr><td width="50%">A. 串行口</td><td>B. 硬盘</td></tr>
   <tr><td>C. 虚拟终端</td><td>D. 打印机</td></tr>
 </table>
-__
+__ B
 **20. 在Linux中第一个IDE磁盘的名字为(  )**
 <table>
   <tr><td width="50%">A. /dev/hdb</td><td>B. /dev/hdc</td></tr>
   <tr><td>C. /dev/hda</td><td>D. /dev/hdd</td></tr>
 </table>
-__
+__ C
 **21. 查看swap空间的使用情况该使用哪个命令？(  )**
 <table>
   <tr><td width="50%">A. df</td><td>B. swapon</td></tr>
   <tr><td>C. free</td><td>D. fdisk</td></tr>
 </table>
-__
+__ C
 **22. 下列哪项可能是Linux系统中以太网网络接口？(  )**
 <table>
   <tr><td width="50%">A. 10</td><td>B. eth2</td></tr>
@@ -140,7 +140,7 @@ D
   <tr><td width="50%">A. ifconfig</td><td>B. lsnet</td></tr>
   <tr><td>C. shownet</td><td>D. 以上都不是</td></tr>
 </table>
-8.1 nmap命令 8.2 netstat命令 D
+8.1 nmap命令 8.2 netstat命令 D A
 **25. 下列哪个程序可以用来确定两台计算机间的IP连接性？(  )**
 <table>
   <tr><td width="50%">A. host</td><td>B. netstat</td></tr>
@@ -152,7 +152,7 @@ D
   <tr><td width="50%">A. service httpd start</td><td>B. service start</td></tr>
   <tr><td>C. httpd start</td><td>D. start</td></tr>
 </table>
-__
+__ A
 **27. Linux的日志文件通常保存在(  )**
 <table>
   <tr><td width="50%">A. /var/log</td><td>B. /usr/adm</td></tr>
@@ -164,79 +164,79 @@ A
   <tr><td width="50%">A. 4yb</td><td>B. 4p</td></tr>
   <tr><td>C. 4yy</td><td>D. 4yw</td></tr>
 </table>
-
+__ C
 **29. 在VI编辑器中，如果用户想在每次对文件进行编辑时收到反馈消息，可以输入(  )**
 <table>
   <tr><td width="50%">A. set scroll=0</td><td>B. set shiftwidth=0</td></tr>
   <tr><td>C. set wrapmargin=0</td><td>D. set report=0</td></tr>
 </table>
-
+D
 **30. 在Emacs中，以下哪种操作可以实现打开另一个文件以替换当前打开的文件？(  )**
 <table>
   <tr><td width="50%">A. 先同时按Ctrl+x组合键, 再同时按Ctrl+s组合键</td><td>B. 先同时按Ctrl+x组合键,再同时按Ctrl+f组合键</td></tr>
   <tr><td>C. 先同时按Ctrl+x组合键, 再同时按Ctrl+b组合键</td><td>D. 先同时按Ctrl+x组合键, 再同时按Ctrl+v组合键</td></tr>
 </table>
-
+B D
 **31. Emacs中将光标向前移动一屏的命令是(  )**
 <table>
   <tr><td width="50%">A. &lt;Ctrl&gt;+v</td><td>B. &lt;Alt&gt;+v</td></tr>
   <tr><td>C. &lt;Ctrl&gt;+b</td><td>D. &lt;Alt&gt;+b</td></tr>
 </table>
-
+D A
 **32. Emacs中模式行显示模式字段中“%%”表示(  )**
 <table>
   <tr><td width="50%">A. 缓冲区未被编辑</td><td>B. 缓冲区中的文本已被修改</td></tr>
   <tr><td>C. 缓冲区中的文本未被修改</td><td>D. 只读缓冲区中的文本已被修改</td></tr>
 </table>
-
+__ C
 **33. SSH是什么协议？(  )**
 <table>
   <tr><td width="50%">A. 安全外壳</td><td>B. 请求-响应</td></tr>
   <tr><td>C. 地址解析</td><td>D. 动态主机配置</td></tr>
 </table>
-
+C A
 **34. 在以下协议中，为远程登录会话和其他网络协议提供安全性的协议是(  )**
 <table>
   <tr><td width="50%">A. FTP</td><td>B. HTTP</td></tr>
   <tr><td>C. SSH</td><td>D. ICMP</td></tr>
 </table>
-
+__ C
 **35. OpenSSH的默认端口号为(  )**
 <table>
   <tr><td width="50%">A. 80</td><td>B. 8080</td></tr>
   <tr><td>C. 21</td><td>D. 22</td></tr>
 </table>
-
+D
 **36. 使用GDB命令查看某个变量类型时，应该用命令(  )**
 <table>
   <tr><td width="50%">A. set</td><td>B. whatis</td></tr>
   <tr><td>C. kill</td><td>D. print</td></tr>
 </table>
-
+B
 **37. 在使用GCC命令时，如果想产生调试信息，需要加入以下哪个选项？(  )**
 <table>
   <tr><td width="50%">A. -w</td><td>B. -l</td></tr>
   <tr><td>C. -g</td><td>D. -d</td></tr>
 </table>
-
+__ C
 **38. 下面关于make命令，说法错误的是(  )**
 <table>
   <tr><td width="50%">A. make工具可以用来维护程序模块关系和生成可执行程序</td><td>B. make命令是GNU的工程化编译工具，它用于编译大量相互关联的源代码</td></tr>
   <tr><td>C. makefile文件中目标文件后跟的是源文件，最后是生成源文件的命令</td><td>D. make命令从makefile文件获取模块之间的依赖关系</td></tr>
 </table>
-
+__ C
 **39. FTP是什么协议？(  )**
 <table>
   <tr><td width="50%">A. 域名协议</td><td>B. 动态主机配置</td></tr>
   <tr><td>C. 文件传输</td><td>D. 文件解析</td></tr>
 </table>
-
+__ C
 **40. 下列哪一个不是Web应用开发框架？(  )**
 <table>
   <tr><td width="50%">A. Spring</td><td>B. Unity</td></tr>
   <tr><td>C. Struts2</td><td>D. MyBatis</td></tr>
 </table>
-
+ B
 ## 二、填空题（共 10 题）
 
 41. 按照冯·诺依曼体系结构，传统的单核CPU由运算器和\_\_\_\_\_\_\_\_\_\_这两个主要部件组成。
