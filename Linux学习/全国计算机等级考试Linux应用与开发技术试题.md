@@ -97,55 +97,50 @@ __
   <tr><td width="50%">A. umount</td><td>B. dismount</td></tr>
   <tr><td>C. mount -u</td><td>D. 从/etc/fstab中删除这个文件系统项</td></tr>
 </table>
-
+A
 **17. 哪个命令用来显示系统中各个分区中inode的使用情况？(  )**
-<table>
-  <tr><td width="50%">A. df -i</td><td>B. df -H</td></tr>
-  <tr><td>C. free -b</td><td>D. du -a -c /</td></tr>
-</table>
-
 **18. 为了能够将新建立的文件系统mount到系统目录中，还需要指定该文件系统在整个目录树中的位置，称为(  )**
 <table>
   <tr><td width="50%">A. 子目录</td><td>B. 挂载点</td></tr>
   <tr><td>C. 新分区</td><td>D. 目录树</td></tr>
 </table>
-
+__
 **19. 在大多数Linux发行版本中，以下哪个属于块设备(block devices)？(  )**
 <table>
   <tr><td width="50%">A. 串行口</td><td>B. 硬盘</td></tr>
   <tr><td>C. 虚拟终端</td><td>D. 打印机</td></tr>
 </table>
-
+__
 **20. 在Linux中第一个IDE磁盘的名字为(  )**
 <table>
   <tr><td width="50%">A. /dev/hdb</td><td>B. /dev/hdc</td></tr>
   <tr><td>C. /dev/hda</td><td>D. /dev/hdd</td></tr>
 </table>
-
+__
 **21. 查看swap空间的使用情况该使用哪个命令？(  )**
 <table>
   <tr><td width="50%">A. df</td><td>B. swapon</td></tr>
   <tr><td>C. free</td><td>D. fdisk</td></tr>
 </table>
-
+__
 **22. 下列哪项可能是Linux系统中以太网网络接口？(  )**
 <table>
   <tr><td width="50%">A. 10</td><td>B. eth2</td></tr>
   <tr><td>C. net0</td><td>D. neta</td></tr>
 </table>
-
+B
 **23. 用什么命令可以直接显示Linux系统当前定义的主机名？(  )**
 <table>
   <tr><td width="50%">A. ipname</td><td>B. host</td></tr>
   <tr><td>C. ifconfig</td><td>D. hostname</td></tr>
 </table>
-
+D
 **24. 下列哪个命令可以列出所有当前活跃的网络接口？(  )**
 <table>
   <tr><td width="50%">A. ifconfig</td><td>B. lsnet</td></tr>
   <tr><td>C. shownet</td><td>D. 以上都不是</td></tr>
 </table>
-
+8.1 nmap命令 8.2 netstat命令 D
 **25. 下列哪个程序可以用来确定两台计算机间的IP连接性？(  )**
 <table>
   <tr><td width="50%">A. host</td><td>B. netstat</td></tr>

@@ -460,7 +460,7 @@ sudo ln -s /usr/share/zonrinfo/Asia/Shanghai /etc/localtime
 ![](assets/Linux/file-20260709094438023.png)
 ### 7. 网络请求和下载
 #### 7.1 ping命令
-1. 查看指定的网络服务器是否是可联通的状态，就是看能不能访问或者联网
+1. 查看指定的==网络服务器==是否是可联通的状态，就是看能不能访问或者联网
 2. 语法：
 ```
 ping [ -c num ] ip或主机名
