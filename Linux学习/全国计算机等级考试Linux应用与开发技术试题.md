@@ -146,19 +146,19 @@ D
   <tr><td width="50%">A. host</td><td>B. netstat</td></tr>
   <tr><td>C. ifconfig</td><td>D. ping</td></tr>
 </table>
-
+D
 **26. 在Linux终端启动Apache的命令为(  )**
 <table>
   <tr><td width="50%">A. service httpd start</td><td>B. service start</td></tr>
   <tr><td>C. httpd start</td><td>D. start</td></tr>
 </table>
-
+__
 **27. Linux的日志文件通常保存在(  )**
 <table>
   <tr><td width="50%">A. /var/log</td><td>B. /usr/adm</td></tr>
   <tr><td>C. /etc/</td><td>D. /var/run</td></tr>
 </table>
-
+A
 **28. 在VI编辑器最后一行显示“4 lines yanked”，则刚输入的命令是(  )**
 <table>
   <tr><td width="50%">A. 4yb</td><td>B. 4p</td></tr>
