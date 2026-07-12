@@ -242,22 +242,28 @@ __ C [模式字段](Linux学习/Linux.md#^uijo5p)
   <tr><td>C. 地址解析</td><td>D. 动态主机配置</td></tr>
 </table>
 C A
-A. 安全外壳：SSH 的全称是 Secure Shell，中文标准翻译即为“安全外壳协议”。它是一种==加密的网络传输协议。==
+A. 安全外壳：SSH 的全称是 Secure Shell，中文标准翻译即为“安全外壳==协议==”。它是一种==加密的网络传输协议。==
 B. 请求-响应：这通常指 ==HTTP 等应用层协议==的工作模式（客户端请求，服务器响应），不是某个具体协议的名称。
 C. 地址解析：这是 ARP (Address Resolution Protocol) 协议，用于==将 IP 地址解析为 MAC 地址==。
 D. 动态主机配置：这是 DHCP (Dynamic Host Configuration Protocol) 协议，==用于自动给局域网内的设备分配 IP 地址。==
-**34. 在以下协议中，为远程登录会话和其他网络协议提供安全性的协议是(  )**
+**34. 在以下协议中，为远程登录会话和其他网络协议==提供安全性的协议==是(  )**
 <table>
   <tr><td width="50%">A. FTP</td><td>B. HTTP</td></tr>
   <tr><td>C. SSH</td><td>D. ICMP</td></tr>
 </table>
 __ C
+A. FTP：文件传输协议，传统 FTP 是==明文传输==（包括密码），极不安全（其安全版本是 SFTP/FTPS）。
+B. HTTP：超文本传输协议，也是==明文传输==（其安全版本是 HTTPS）。
+D. ICMP：互联网控制报文协议，主要用于在 IP 网络中传递控制消息（如我们常用的 ping 命令），==不提供远程登录或加密功能==。
 **35. OpenSSH的默认端口号为(  )**
 <table>
   <tr><td width="50%">A. 80</td><td>B. 8080</td></tr>
   <tr><td>C. 21</td><td>D. 22</td></tr>
 </table>
 D
+A. 80：这是 HTTP（网页浏览）的默认端口。
+B. 8080：通常用作 HTTP 的备用端口或 Web 代理服务器端口（如 Tomcat 默认端口）。
+C. 21：这是 FTP（文件传输协议）的默认控制端口。
 **36. 使用GDB命令查看某个变量类型时，应该用命令(  )**
 <table>
   <tr><td width="50%">A. set</td><td>B. whatis</td></tr>
