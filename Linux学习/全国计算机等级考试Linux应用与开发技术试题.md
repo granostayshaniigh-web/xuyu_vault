@@ -7,7 +7,7 @@
   <tr><td width="50%">A. 程序</td><td>B. 文件</td></tr>
   <tr><td>C. 资源</td><td>D. 进程</td></tr>
 </table>
-A C
+A C  [Linux](Linux学习/Linux.md#^y7s1oy)
 **2. 下列哪一个操作系统不属于Linux家族？(  )**
 <table>
   <tr><td width="50%">A. Ubuntu</td><td>B. CentOS</td></tr>
@@ -19,7 +19,7 @@ C
   <tr><td width="50%">A. pwd</td><td>B. newpwd</td></tr>
   <tr><td>C. passwd</td><td>D. password</td></tr>
 </table>
-D C
+D C [全国计算机等级考试Linux应用与开发技术试题](Linux学习/全国计算机等级考试Linux应用与开发技术试题.md#^tf594t)
 **4. 切换工作目录的命令是(  )**
 <table>
   <tr><td width="50%">A. pwd</td><td>B. cd</td></tr>
@@ -31,13 +31,15 @@ B
   <tr><td width="50%">A. chapter1 chapter123</td><td>B. chapter chapter1 chapter123</td></tr>
   <tr><td>C. chapter1 chapter123 oschapter1</td><td>D. chapter chapter1 chapter123 oschapter1</td></tr>
 </table>
-A
+A  []这也是一种通配符，题中表示0-9任意一个数字
 **6. 在bash中，在一条命令后输入 `"2>&1"`，表示(  )**
 <table>
   <tr><td width="50%">A. 标准错误输出重定向到标准输入</td><td>B. 标准输入重定向到标准错误输出</td></tr>
   <tr><td>C. 标准错误输出重定向到标准输出</td><td>D. 标准输出重定向到标准输入</td></tr>
 </table>
-__ C
+__ C  >覆盖写入   >>追加写入
+![225](assets/全国计算机等级考试Linux应用与开发技术试题/file-20260712093743656.png)
+
 **7. 默认情况下管理员创建了一个用户，就会在(  )目录下创建一个用户主目录。**
 <table>
   <tr><td width="50%">A. /usr</td><td>B. /home</td></tr>
@@ -67,7 +69,7 @@ B
   <tr><td width="50%">A. cd file text</td><td>B. echo file > text</td></tr>
   <tr><td>C. rm file text</td><td>D. cat file > text</td></tr>
 </table>
-C D
+C D  c中的rm是删除，D中是又创了一个文件
 **12. cd~命令的含义是(  )**
 <table>
   <tr><td width="50%">A. 到当前目录</td><td>B. 到根目录</td></tr>
@@ -79,19 +81,20 @@ D
   <tr><td width="50%">A. a</td><td>B. b</td></tr>
   <tr><td>C. u</td><td>D. x</td></tr>
 </table>
-A[Linux](Linux学习/Linux.md#^308w21)
+A[Linux](Linux学习/Linux.md#^308w21)-a和-e其实都行
 **14. 下列哪个命令可以终止一个用户的所有进程？(  )**
 <table>
   <tr><td width="50%">A. skillall</td><td>B. skill</td></tr>
   <tr><td>C. kill</td><td>D. killall</td></tr>
 </table>
 D
+虽然 killall 最常用于按进程名杀死进程，但它支持 -u 参数。通过执行 killall -u 用户名，可以终止该指定用户的所有进程。在给定选项中，它是最标准、最被广泛认可的答案。
 **15. 在应用程序启动时，可以使用以下哪个命令设置进程的优先级？(  )**
 <table>
   <tr><td width="50%">A. priority</td><td>B. nice</td></tr>
   <tr><td>C. renice</td><td>D. setpri</td></tr>
 </table>
-__ B
+__ B   [进程优先级PR](assets/全国计算机等级考试Linux应用与开发技术试题/file-20260712095504602.png)
 **16. 如何从当前系统中卸载一个已装载的文件系统？(  )**
 <table>
   <tr><td width="50%">A. umount</td><td>B. dismount</td></tr>
@@ -237,7 +240,7 @@ __ C
   <tr><td>C. Struts2</td><td>D. MyBatis</td></tr>
 </table>
  B
-## 二、填空题（共 10 题）
+## 二、填空题（共 10 题） ^bayun9 ^m3ppkg ^anvufu ^mduxnf ^j398nb ^p0khl6 ^iugly8 ^4mnooc ^czw6w0 ^e1g44f ^19giex ^m8201i ^wq557y ^amzajs ^thhidx
 
 41. 按照冯·诺依曼体系结构，传统的单核CPU由运算器和\_\_\_\_\_\_\_\_\_\_这两个主要部件组成。
 42. Linux下的软件包可分为两种，分别是\_\_\_\_\_\_\_\_\_\_和二进制包。
@@ -311,7 +314,7 @@ do
 ### 一、单项选择题
 1. **C** | 【解析】操作系统的核心功能是管理计算机的硬件资源（处理机、存储器、设备）和软件资源（文件、数据等）故本题答案为C选项。
 2. **C** | 【解析】Ubuntu（基于Debian，广泛应用于桌面和服务器）、CentOS（基于RedHat Enterprise Linux，常用于企业服务器）、RedHat（红帽企业版Linux，商业发行版）均属Linux；而Solaris属于UNIX家族，故本体答案为C选项。
-3. **C** | 【解析】 `pwd` 用于显示当前工作目录路径，`passwd` 用于修改用户密码，而Linux中没有 `newpwd` 和 `password` 指令，故本题答案为C选项。
+3. **C** | 【解析】 `pwd` 用于显示当前工作目录路径，`passwd` 用于修改用户密码，而Linux中没有 `newpwd` 和 `password` 指令，故本题答案为C选项。  ^tf594t
 4. **B** | 【解析】`cd` (change directory) 用于切换工作目录。
 5. **A** | 【解析】通配符 `[0-9]` 匹配任意一个数字，`*` 匹配任意字符。符合条件的有 chapter1 和 chapter123。
 6. **C** | 【解析】`2>&1` 表示将标准错误输出（2）重定向到标准输出（1）。
