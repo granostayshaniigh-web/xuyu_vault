@@ -215,30 +215,37 @@ __ C
   <tr><td>C. set wrapmargin=0</td><td>D. set report=0</td></tr>
 </table>
 D
-**30. 在Emacs中，以下哪种操作可以实现打开另一个文件以替换当前打开的文件？(  )**
+**30. 在Emacs中，以下哪种操作可以实现打开另一个文件以==替换==当前打开的文件？(  )**
 <table>
   <tr><td width="50%">A. 先同时按Ctrl+x组合键, 再同时按Ctrl+s组合键</td><td>B. 先同时按Ctrl+x组合键,再同时按Ctrl+f组合键</td></tr>
   <tr><td>C. 先同时按Ctrl+x组合键, 再同时按Ctrl+b组合键</td><td>D. 先同时按Ctrl+x组合键, 再同时按Ctrl+v组合键</td></tr>
 </table>
 B D
-**31. Emacs中将光标向前移动一屏的命令是(  )**
+**`C-x C-v`** 的含义是“打开另一个文件以**替换**当前打开的文件”。而 `C-x C-f` 是“搜索并打开文件”。在做单选题时，如果题目强调 **“替换”**，请选 **`C-x C-v`** (对应您之前题目的选项 D)；如果只是说“==打开==文件”，选 `C-x C-f`。
+**31. Emacs中将光标==向前移动一屏==的命令是(  )**
 <table>
   <tr><td width="50%">A. &lt;Ctrl&gt;+v</td><td>B. &lt;Alt&gt;+v</td></tr>
   <tr><td>C. &lt;Ctrl&gt;+b</td><td>D. &lt;Alt&gt;+b</td></tr>
 </table>
 D A
-**32. Emacs中模式行显示模式字段中“%%”表示(  )**
+向前移动一屏 (向下翻页) Ctrl+v
+向后移动一屏 (向上翻页) Alt+v
+**32. Emacs中模式行显示模式字段中"\%\%"表示(  )**
 <table>
   <tr><td width="50%">A. 缓冲区未被编辑</td><td>B. 缓冲区中的文本已被修改</td></tr>
   <tr><td>C. 缓冲区中的文本未被修改</td><td>D. 只读缓冲区中的文本已被修改</td></tr>
 </table>
-__ C
+__ C [模式字段](Linux学习/Linux.md#^uijo5p)
 **33. SSH是什么协议？(  )**
 <table>
   <tr><td width="50%">A. 安全外壳</td><td>B. 请求-响应</td></tr>
   <tr><td>C. 地址解析</td><td>D. 动态主机配置</td></tr>
 </table>
 C A
+A. 安全外壳：SSH 的全称是 Secure Shell，中文标准翻译即为“安全外壳协议”。它是一种==加密的网络传输协议。==
+B. 请求-响应：这通常指 ==HTTP 等应用层协议==的工作模式（客户端请求，服务器响应），不是某个具体协议的名称。
+C. 地址解析：这是 ARP (Address Resolution Protocol) 协议，用于==将 IP 地址解析为 MAC 地址==。
+D. 动态主机配置：这是 DHCP (Dynamic Host Configuration Protocol) 协议，==用于自动给局域网内的设备分配 IP 地址。==
 **34. 在以下协议中，为远程登录会话和其他网络协议提供安全性的协议是(  )**
 <table>
   <tr><td width="50%">A. FTP</td><td>B. HTTP</td></tr>
