@@ -165,10 +165,7 @@ free -h：
 Mem:           15Gi       4.2Gi       8.1Gi       300Mi       2.7Gi        10Gi
 Swap:         2.0Gi          0B       2.0Gi
 ```
-|查看命令|关注点|通俗理解|限制因素|
-|:--|:--|:--|:--|
-|`df -h`|磁盘空间 (Block)|仓库还有多大面积？|限制文件的总大小|
-|`df -i`|Inode 数量|仓库还有多少个坑位？|限制文件的总数量|
+
 **22. 下列哪项可能是Linux系统中以太网网络接口？(  )**
 <table>
   <tr><td width="50%">A. 10</td><td>B. eth2</td></tr>
@@ -186,14 +183,15 @@ D
   <tr><td width="50%">A. ifconfig</td><td>B. lsnet</td></tr>
   <tr><td>C. shownet</td><td>D. 以上都不是</td></tr>
 </table>
-8.1 nmap命令 8.2 netstat命令 D A
+[nmap命令](Linux学习/Linux.md#8%201%20nmap命令) [netstat命令](Linux学习/Linux.md#8%202%20netstat命令) D A
+A. ifconfig：在 Linux/Unix 系统中，ifconfig（interface configuration）==命令用于查看和配置网络接口==。直接运行 ifconfig（不加任何参数）会列出所有当前活跃（已启用/UP） 的网络接口及其详细信息（如 IP 地址、MAC 地址、收发数据包统计等）。如果要查看所有接口（包括未激活的），则需要使用 ifconfig -a。
 **25. 下列哪个程序可以用来确定两台计算机间的IP连接性？(  )**
 <table>
   <tr><td width="50%">A. host</td><td>B. netstat</td></tr>
   <tr><td>C. ifconfig</td><td>D. ping</td></tr>
 </table>
 D
-**26. 在Linux终端启动Apache的命令为(  )**
+**==26. 在Linux终端启动Apache的命令为(  )==**
 <table>
   <tr><td width="50%">A. service httpd start</td><td>B. service start</td></tr>
   <tr><td>C. httpd start</td><td>D. start</td></tr>
@@ -205,7 +203,7 @@ __ A
   <tr><td>C. /etc/</td><td>D. /var/run</td></tr>
 </table>
 A
-**28. 在VI编辑器最后一行显示“4 lines yanked”，则刚输入的命令是(  )**
+**28. 在VI编辑器最后一行显示“4 lines ==yanked==”，则刚输入的命令是(  )**
 <table>
   <tr><td width="50%">A. 4yb</td><td>B. 4p</td></tr>
   <tr><td>C. 4yy</td><td>D. 4yw</td></tr>
