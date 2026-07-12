@@ -592,7 +592,7 @@ kill [ -9 ] 进程ID
 ![](assets/Linux/file-20260709190550818.png)
 ![](assets/Linux/file-20260709191016687.png)
 #### 10.2 df命令
-1. 查看磁盘的使用率
+1. 查看磁盘的使用率 ^zp2kpd
 2. 语法：
 ```
 df [ -h ]
