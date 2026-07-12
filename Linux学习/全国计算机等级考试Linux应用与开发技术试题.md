@@ -97,7 +97,7 @@ D
 __ B   [进程优先级PR](assets/全国计算机等级考试Linux应用与开发技术试题/file-20260712095504602.png)
 **16. 如何从当前系统中卸载一个已装载的文件系统？(  )**
 <table>
-  <tr><td width="50%">A. unmount</td><td>B. dismount</td></tr>
+  <tr><td width="50%">A. umount</td><td>B. dismount</td></tr>
   <tr><td>C. mount -u</td><td>D. 从/etc/fstab中删除这个文件系统项</td></tr>
 </table>
 A Linux 中用于卸载（unmount）已挂载文件系统的标准命令。用法如：umount /mnt/usb 或 umount /dev/sdb1。
