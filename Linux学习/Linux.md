@@ -954,7 +954,7 @@ unzip [ -d ] 参数
 ```
 ### shell脚本
 1. shell脚本的一般后缀是 .sh。其实如果内容是按照 shell 标准去写的，后缀名不是这个也没有关系.
-2. 脚本的格式:脚本以 #!/bin/ bash 开头(指定解析器)
+2. 脚本的格式:脚本以 ==#!/bin/ bash ==开头(指定解析器)
 ```
 [root@centos ~]# mkdir scripts
 [root@centos ~]# cd
@@ -969,7 +969,8 @@ hello.sh
 #!/bin/bash
 echo "hello,world"
 echo "我想你了"
-
+-----------------------------------------------------------------------------------
+执行脚本的第一种用法
 [root@centos scripts]# bash hello.sh
 hello,world
 我想你了
@@ -984,11 +985,46 @@ hello,world
 [root@centos scripts]# sh hello.sh 
 hello,world
 我想你了
+-----------------------------------------------------------------------------------
+执行脚本的第二种方法:
+[root@centos scripts]# ./hello.sh
+-bash: ./hello.sh: Permission denied
+[root@centos scripts]# ll
+total 4
+-rw-r--r--. 1 root root 51 Jul 13 03:00 hello.sh
+[root@centos scripts]# chmod +x hello.sh 
+[root@centos scripts]# ll
+total 4
+-rwxr-xr-x. 1 root root 51 Jul 13 03:00 hello.sh
+[root@centos scripts]# hello.sh
+bash: hello.sh: command not found...
+[root@centos scripts]# cd hello.sh
+-bash: cd: hello.sh: Not a directory
+[root@centos scripts]# ./hello.sh 
+hello,world
+我想你了
+-----------------------------------------------------------------------------------
+执行脚本的第三种方法
+[root@centos scripts]# source hello.sh 
+hello,world
+我想你了
+[root@centos scripts]# . hello.sh 
+hello,world
+我想你了
 
 ```
 3. 执行:
 	第一种方法:
 	- bsah 加上路径
 	- sh 加上路径
-	第二种方法:
+	==第二种方法:==
 		直接输入脚本的绝对路径或者相对路径执行脚本
+		注意的问题：
+			1. -bash: ./hello.sh: Permission denied这个是没有 x 权限，解决办法chmod +x hello.sh 
+			2. `[root@centos scripts]# hello.sh 
+			`  bash: hello.sh: command not found...`
+			解决办法:./hello.sh (是因为如果直接输入 hello.sh，那么它只能认为这是一个命令，但是它环境路径下找不到这个命令。)
+			
+	第三种方法：
+		运用source方法或者加一个点一个空格的方法。注意：`./ `不等于`.空格 `
+	
