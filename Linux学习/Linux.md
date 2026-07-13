@@ -755,7 +755,48 @@ sr0 11:0 1 1024M 0 rom
 - RO值为0，表明他们不是只读的。
 - TYPE：本栏显示块设备是否是磁盘或磁盘上的一个分区。在本例中，==sda和sdb是磁盘，而sr0是只读存储（rom）==。
 - MOUNTPOINT：本栏指出设备挂载的挂载点。
-
+#### mount/umount 挂载/卸载
+1. 对于Linux用户来讲，不论有几个分区，分别分给哪一个目录使用，==它总归就是一个根目录、一个独立且唯一的文件结构。== Linux中每个分区都是用来组成整个文件系统的一部分，它在==用一种叫做“挂载”的处理 方法，它整个文件系统中包含了一整套的文件和目录，并将一个分区和一个目录联系起来==， 要载入的那个分区将使它的存储空间在这个目录下获得。
+2. mount 挂载:==所有的硬件设备必须挂载之后才能使用==，只不过，有些硬件设备（比如硬盘分区）在每次系统启动时会自动挂载
+```bash
+[root@localhost ~]# mount
+#查看系统中已经挂载的文件系统，注意有虚拟文件系统
+/dev/sda3 on / type ext4 (rw) <--含义是，将 /dev/sda3 分区挂载到了 / 目录上，文件系统是 ext4，具有读写权限
+proc on /proc type proc (rw)
+sysfe on /sys type sysfs (rw)
+devpts on /dev/pts type devpts (rw, gid=5, mode=620)
+tmpfs on /dev/shm type tmpfs (rw)
+/dev/sda1 on /boot type ext4 (rw)
+none on /proc/sys/fe/binfmt_misc type binfmt_misc (rw)
+sunrpc on /var/lib/nfe/rpc_pipefs type rpc_pipefs (rw)
+```
+==/dev/sda3 **on** / **type ext4**  (rw) <--含义是，将 /dev/sda3 分区挂载到了 / 目录上，文件系统是 ext4，具有读写权限==
+3. umount 卸载：卸载命令后面既可以加设备文件名，也可以加挂载点，不过只能二选一
+```bash
+[root@localhost ~]# cd /mnt/cdrom/
+#进入光盘挂载点
+[root@localhost cdrom]# umount /mnt/cdrom/
+umount: /mnt/cdrom: device is busy.
+#报错，设备正忙
+```
+正确语法：
+```
+[root@localhost ~]# umount /mnt/usb
+#卸载U盘
+[root@localhost ~]# umount /mnt/cdrom
+#卸载光盘
+[root@localhost ~]# umount /dev/sr0
+#命令加设备文件名同样是可以卸载的
+```
+#### fdisk 命令
+1. 如果新添加了一块硬盘，想要正常使用，需要对硬盘进行分区。
+2. 语法：
+```
+[root@localhost ~]# fdisk ~l
+#列出系统分区
+[root@localhost ~]# fdisk 设备文件名
+#给硬盘分区
+```
 #### 10.3 iostat命令
 1. 查看磁盘速率等信息
 2. 语法：
