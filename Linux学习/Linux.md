@@ -1145,10 +1145,18 @@ hello,world
 [root@centos scripts]# echo $a
 1+5
 ```
-定义只读变量readonly:
+定义只读变量**readonly**:
 ```
 [root@centos scripts]# readonly c=9
 [root@centos scripts]# c=1
 -bash: c: readonly variable
-
 ```
+将定义的变量撤销:
+先set一下看一下所有的变量：`[root@centos scripts]# set | less`
+![](assets/Linux/file-20260713135207670.png)
+```
+[root@centos scripts]# unset a
+[root@centos scripts]# unset c
+-bash: unset: c: cannot unset: readonly variable
+```
+只读变量不能用 **unset** 去撤销
