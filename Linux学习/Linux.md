@@ -939,3 +939,56 @@ unzip [ -d ] 参数
 2. 选项：-d 指定要解压去的位置，同tar命令的-C选项
 3. 参数，要被解压的zip压缩包文件
 - 解压时，有同名的文件时，解压出来的文件会覆盖原文件
+## 第五章
+![](assets/Linux/file-20260713102242053.png)
+1. shell是一个命令行的解释器。Shell 还是一个==功能强大的编程语言==，易用于编写易调试（脚本）
+2. Shell的实现方式有很多，Linux提供的shell**解析器bash**
+```
+[root@centos ~]# cat /etc/shells
+/bin/sh
+/bin/bash
+/usr/bin/sh #sh默认指向bash
+/usr/bin/bash
+/bin/tcsh
+/bin/csh
+```
+### shell脚本
+1. shell脚本的一般后缀是 .sh。其实如果内容是按照 shell 标准去写的，后缀名不是这个也没有关系.
+2. 脚本的格式:脚本以 #!/bin/ bash 开头(指定解析器)
+```
+[root@centos ~]# mkdir scripts
+[root@centos ~]# cd
+[root@centos ~]# cd sc*
+[root@centos scripts]# pwd
+/root/scripts
+[root@centos scripts]# touch hello.sh
+[root@centos scripts]# ls
+hello.sh
+[root@centos scripts]# vim hello.sh
+
+#!/bin/bash
+echo "hello,world"
+echo "我想你了"
+
+[root@centos scripts]# bash hello.sh
+hello,world
+我想你了
+[root@centos scripts]# bash h*
+hello,world
+我想你了
+[root@centos scripts]# cd ~
+[root@centos ~]# bash scripts/hello.sh 
+hello,world
+我想你了
+[root@centos ~]# cd scripts/
+[root@centos scripts]# sh hello.sh 
+hello,world
+我想你了
+
+```
+3. 执行:
+	第一种方法:
+	- bsah 加上路径
+	- sh 加上路径
+	第二种方法:
+		直接输入脚本的绝对路径或者相对路径执行脚本
