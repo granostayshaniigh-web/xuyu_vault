@@ -939,10 +939,10 @@ unzip [ -d ] 参数
 2. 选项：-d 指定要解压去的位置，同tar命令的-C选项
 3. 参数，要被解压的zip压缩包文件
 - 解压时，有同名的文件时，解压出来的文件会覆盖原文件
-## 第五章
+## 第五章 shell
 ![](assets/Linux/file-20260713102242053.png)
-1. shell是一个命令行的解释器。Shell 还是一个==功能强大的编程语言==，易用于编写易调试（脚本）
-2. Shell的实现方式有很多，Linux提供的shell**解析器bash**
+1. shell是一个命令行的解释器。shell 还是一个==功能强大的编程语言==，易用于编写易调试（脚本）
+2. shell的实现方式有很多，Linux提供的shell**解析器bash**
 ```
 [root@centos ~]# cat /etc/shells
 /bin/sh
@@ -1053,7 +1053,7 @@ root      41671  41578  0 03:47 pts/0    00:00:00 -bash
 ```
 在子进程 shell 中设置的环境变量无法同步到父进程；在父进程中设置的环境变量若在子进程中被修改，父进程也不会体现该修改。
 
-### 变量
+### 普通变量
 1. 一种划分方式是可以分为两部分： 系统定义的变量、用户定义的变量
 2. 另一种划分方式是可以分为两部分： 全局变量[环境变量](Linux学习/Linux.md#^x4oocm)、局部变量
 3. 两种划分方式是彼此有交叉的环境变量
@@ -1132,6 +1132,7 @@ echo $b
 hello,world
 我想你了
 2
+
 -----------------------------------------------------------------------------------
 [root@centos scripts]# . hello.sh 
 hello,world
@@ -1160,3 +1161,63 @@ hello,world
 -bash: unset: c: cannot unset: readonly variable
 ```
 只读变量不能用 **unset** 去撤销
+### 特殊变量
+#### 1. $n
+举例理解:相当于一个占位符，当是两位数字时，${10}
+```
+[root@centos scripts]# vim hello.sh 
+
+#!/bin/bash
+echo "hello,world"
+echo "hello,$1"
+
+[root@centos scripts]# . hello.sh 
+hello,world
+hello,
+
+[root@centos scripts]# . hello.sh 'xiao ming'
+hello,world
+hello,xiao ming
+
+```
+测试$0:(执行脚本的位置)
+```
+[root@centos scripts]# vim hello.sh 
+
+#!/bin/bash
+echo "hello,world"
+echo "hello,$1"
+echo "name: $0"
+
+[root@centos scripts]# ./hello.sh 
+hello,world
+hello,
+name: ./hello.sh
+
+[root@centos scripts]# . hello.sh 
+hello,world
+hello,
+name: -bash
+```
+#### 2. $\#(统计自己给定参数的个数)
+```
+[root@centos scripts]# vim hello.sh 
+#!/bin/bash
+echo "hello,world"
+echo "hello,$1"
+echo "name: $0"
+echo "num: $#"
+
+[root@centos scripts]# ./hello.sh 
+hello,world
+hello,
+name: ./hello.sh
+num: 0
+[root@centos scripts]# ./hello.sh abc
+hello,world
+hello,abc
+name: ./hello.sh
+num: 1
+```
+#### 3. \$\*、\$@
+
