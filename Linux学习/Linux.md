@@ -1219,5 +1219,59 @@ hello,abc
 name: ./hello.sh
 num: 1
 ```
-#### 3. \$\*、\$@
+#### 3. \$\*、\$@(都是代表命令行中的所有参数)
+区别在于：前者是把所有参数看成一个整体，后者是把每个参数区分对待。
+```
+[root@centos scripts]# vim hello.sh 
+#!/bin/bash
+echo "hello,world"
+echo "hello,$1"
+echo "name: $0"
+echo "num: $#"
+echo '$*'
+echo $*
+echo '$@'
+echo $@
 
+[root@centos scripts]# ./hello.sh 
+hello,world
+hello,
+name: ./hello.sh
+num: 0
+$*
+
+$@
+
+[root@centos scripts]# ./hello.sh abc
+hello,world
+hello,abc
+name: ./hello.sh
+num: 1
+$*
+abc
+$@
+abc
+
+```
+#### 4. $?
+执行完命令之后，返回执行后的状态。返回0，则没有报错。返回其他值，则说明报错
+![](assets/Linux/file-20260713162338924.png)
+### 运算符
+就是在命令行中进行四则运算。
+expr命令
+```
+[root@centos scripts]# expr 2 + 3
+5
+[root@centos scripts]# expr 2 * 3
+expr: syntax error
+[root@centos scripts]# expr 2 \* 3
+6
+```
+==为了简便：\$((运算式))或\$\[运算式\]==
+```
+[root@centos scripts]# echo $[2*3]
+6
+[root@centos scripts]# a=$[2*3]
+[root@centos scripts]# echo a
+6
+```
