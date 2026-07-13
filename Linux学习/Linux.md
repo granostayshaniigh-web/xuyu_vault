@@ -823,7 +823,7 @@ txkB：网卡每秒发送了数据包的大小（kb）
 1. 学习的一系列命令本质上是一个个可执行程序，例：cd命令本质是：/usr/bin/cd
 2. 环境变量是一种keyvalue型结构，例如：PWD=/root。key是PWD，value是/root
 #### 11.1 env命令
-1. 查看环境变量
+1. 查看环境变量 ^x4oocm
 2. 语法：直接env即可
 #### 11.2 PATH
 **PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin**
@@ -850,7 +850,7 @@ echo ${PATH}/abc
 ```
 #### 11.4 自行设置环境变量
 1. 临时设置，语法：```export 变量名=变量值 ```
-2. 永久设置：
+2. 永久设置： ^4d8ptq
 	- 只针对当前用户生效，配置在当前用户的：==~==/==.==bashrc 文件中
 	![](assets/Linux/file-20260710112415294.png)
 	```[xy@centos ~]$ source ~/.bashrc```
@@ -1027,4 +1027,128 @@ hello,world
 			
 	第三种方法：
 		运用source方法或者加一个点一个空格的方法。注意：`./ `不等于`.空格 `
-	
+**第一、二种方法是开了一个子进程(就是在当前的进程中再开一个子进程)，但是第三种方法是直接调用了那个父进程（shell）**，解释如下：
+		![](assets/Linux/file-20260713125527747.png)
+	中间的圆圈相当于 bash，里面的方框相当于 root，外面的方框相当于创建的用户。
+```
+[root@centos scripts]# ps -f
+UID         PID   PPID  C STIME TTY          TIME CMD
+root      28667  41671  0 04:54 pts/0    00:00:00 ps -f
+root      41578  17139  0 03:47 pts/0    00:00:00 su - root
+root      41671  41578  0 03:47 pts/0    00:00:00 -bash
+[root@centos scripts]# bash
+[root@centos scripts]# ps -f
+UID         PID   PPID  C STIME TTY          TIME CMD
+root      30461  41671  0 04:55 pts/0    00:00:00 bash
+root      30673  30461  0 04:55 pts/0    00:00:00 ps -f
+root      41578  17139  0 03:47 pts/0    00:00:00 su - root
+root      41671  41578  0 03:47 pts/0    00:00:00 -bash
+[root@centos scripts]# exit
+exit
+[root@centos scripts]# ps -f
+UID         PID   PPID  C STIME TTY          TIME CMD
+root      31297  41671  0 04:56 pts/0    00:00:00 ps -f
+root      41578  17139  0 03:47 pts/0    00:00:00 su - root
+root      41671  41578  0 03:47 pts/0    00:00:00 -bash
+```
+在子进程 shell 中设置的环境变量无法同步到父进程；在父进程中设置的环境变量若在子进程中被修改，父进程也不会体现该修改。
+
+### 变量
+1. 一种划分方式是可以分为两部分： 系统定义的变量、用户定义的变量
+2. 另一种划分方式是可以分为两部分： 全局变量[环境变量](Linux学习/Linux.md#^x4oocm)、局部变量
+3. 两种划分方式是彼此有交叉的环境变量
+4. 用户定义变量示例：a=2  ==等于号的左右不能有空格==  局部变量
+```
+[root@centos scripts]# a=2
+[root@centos scripts]# echo $a
+2
+```
+5. 用户定义全局变量示例  [export](Linux学习/Linux.md#^4d8ptq)
+```
+[root@centos scripts]# bash
+[root@centos scripts]# echo $a
+
+[root@centos scripts]# exit
+exit
+[root@centos scripts]# export a
+[root@centos scripts]# bash
+[root@centos scripts]# ps -f
+UID         PID   PPID  C STIME TTY          TIME CMD
+root      41578  17139  0 03:47 pts/0    00:00:00 su - root
+root      41671  41578  0 03:47 pts/0    00:00:00 -bash
+root      84427  41671  0 05:26 pts/0    00:00:00 bash
+root      84633  84427  0 05:26 pts/0    00:00:00 ps -f
+[root@centos scripts]# echo $a
+2
+```
+但是如果在子进程中把变量进行了修改，在父进程中变量原有的值是不会改变的。如果在子进程中使用 export 命令，父进程中不会显示改变后的值。
+示例：
+```
+[root@centos scripts]# echo $a
+2
+[root@centos scripts]# a=3
+[root@centos scripts]# echo $a
+3
+[root@centos scripts]# exit
+exit
+[root@centos scripts]# echo $a
+2
+[root@centos scripts]# bash
+[root@centos scripts]# export a
+[root@centos scripts]# echo $a
+2              #这里也可以看到，退出一个 bash，然后再进入一个 bash，这两个 bash 是不一样的。
+[root@centos scripts]# a=3
+[root@centos scripts]# export a
+[root@centos scripts]# exit
+exit
+[root@centos scripts]# echo $a
+2
+```
+在脚本中是这样体现的:
+```
+[root@centos scripts]# a=3
+[root@centos scripts]# export a
+[root@centos scripts]# exit
+exit
+[root@centos scripts]# echo $a
+2
+[root@centos scripts]# vim hello.sh 
+-----------------------------------------------------------------------------------
+#!/bin/bash
+echo "hello,world"
+echo "我想你了"
+echo $a
+-----------------------------------------------------------------------------------
+[root@centos scripts]# b=4
+[root@centos scripts]# vim hello.sh
+-----------------------------------------------------------------------------------
+#!/bin/bash
+echo "hello,world"
+echo "我想你了"
+echo $a
+echo $b
+---------------------------------------------------------------------------------- 
+[root@centos scripts]# ./hello.sh 
+hello,world
+我想你了
+2
+-----------------------------------------------------------------------------------
+[root@centos scripts]# . hello.sh 
+hello,world
+我想你了
+2
+4
+```
+类型:另外变量定义的时候都是字符串:
+```
+[root@centos scripts]# a=1+5
+[root@centos scripts]# echo $a
+1+5
+```
+定义只读变量readonly:
+```
+[root@centos scripts]# readonly c=9
+[root@centos scripts]# c=1
+-bash: c: readonly variable
+
+```
