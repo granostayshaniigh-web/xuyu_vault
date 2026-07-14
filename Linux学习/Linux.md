@@ -1528,4 +1528,110 @@ c
 [root@centos scripts]# for i in {1..100};do sum=$[$sum+$i] ;done;echo $sum
 5050
 ```
-再一次说明 $* 和 $@。
+再一次说明 \$* 和 \$@。\$@会把变量拆成一个一个的（想要带 $ 的特殊变量在 echo 中原本输出，那么 echo 后面用单引号。）
+```
+[root@centos scripts]# vim $*_$@test
+#!/bin/bash
+
+echo '------$*------'
+for i in $*
+do
+        echo $i
+done
+
+echo '------$@------'
+for i in $@
+do
+        echo $i
+done
+
+echo '-----"$*"------'
+for i in "$*"
+do
+        echo $i
+done
+
+echo '------"$@"------'
+for i in "$@"
+do
+        echo $i
+done
+
+[root@centos scripts]# chmod +x $*_$@test
+[root@centos scripts]# ll
+total 20
+-rwxr-xr-x. 1 root root 109 Jul 14 06:05 case.sh
+-rwxr-xr-x. 1 root root 114 Jul 13 08:18 hello.sh
+-rwxr-xr-x. 1 root root 219 Jul 14 05:52 if_test.sh
+-rwxr-xr-x. 1 root root  78 Jul 14 07:53 sum.sh
+-rwxr-xr-x. 1 root root 227 Jul 14 08:25 _test
+[root@centos scripts]# ./_test a b c d
+------$*------
+a
+b
+c
+d
+------$@------
+a
+b
+c
+d
+-----"$*"------
+a b c d
+------"$@"------
+a
+b
+c
+d
+```
+### while循环
+(())与[] 
+for 与 while
+```
+[root@centos scripts]# vim sum.sh
+#!/bin/bash
+
+for (( i=1; i <=  $1 ;i++))
+do
+        sum=$[ $sum+$i ]
+done
+echo $sum
+
+a=1
+while (($a<=$1))
+do
+        sum1=$(($sum1+$a))
+        a=$(($a+1))
+done
+echo $sum1
+
+[root@centos scripts]# ./sum.sh 100
+5050
+5050
+```
+![](assets/Linux/file-20260714164611577.png)
+let
+![](assets/Linux/file-20260714164711863.png)
+### 用户的输入
+read命令
+语法：
+```
+read [ -p -t ] 参数
+```
+1. 选项:
+	-p:指定读取时的提示语
+	-t：指定读取时的等待时间，单位是秒。如果不输入这个选项，那么就一直等待，直到用户输入。
+2. 参数：
+	变量：指定读取值的变量名
+
+```
+[root@centos scripts]# vim read.sh
+
+#!/bin/bash
+read -t 10 -p "请输入你的名字" name
+echo "$name,hello"
+
+[root@centos scripts]# . read.sh 
+请输入你的名字xy
+xy,hello
+```
