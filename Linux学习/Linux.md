@@ -731,6 +731,14 @@ df [ -h -a ] 文件路径
 **du 命令是面向文件的，只会计算文件或目录占用的磁盘空间。也就是说，df 命令统计的分区更准确，是真正的空闲空间。**
 #### free命令
 ==free -h==  查看内存使用（mem、swap）
+查看==内存==（RAM）和==交换空间==（Swap）使用情况的最常用、最直接的命令是 free
+free -h：
+```text
+              total        used        free      shared  buff/cache   available
+Mem:           15Gi       4.2Gi       8.1Gi       300Mi       2.7Gi        10Gi
+Swap:         2.0Gi          0B       2.0Gi
+``` 
+
 #### lsblk 查看设备挂载情况
 1. lsblk命令的英文是“list block”，即用于列出所有可用==块设备==的信息，而且还能显示他们之间的依赖关系，但是它不会列出RAM盘的信息。
 	- 在 Linux 系统中，设备文件主要分为两大类：块设备（Block Devices）和==字符设备==（Character Devices）。
