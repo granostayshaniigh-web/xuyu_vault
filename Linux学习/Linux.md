@@ -1333,5 +1333,52 @@ bash: [hello: 未找到命令...
 大于(greater than)：-gt
 大于等于(greater equal)：-ge
 ```
-
+[xy@centos ~]$ [ 2 lt 3 ]
+-bash: [: lt: 期待二元表达式
+[xy@centos ~]$ [ 2 -lt 3 ]
+[xy@centos ~]$ echo $?
+0
 ```
+除了对于数值的判断，还能对文件权限进行判断:==只要有一个 W X R，那么它返回的就是 0==
+```
+[root@centos ~]# mkdir test
+[root@centos ~]# ll
+total 8
+-rw-------. 1 root root 2791 Jul  3 16:19 anaconda-ks.cfg
+drwxr-xr-x. 2 root root   35 Jul 10 03:42 myenv
+-rw-------. 1 root root 2071 Jul  3 16:19 original-ks.cfg
+drwxr-xr-x. 2 root root   22 Jul 14 03:34 scripts
+drwxr-xr-x. 2 root root    6 Jul 14 03:35 test
+[root@centos ~]# chmod 674 test
+[root@centos ~]# ll
+total 8
+-rw-------. 1 root root 2791 Jul  3 16:19 anaconda-ks.cfg
+drwxr-xr-x. 2 root root   35 Jul 10 03:42 myenv
+-rw-------. 1 root root 2071 Jul  3 16:19 original-ks.cfg
+drwxr-xr-x. 2 root root   22 Jul 14 03:34 scripts
+drw-rwxr--. 2 root root    6 Jul 14 03:35 test
+[root@centos ~]# [ -x test ]
+[root@centos ~]# echo $?
+0
+```
+还可以用这个来判断文件的类型，是一个是否存在的文件，还是一个常规的文件，还是一个目录。
+判断文件是否存在用 -e，判断是否是一个常规文件用 -f，判断是否是一个目录用 -d。
+```
+[root@centos ~]# ll
+total 8
+-rw-------. 1 root root 2791 Jul  3 16:19 anaconda-ks.cfg
+drwxr-xr-x. 2 root root   35 Jul 10 03:42 myenv
+-rw-------. 1 root root 2071 Jul  3 16:19 original-ks.cfg
+drwxr-xr-x. 2 root root   22 Jul 14 03:34 scripts
+drw-rw-rw-. 2 root root    6 Jul 14 03:35 test
+[root@centos ~]# [ -e test ]
+[root@centos ~]# echo $?
+0
+[root@centos ~]# [ -f test ]
+[root@centos ~]# echo $?
+1
+[root@centos ~]# [ -d test ]
+[root@centos ~]# echo $?
+0
+```
+多种条件的组合判断(逻辑与&&,还有另一个作用:上一条命令执行成功之后，再执行下一条命令,逻辑或||,还有另一个作用:上一条命令执行失败之后，再去执行下一条命令):
