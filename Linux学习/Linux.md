@@ -1447,4 +1447,59 @@ ok
 [root@centos scripts]# if [ $a -gt 18 -a $a -lt 35 ];then echo "ok" ;fi
 ok
 ```
-If else
+If else语句
+```
+[root@centos scripts]# vim if_test.sh
+-----------------------------------------------------------------------------------
+#!/bin/bash
+
+if [ "$1"x = "xy"x ]
+then
+        echo "welcomeback" 
+fi
+-----------------------------------------------------------------------------------
+if [ $2 -lt 18 ]
+then
+        echo "weichengnian"
+elif [ $2 -lt 40 ]
+then
+        echo "zhongnian"
+elif [ $2 -lt 60 ]
+then
+        echo "zhonglaonian"
+else
+        echo "laonian"
+fi
+-----------------------------------------------------------------------------------
+[root@centos scripts]# ./if_test.sh xy 46
+welcomeback
+zhonglaonian
+```
+Case的多分支结构
+```
+[root@centos scripts]# vim case.sh
+#!/bin/bash
+
+case $1 in
+1)
+        echo "one"
+;;
+2)
+        echo "two"
+;;
+3)
+        echo "three"
+;;
+*)
+        echo "other num"
+;;
+esac
+
+[root@centos scripts]# chmod +x case.sh 
+[root@centos scripts]# ./case.sh 2
+two
+[root@centos scripts]# ./case.sh 3
+three
+[root@centos scripts]# ./case.sh 4
+other num
+```
