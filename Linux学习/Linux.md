@@ -1382,3 +1382,69 @@ drw-rw-rw-. 2 root root    6 Jul 14 03:35 test
 0
 ```
 多种条件的组合判断(逻辑与&&,还有另一个作用:上一条命令执行成功之后，再执行下一条命令,逻辑或||,还有另一个作用:上一条命令执行失败之后，再去执行下一条命令):
+```
+[root@centos ~]# [ a -lt 20 ] && echo "a<20" || echo "a>=20"
+-bash: [: a: integer expression expected
+a>=20
+报错原因	a 是字符串，不能用于 -lt 整数比较
+
+[root@centos ~]# [ $a -lt 20 ] && echo "$a<20" || echo "$a>=20"
+15<20
+```
+[  ]里面只要有东西，那么就是真。里面是空的，那么就是假。
+```
+[root@centos ~]# [ cjsak ] && echo "方括号里面的是真" || echo "方括号里面的是假"
+方括号里面的是真
+[root@centos ~]# [ ] && echo "方括号里面的是真" || echo "方括号里面的是假"
+方括号里面的是假
+```
+### 条件判断后的分支流程，if 判断
+```
+[root@centos scripts]# vim if_test.sh
+#!/bin/bash
+
+if [ $1 = xy ]
+then
+        echo "welcomeback" 
+fi
+[root@centos scripts]# chmod +x if_test.sh 
+[root@centos scripts]# ./if_test.sh a
+[root@centos scripts]# . if_test.sh 
+-bash: [: =: unary operator expected
+[root@centos scripts]# . if_test.sh xy
+welcomeback
+-----------------------------------------------------------------------------------
+不报错:
+[root@centos scripts]# vim if_test.sh
+#!/bin/bash
+
+if [ "$1"x = "xy"x ]
+then 
+        echo "welcomeback" 
+fi
+
+[root@centos scripts]# . if_test.sh 
+[root@centos scripts]# ./if_test.sh 
+[root@centos scripts]# ./if_test.sh xy
+welcomeback
+```
+If后面有多个条件判断:
+```
+[root@centos scripts]# a=25
+[root@centos scripts]# if [ $a -gt 18 ] && [ $a -lt 35 ];then echo "ok"
+> fi
+ok
+[root@centos scripts]# if [ $a -gt 18 ] && [ $a -lt 35 ];then echo "ok"; fi
+ok
+[root@centos scripts]# a=15
+[root@centos scripts]# if [ $a -gt 18 ] && [ $a -lt 35 ];then echo "ok"; fi
+-----------------------------------------------------------------------------------
+两个条件放一起:
+[root@centos scripts]# if [ $a -gt 18 -a $a -lt 35 ];then echo "ok" fi
+> ^C
+[root@centos scripts]# if [ $a -gt 18 -a $a -lt 35 ];then echo "ok" ;fi
+[root@centos scripts]# a=25
+[root@centos scripts]# if [ $a -gt 18 -a $a -lt 35 ];then echo "ok" ;fi
+ok
+```
+If else
