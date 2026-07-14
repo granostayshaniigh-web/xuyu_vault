@@ -1283,3 +1283,55 @@ expr: syntax error
 [root@centos scripts]# echo a
 6
 ```
+### 条件判断
+- test命令
+- \[ ] 注意里面有好多空格
+- ==$? 需要有echo==
+```
+[xy@centos ~]$ a=hello
+[xy@centos ~]$ echo $a
+hello
+[xy@centos ~]$ test $a = hello
+[xy@centos ~]$ $?
+bash: 0: 未找到命令...
+[xy@centos ~]$ echo $?
+127  #可以理解为 127 的错误
+[xy@centos ~]$ test $a = hello
+[xy@centos ~]$ echo $?
+0   #可以理解为 0 个错误
+[xy@centos ~]$ test $a != hello
+[xy@centos ~]$ echo $?
+1   #可以理解为一个错误
+[xy@centos ~]$ [$a = hello]   #[]的空格
+bash: [hello: 未找到命令...
+[xy@centos ~]$ [ $a = hello ]
+[xy@centos ~]$ echo $?
+0
+[xy@centos ~]$ [ $a = Hello ]
+[xy@centos ~]$ echo $?
+1
+[xy@centos ~]$ [ $a != Hello ]
+[xy@centos ~]$ echo $?
+0
+```
+数值比较:
+```
+[xy@centos ~]$ [ 2 = 2 ]
+[xy@centos ~]$ echo $?
+0
+[xy@centos ~]$ [ 2 = 3 ]
+[xy@centos ~]$ echo $?
+1
+[xy@centos ~]$ [ 2 < 3 ]
+-bash: 3: 没有那个文件或目录
+```
+所以大于、小于、等于有专门的方法。示例中的等于是把左右两边的数字看成了字符串。真正的数值比较是要用以下的方法
+等于（equal)：-eq
+不等于(not equal)：-ne
+小于(less than)：-lt
+小于等于(less equal)：-le
+大于(greater than)：-gt
+大于等于(greater equal)：-ge
+```
+
+```
