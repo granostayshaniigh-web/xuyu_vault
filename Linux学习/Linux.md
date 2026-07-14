@@ -1169,7 +1169,7 @@ hello,world
 -bash: unset: c: cannot unset: readonly variable
 ```
 只读变量不能用 **unset** 去撤销
-### 特殊变量
+### 特殊变量（想要带 $ 的特殊变量在 echo 中原本输出，那么 echo 后面用单引号。）
 #### 1. $n
 举例理解:相当于一个占位符，当是两位数字时，${10}
 ```
@@ -1429,6 +1429,7 @@ fi
 welcomeback
 ```
 If后面有多个条件判断:
+在then的前面会有一个分号。然后在 fi 前面有一个分号
 ```
 [root@centos scripts]# a=25
 [root@centos scripts]# if [ $a -gt 18 ] && [ $a -lt 35 ];then echo "ok"
@@ -1503,3 +1504,28 @@ three
 [root@centos scripts]# ./case.sh 4
 other num
 ```
+### for循环
+```
+[root@centos scripts]# vim sum.sh
+#!/bin/bash
+
+for (( i=1; i <=  $1 ;i++)) # (( )) 是 C 风格算术表达式，应该用 <=，而不是 -le。
+do
+        sum=$[ $sum+$i ]
+done
+echo $sum
+
+[root@centos scripts]# ./sum.sh 100
+5050
+```
+- 可以作为遍历。{1..100}表示从1到100，
+- 容易犯错误的点：in后面可以跟一个集合；在do的前面和done的前面都会有一个分号，然后echo后面会有一个$符号
+```
+[root@centos scripts]# for i in a b c;do echo $i;done
+a
+b
+c
+[root@centos scripts]# for i in {1..100};do sum=$[$sum+$i] ;done;echo $sum
+5050
+```
+再一次说明 $* 和 $@。
