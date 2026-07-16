@@ -1528,7 +1528,7 @@ c
 [root@centos scripts]# for i in {1..100};do sum=$[$sum+$i] ;done;echo $sum
 5050
 ```
-再一次说明 \$* 和 \$@。\$@会把变量拆成一个一个的（想要带 $ 的特殊变量在 echo 中原本输出，那么 echo 后面用单引号。）
+再一次说明 \$* 和 \$@。==$@==会把变量拆成一个一个的（想要带 $ 的特殊变量在 echo 中原本输出，那么 echo 后面用单引号。）
 ```
 [root@centos scripts]# vim $*_$@test
 #!/bin/bash
@@ -1634,4 +1634,45 @@ echo "$name,hello"
 [root@centos scripts]# . read.sh 
 请输入你的名字xy
 xy,hello
+```
+系统函数
+主要有一个练习和basename、dirname两个命令
+basenam、dirname实际上是剪切函数
+对于basename：
+
+```
+path:/root/scripts/practice.sh
+[root@centos scripts]# basename practice.sh sh
+practice.
+```
+
+```
+[root@centos scripts]# vim practice.sh
+#!/bin/bash
+echo '=====$n===='
+echo "脚本名称:$(basename $0 .sh)"
+cd $(dirname $0)
+echo "path:$(pwd)"
+echo "1st paramater:$1"
+echo "2nd paramater:$2"
+echo '====$#===='
+echo "paramater num:$#"
+echo '====$*===='
+echo "$*"
+echo '====$@===='
+echo "$@"
+
+[root@centos scripts]# chmod +x practice.sh 
+[root@centos scripts]# ./practice.sh a b
+=====$n====
+脚本名称:practice
+path:/root/scripts
+1st paramater:a
+2nd paramater:b
+====$#====
+paramater num:2
+====$*====
+a b
+====$@====
+a b
 ```
