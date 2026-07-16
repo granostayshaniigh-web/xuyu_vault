@@ -960,7 +960,7 @@ unzip [ -d ] 参数
 /bin/tcsh
 /bin/csh
 ```
-### shell脚本
+### 1. shell脚本
 1. shell脚本的一般后缀是 .sh。其实如果内容是按照 shell 标准去写的，后缀名不是这个也没有关系.
 2. 脚本的格式:脚本以 ==#!/bin/ bash ==开头(指定解析器)
 ```
@@ -1024,7 +1024,7 @@ hello,world
 3. 执行:
 	第一种方法:
 	- bsah 加上路径
-	- sh 加上路径
+	-  ==sh 加上路径==
 	==第二种方法:==
 		直接输入脚本的绝对路径或者相对路径执行脚本
 		注意的问题：
@@ -1061,7 +1061,7 @@ root      41671  41578  0 03:47 pts/0    00:00:00 -bash
 ```
 在子进程 shell 中设置的环境变量无法同步到父进程；在父进程中设置的环境变量若在子进程中被修改，父进程也不会体现该修改。
 
-### 普通变量
+### 2. 普通变量
 1. 一种划分方式是可以分为两部分： 系统定义的变量、用户定义的变量
 2. 另一种划分方式是可以分为两部分： 全局变量[环境变量](Linux学习/Linux.md#^x4oocm)、局部变量
 3. 两种划分方式是彼此有交叉的环境变量
@@ -1089,7 +1089,8 @@ root      84633  84427  0 05:26 pts/0    00:00:00 ps -f
 [root@centos scripts]# echo $a
 2
 ```
-但是如果在子进程中把变量进行了修改，在父进程中变量原有的值是不会改变的。如果在子进程中使用 export 命令，父进程中不会显示改变后的值。
+但是如果在子进程中把变量进行了修改，在父进程中变量原有的值是不会改变的。
+即使在子进程中使用 export 命令，==父进程中不会显示改变后的值。==
 示例：
 ```
 [root@centos scripts]# echo $a
@@ -1161,7 +1162,7 @@ hello,world
 -bash: c: readonly variable
 ```
 将定义的变量撤销:
-先set一下看一下所有的变量：`[root@centos scripts]# set | less`
+先==set==一下看一下所有的变量：`[root@centos scripts]# set | less`
 ![](assets/Linux/file-20260713135207670.png)
 ```
 [root@centos scripts]# unset a
@@ -1169,8 +1170,8 @@ hello,world
 -bash: unset: c: cannot unset: readonly variable
 ```
 只读变量不能用 **unset** 去撤销
-### 特殊变量（想要带 $ 的特殊变量在 echo 中原本输出，那么 echo 后面用单引号。）
-#### 1. $n
+### 3. 特殊变量（想要带 $ 的特殊变量在 echo 中==原本==输出，那么 echo 后面用单引号。）
+#### 3.1. $n
 举例理解:相当于一个占位符，当是两位数字时，${10}
 ```
 [root@centos scripts]# vim hello.sh 
@@ -1207,7 +1208,7 @@ hello,world
 hello,
 name: -bash
 ```
-#### 2. $\#(统计自己给定参数的个数)
+#### 3.2 $\#(统计自己给定参数的个数)
 ```
 [root@centos scripts]# vim hello.sh 
 #!/bin/bash
@@ -1227,8 +1228,8 @@ hello,abc
 name: ./hello.sh
 num: 1
 ```
-#### 3. \$\*、\$@(都是代表命令行中的所有参数)
-区别在于：前者是把所有参数看成一个整体，后者是把每个参数区分对待。
+#### 3.3 \$\*、\$@(都是代表命令行中的所有参数)
+区别在于：前者是把所有参数看成一个整体，后者==$@==是把每个参数区分对待。
 ```
 [root@centos scripts]# vim hello.sh 
 #!/bin/bash
@@ -1261,10 +1262,10 @@ $@
 abc
 
 ```
-#### 4. $?
+#### 3.4 $?
 执行完命令之后，返回执行后的状态。返回0，则没有报错。返回其他值，则说明报错
 ![](assets/Linux/file-20260713162338924.png)
-### 运算符
+### 4. 运算符
 就是在命令行中进行四则运算。
 expr命令
 ```
@@ -1283,17 +1284,17 @@ expr: syntax error
 [root@centos scripts]# echo a
 6
 ```
-### 条件判断
+### 5. 条件判断
 - test命令
-- \[ ] 注意里面有好多空格
+- \[ ] 注意里面有好多空格  \[ 1$a2 =3 Hello4 ]  4个空格
 - ==$? 需要有echo==
 ```
 [xy@centos ~]$ a=hello
 [xy@centos ~]$ echo $a
 hello
 [xy@centos ~]$ test $a = hello
-[xy@centos ~]$ $?
-bash: 0: 未找到命令...
+[xy@centos ~]$ $?                   # $? 需要有echo
+bash: 0: 未找到命令...               #$?不是一个命令
 [xy@centos ~]$ echo $?
 127  #可以理解为 127 的错误
 [xy@centos ~]$ test $a = hello
@@ -1302,7 +1303,7 @@ bash: 0: 未找到命令...
 [xy@centos ~]$ test $a != hello
 [xy@centos ~]$ echo $?
 1   #可以理解为一个错误
-[xy@centos ~]$ [$a = hello]   #[]的空格
+[xy@centos ~]$ [$a = hello]        #[]的空格
 bash: [hello: 未找到命令...
 [xy@centos ~]$ [ $a = hello ]
 [xy@centos ~]$ echo $?
@@ -1314,7 +1315,7 @@ bash: [hello: 未找到命令...
 [xy@centos ~]$ echo $?
 0
 ```
-数值比较:
+**数值比较:**
 ```
 [xy@centos ~]$ [ 2 = 2 ]
 [xy@centos ~]$ echo $?
@@ -1325,13 +1326,14 @@ bash: [hello: 未找到命令...
 [xy@centos ~]$ [ 2 < 3 ]
 -bash: 3: 没有那个文件或目录
 ```
-所以大于、小于、等于有专门的方法。示例中的等于是把左右两边的数字看成了字符串。真正的数值比较是要用以下的方法
-等于（equal)：-eq
-不等于(not equal)：-ne
-小于(less than)：-lt
-小于等于(less equal)：-le
-大于(greater than)：-gt
-大于等于(greater equal)：-ge
+- 所以大于、小于、等于有专门的方法。示例中的等于是把左右两边的数字看成了字符串。真正的数值比较是要用以下的方法
+	等于（equal)：-eq
+	不等于(not equal)：-ne
+	小于(less than)：-lt
+	小于等于(less equal)：-le
+	大于(greater than)：-gt
+	大于等于(greater equal)：-ge
+	
 ```
 [xy@centos ~]$ [ 2 lt 3 ]
 -bash: [: lt: 期待二元表达式
@@ -1339,7 +1341,9 @@ bash: [hello: 未找到命令...
 [xy@centos ~]$ echo $?
 0
 ```
-除了对于数值的判断，还能对文件权限进行判断:==只要有一个 W X R，那么它返回的就是 0==
+除了对于数值的判断，
+**还能对文件权限进行判断**
+==只要有一个 W X R，那么它返回的就是 0==
 ```
 [root@centos ~]# mkdir test
 [root@centos ~]# ll
@@ -1359,10 +1363,13 @@ drwxr-xr-x. 2 root root   22 Jul 14 03:34 scripts
 drw-rwxr--. 2 root root    6 Jul 14 03:35 test
 [root@centos ~]# [ -x test ]
 [root@centos ~]# echo $?
-0
+0            # 目录的所有者（root）没有 `x` 权限，但 `[ -x test ]` 却返回 0。我解释了这是                因为 root 用户的特权
 ```
-还可以用这个来判断文件的类型，是一个是否存在的文件，还是一个常规的文件，还是一个目录。
-判断文件是否存在用 -e，判断是否是一个常规文件用 -f，判断是否是一个目录用 -d。
+**判断文件的类型**
+- 是一个是否存在的文件，还是一个常规的文件，还是一个目录。
+	判断文件是否存在用 -e，
+	判断是否是一个常规文件用 -f，
+	判断是否是一个目录用 -d。
 ```
 [root@centos ~]# ll
 total 8
@@ -1381,7 +1388,9 @@ drw-rw-rw-. 2 root root    6 Jul 14 03:35 test
 [root@centos ~]# echo $?
 0
 ```
-多种条件的组合判断(逻辑与&&,还有另一个作用:上一条命令执行成功之后，再执行下一条命令,逻辑或||,还有另一个作用:上一条命令执行失败之后，再去执行下一条命令):
+**多种条件的组合判断：**
+- 逻辑与&&,还有另一个作用:上一条命令执行成功之后，再执行下一条命令
+- 逻辑或||,还有另一个作用:上一条命令执行失败之后，再去执行下一条命令
 ```
 [root@centos ~]# [ a -lt 20 ] && echo "a<20" || echo "a>=20"
 -bash: [: a: integer expression expected
@@ -1391,7 +1400,7 @@ a>=20
 [root@centos ~]# [ $a -lt 20 ] && echo "$a<20" || echo "$a>=20"
 15<20
 ```
-[  ]里面只要有东西，那么就是真。里面是空的，那么就是假。
+\[  ]里面只要有东西，那么就是真。里面是空的，那么就是假。
 ```
 [root@centos ~]# [ cjsak ] && echo "方括号里面的是真" || echo "方括号里面的是假"
 方括号里面的是真
@@ -1414,7 +1423,7 @@ fi
 [root@centos scripts]# . if_test.sh xy
 welcomeback
 -----------------------------------------------------------------------------------
-不报错:
+不输入参数也不报错:
 [root@centos scripts]# vim if_test.sh
 #!/bin/bash
 
@@ -1439,8 +1448,9 @@ ok
 ok
 [root@centos scripts]# a=15
 [root@centos scripts]# if [ $a -gt 18 ] && [ $a -lt 35 ];then echo "ok"; fi
------------------------------------------------------------------------------------
-两个条件放一起:
+```
+两个条件放一起 -a :
+```
 [root@centos scripts]# if [ $a -gt 18 -a $a -lt 35 ];then echo "ok" fi
 > ^C
 [root@centos scripts]# if [ $a -gt 18 -a $a -lt 35 ];then echo "ok" ;fi
@@ -1448,7 +1458,7 @@ ok
 [root@centos scripts]# if [ $a -gt 18 -a $a -lt 35 ];then echo "ok" ;fi
 ok
 ```
-If else语句
+**If else语句**
 ```
 [root@centos scripts]# vim if_test.sh
 -----------------------------------------------------------------------------------
@@ -1519,7 +1529,7 @@ echo $sum
 5050
 ```
 - 可以作为遍历。{1..100}表示从1到100，
-- 容易犯错误的点：in后面可以跟一个集合；在do的前面和done的前面都会有一个分号，然后echo后面会有一个$符号
+- 容易犯错误的点：in后面可以跟一个集合；在do的前面和done的前面都会有一个分号(分步执行），然后echo后面会有一个$符号
 ```
 [root@centos scripts]# for i in a b c;do echo $i;done
 a
@@ -1585,7 +1595,7 @@ c
 d
 ```
 ### while循环
-(())与[] 
+(())与\[ ] 
 for 与 while
 ```
 [root@centos scripts]# vim sum.sh
