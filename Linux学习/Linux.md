@@ -1315,7 +1315,7 @@ bash: [hello: 未找到命令...
 [xy@centos ~]$ echo $?
 0
 ```
-**数值比较:**
+**5.1 数值比较:**
 ```
 [xy@centos ~]$ [ 2 = 2 ]
 [xy@centos ~]$ echo $?
@@ -1342,7 +1342,7 @@ bash: [hello: 未找到命令...
 0
 ```
 除了对于数值的判断，
-**还能对文件权限进行判断**
+**5.2  还能对文件权限进行判断**
 ==只要有一个 W X R，那么它返回的就是 0==
 ```
 [root@centos ~]# mkdir test
@@ -1365,7 +1365,7 @@ drw-rwxr--. 2 root root    6 Jul 14 03:35 test
 [root@centos ~]# echo $?
 0            # 目录的所有者（root）没有 `x` 权限，但 `[ -x test ]` 却返回 0。我解释了这是                因为 root 用户的特权
 ```
-**判断文件的类型**
+**5.3 判断文件的类型**
 - 是一个是否存在的文件，还是一个常规的文件，还是一个目录。
 	判断文件是否存在用 -e，
 	判断是否是一个常规文件用 -f，
@@ -1388,7 +1388,7 @@ drw-rw-rw-. 2 root root    6 Jul 14 03:35 test
 [root@centos ~]# echo $?
 0
 ```
-**多种条件的组合判断：**
+**5.4 多种条件的组合判断：**
 - 逻辑与&&,还有另一个作用:上一条命令执行成功之后，再执行下一条命令
 - 逻辑或||,还有另一个作用:上一条命令执行失败之后，再去执行下一条命令
 ```
@@ -1407,7 +1407,7 @@ a>=20
 [root@centos ~]# [ ] && echo "方括号里面的是真" || echo "方括号里面的是假"
 方括号里面的是假
 ```
-### 条件判断后的分支流程，if 判断
+### 6. 条件判断后的分支流程，if 判断
 ```
 [root@centos scripts]# vim if_test.sh
 #!/bin/bash
@@ -1458,7 +1458,7 @@ ok
 [root@centos scripts]# if [ $a -gt 18 -a $a -lt 35 ];then echo "ok" ;fi
 ok
 ```
-**If else语句**
+**6.1 If else语句**
 ```
 [root@centos scripts]# vim if_test.sh
 -----------------------------------------------------------------------------------
@@ -1486,7 +1486,7 @@ fi
 welcomeback
 zhonglaonian
 ```
-Case的多分支结构
+**6.2 case的多分支结构**
 ```
 [root@centos scripts]# vim case.sh
 #!/bin/bash
@@ -1514,7 +1514,7 @@ three
 [root@centos scripts]# ./case.sh 4
 other num
 ```
-### for循环
+### 7. for循环
 ```
 [root@centos scripts]# vim sum.sh
 #!/bin/bash
@@ -1594,7 +1594,7 @@ b
 c
 d
 ```
-### while循环
+### 8. while循环
 (())与\[ ] 
 for 与 while
 ```
@@ -1620,9 +1620,10 @@ echo $sum1
 5050
 ```
 ![](assets/Linux/file-20260714164611577.png)
-let
+
+**8.1 let**变成c语言的写法
 ![](assets/Linux/file-20260714164711863.png)
-### 用户的输入
+### 9. 用户的输入
 read命令
 语法：
 ```
@@ -1645,7 +1646,7 @@ echo "$name,hello"
 请输入你的名字xy
 xy,hello
 ```
-### 系统函数（在脚本中调用格式 $() )
+### 10. 系统函数（在脚本中调用格式 $() )
 主要有一个练习和basename、dirname两个命令
 basenam、dirname实际上是剪切函数
 
@@ -1695,7 +1696,7 @@ a b
 ====$@====
 a b
 ```
-### 自定义函数
+### 11. 自定义函数
 ```
 [root@centos scripts]# vim function_test
 
