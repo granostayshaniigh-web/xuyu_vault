@@ -1635,19 +1635,28 @@ echo "$name,hello"
 请输入你的名字xy
 xy,hello
 ```
-系统函数
+### 系统函数（在脚本中调用格式 $() )
 主要有一个练习和basename、dirname两个命令
 basenam、dirname实际上是剪切函数
-对于basename：
 
+对于basename：
+减去最后一个斜杆前的的所有内容，最后添的参数是减去末尾的字母
 ```
 path:/root/scripts/practice.sh
 [root@centos scripts]# basename practice.sh sh
 practice.
 ```
+而dirname相反，保留最后一个斜杆前的的所有内容
+
+在一个命令中调用另一个命令，需要用$( )，命令替换。
+对于命令替换（命令中用命令）：
+```
+a=$(expr 2 + 3)
+```
 
 ```
 [root@centos scripts]# vim practice.sh
+
 #!/bin/bash
 echo '=====$n===='
 echo "脚本名称:$(basename $0 .sh)"
@@ -1676,3 +1685,4 @@ a b
 ====$@====
 a b
 ```
+### 自定义函数
