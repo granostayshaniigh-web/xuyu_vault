@@ -1686,3 +1686,30 @@ a b
 a b
 ```
 ### 自定义函数
+```
+[root@centos scripts]# vim function_test
+
+#!/bin/bash
+
+function add()
+{
+        s=$[$1 + $2]
+        echo $s
+}
+
+read -p"a= " a
+read -p"b= " b
+
+add $a $b
+
+sum=$(add $a $b)
+echo "pingfang_$[sum * sum]"
+
+[root@centos scripts]# ./function_test 
+a= 190
+b= 200
+390
+pingfang_152100
+```
+function add()  不用传形参
+sum=$(add $a $b)  相当于把函数的返回值赋给 sum
