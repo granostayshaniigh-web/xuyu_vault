@@ -55,3 +55,27 @@ Enter the second number b
 
 进程已结束，退出代码为 0
 ```
+11. 数字运算：类型不一样不能运算，需要转成同类型才能计算
+	- 隐式转换，小范围转成大范围，不需要写代码。例外：如果有byte、short类型的数据，计算时要转为int
+	- 强制转换，大范围转成小范围，需要写代码，会导致精度丢失。int a；byte b=（byte）a；
+12. 字符串拼接与数字拆分。
+```java
+package practice.test;  
+import java.util.Scanner;  
+public class num_divide {  
+    public static void main (String[] args){  
+        System.out.println("enter the number");  
+        Scanner sc = new Scanner(System.in);  
+        int seconds =sc.nextInt(); 
+        //数字拆分 
+        int hours=seconds/3600;  
+        int minutes=seconds%3600/60;  
+        int second=seconds%3600%60;
+        //字符串拼接  
+        System.out.println("小时:"+hours);  
+        System.out.println("分钟:"+minutes);  
+        System.out.println("秒:"+second);  
+    }  
+}
+```
+13. 逻辑运算符：逻辑与&、逻辑或|、逻辑非！、短路与&&、短路或||
