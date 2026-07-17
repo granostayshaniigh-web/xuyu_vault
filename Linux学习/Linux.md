@@ -1724,3 +1724,4 @@ pingfang_152100
 ```
 function add()  不用传形参
 sum=$(add $a $b)  相当于把函数的返回值赋给 sum
+## 第六章 C语言编程
