@@ -1725,3 +1725,98 @@ pingfang_152100
 function add()  不用传形参
 sum=$(add $a $b)  相当于把函数的返回值赋给 sum
 ## 第六章 C语言编程
+### 1. GCC
+1. 作用：编译器工具集，支持多种编程语言，将源代码编译成机器语言，生成可执行文件或库文件（编译成二进制文件）。
+2. gcc语法：
+```bash
+gcc main.c hello.c -o main
+```
+- -o：output的缩写，表示输出，用于指定输出文件名，上面一段命令是指用main.c hello.c两个文件生成一个可执行的main文件
+**预处理：**
+```bash
+gcc -E hello.c -o hello.i
+gcc -E main.c -o main.i
+```
+- -E：Expand（展开）的缩写，该参数指定gcc执行预处理操作。
+- i：intermediate（中间的）的缩写，预处理后的源文件通常以.i作为后缀。
+**编译：**
+```bash
+gcc -S hello.i -o hello.s
+gcc -S main.i -o main.s
+```
+- -S：Source（源代码）的缩写，该参数指定gcc将预处理后的源码编译为汇编语言。
+- .s：Assembly Source（汇编源码）的缩写，通常编译后的汇编文件以.s作为后缀。
+**汇编：**
+```bash
+gcc -c main.s -o main.o
+gcc -c hello.s -o hello.o
+```
+-c：可以被理解为Compile or Assemble（编译或汇编），该参数可以指定gcc将汇编代码翻译为机器码，但不做链接。此外，该参数也可以用于将.c文件直接处理为机器码，同样不做链接。
+-o：Object的缩写，通常汇编得到的机器码文件以.o为后缀。
+### 2. glibc
+1. 作用：将两个系统（Windows和Linux）中相同的库函数（如stdio.h\stdlib.h），虽然底层的执行程序有所不同，但是它们的表示是相同的，最后达到的作用也是相同的。主要因为依赖于这个项目。程序中使用的标准库函数（如printf或malloc）是通过glibc提供的。
+### 3. GNU C
+1. 说明： C语言编程标准
+
+**总的来说，GCC是编译器，负责将源代码转换为可执行代码；glibc是运行时库，提供程序运行所需的标准函数和操作系统服务的接口；而GNU C则定义了GCC支持的C语言的标准和扩展。**
+### 4. C语言编译过程
+**4.1 先整体看一下在liunx中执行一个C语言程序：**
+``` bash
+atguigu@ubuntu:~$ mkdir helloworld
+atguigu@ubuntu:~$ cd helloworld
+atguigu@ubuntu:~$ touch main.c
+atguigu@ubuntu:~$ touch hello.h
+atguigu@ubuntu:~$ touch hello.c
+atguigu@ubuntu:~$ vim main.c
+-----------------------------------------------------------------------------------
+#include "hello.h"
+int main()
+{
+    say_hello();
+    return 0;
+}
+:wq
+-----------------------------------------------------------------------------------
+atguigu@ubuntu:~$ vim hello.h
+#ifndef __HELLO_H__
+#define __HELLO_H__
+void say_hello();
+#endif
+:wq
+-----------------------------------------------------------------------------------
+atguigu@ubuntu:~$ vim hello.c
+#include "hello.h"
+#include <stdio.h>
+void say_hello()
+{
+    printf("Hello world!\n");
+}
+:wq
+-----------------------------------------------------------------------------------
+atguigu@ubuntu:~/helloworld$ gcc main.c hello.c -o main
+
+#-o:output的缩写，表示输出，用于指定输出文件名（这个文件就是可执行文件，并且这个文件是自动加上可执行权限x的）。
+-----------------------------------------------------------------------------------
+atguigu@ubuntu:~/helloworld$ ./main
+helloworld!
+```
+**4.2 拆分理解**
+1. 预处理命令：主要包含宏替换、文件包含、条件编译、注释移除等几种任务，预处理的==输出通常是经过预处理后的源代码文件（后缀名为.i的文件）==，它会被保存成一个临时文件，并作为==编译器的输入==。预处理器处理后的文件通常会比原始源文件大，因为它会展开宏和包含其他文件的内容。
+	- 用下面的命令对两个源文件进行预处理：
+```bash
+		gcc -E hello.c -o hello.i
+		gcc -E main.c -o main.i
+```
+2. 编译：编译器会将经过==预处理的源代码==文件转换成==汇编语言代码（后缀名为.s的汇编文件）==，包括词法分析、语法分析、语义分析和优化等过程。编译器会检查代码的语法和语义，生成对应的汇编代码。编译阶段是==整个编译过程中最复杂和耗时的阶段之一==，它对源代码进行了深入的分析和转换，确保了程序的正确性和性能。
+	- 用下面的命令对两个源文件进行编译：
+```bash
+		gcc -S hello.i -o hello.s
+		gcc -S main.i -o main.s
+```
+3. 1）汇编命令：将汇编指令翻译成目标==机器的二进制形式（后缀名为.o的机器码文件）==。主要包含：符号解析、指令翻译、地址关联、重定位、代码优化。
+	- 用下面的命令对两个源文件进行汇编：
+```bash
+		gcc -c main.s -o main.o
+		gcc -c hello.s -o hello.o
+```
+4. 链接：链接器将各个目标文件以及可能用到的库文件进行链接，生成最终的可执行程序。链接器==还会处理全局变量的定义和声明==，我们调用了printf()函数，这个函数是在stdio.h中声明的，来源于glibc库或静态库（如libc.a）文件中。因此，我们除了要链接.o机器码文件，还需要和glibc库的文件链接。通常，C语言的链接共有三种方式：静态链接、动态链接和混合链接。三者的区别就在于链接器在链接过程中对程序中库函数调用的解析。
