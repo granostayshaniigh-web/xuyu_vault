@@ -1868,8 +1868,10 @@ helloworld!
 - 混合链接：某些库静态链接，而其他库动态链接。这种方式结合了静态链接和动态链接的优点。
 ### 6. Makefile基础
 ## 第七章 服务器
-1. Apache：
-### SSH（Secure Shell 安全外壳协议)
+### 7.1  Apache
+
+
+### 7.2 SSH（Secure Shell 安全外壳协议)
 1. 定义：一种**加密的网络传输协议**，为远程登录会话和其他网络服务提供**安全性**。
 - 看到 SCP、SFTP -->选项里找 SSH、22端口。
 - 看到 HTTPS-->选项里找 SSL/TLS、443端口、网页加密。
@@ -1888,7 +1890,7 @@ helloworld!
 tcp
  协议      默认端口                
  SSH          22 ★★★                            
- HTTP        80                       
+ HTTP        80       HTTPS  443                  
  FTP           21     相比于scp 加密传输ftp明文传输不安全
  Telnet       23                       
  DNS         53                       
@@ -1974,7 +1976,25 @@ ssh-copy-id user2@server2
 cat id_rsa.pub >> ~/.ssh/authorized_keys
 ```
 
-### 3. 关键文件总结（必背！）
+**（总结）题目**：配置在server1上以用户名user2免密登录到server2
+
+**答案**：
+
+```bash
+# 步骤1：生成密钥
+ssh-keygen
+
+# 步骤2：进入密钥目录
+cd ~/.ssh
+
+# 步骤3：复制公钥
+scp id_rsa.pub user2@server2:/home/user2/.ssh/
+
+# 步骤4：服务端追加到授权文件
+cat id_rsa.pub >> authorized_keys
+```
+
+- 关键文件总结
 
 |文件名|位置|作用|
 |---|---|---|
@@ -1982,62 +2002,6 @@ cat id_rsa.pub >> ~/.ssh/authorized_keys
 |**id_rsa.pub**|客户端 ~/.ssh/|公钥文件|
 |**authorized_keys**|服务端 ~/.ssh/|存储所有授权的公钥|
 |**known_hosts**|客户端 ~/.ssh/|存储已连接过的主机指纹|
-
----
-
-## 第七层：SSH相关命令速查表
-
-### 综合命令表
-
-|命令|功能|示例|
-|---|---|---|
-|`ssh`|远程登录|`ssh user@10.0.0.50`|
-|`scp`|安全复制文件|`scp file user@ip:/path/`|
-|`scp -r`|安全复制目录|`scp -r dir user@ip:/path/`|
-|`ssh-keygen`|生成密钥对|`ssh-keygen`|
-|`service sshd start`|启动SSH服务|-|
-|`service sshd restart`|重启SSH服务|-|
-
----
-
-## 第八层：考试真题演练
-
-### 选择题精选
-
-**1. SSH是什么协议？**
-
-- A. 安全外壳 ✅
-- B. 请求-响应
-- C. 地址解析
-- D. 动态主机配置
-
-**2. OpenSSH的默认端口号为？**
-
-- A. 80
-- B. 8080
-- C. 21
-- **D. 22 ✅**
-
-**3. 关于SSH描述正确的是？**
-
-- A. 需要启动sshd服务
-- B. 采用加密的方式保证连接安全
-- C. 监听TCP 22端口
-- **D. 以上都正确 ✅**
-
-**4. OpenSSH中实现客户端与服务器之间安全的文件传输的命令是？**
-
-- A. ftp
-- B. ssh
-- **C. scp ✅**
-- D. cp
-
-**5. 为实现SSH免密登录，需要用ssh-keygen命令生成一对密钥，生成的密钥文件存储在？**
-
-- A. etc
-- **B. .ssh ✅**
-- C. bin
-- D. keys
 
 ### 综合应用题精选
 
@@ -2056,29 +2020,7 @@ scp /tmp/target/test.c user1@10.0.0.50:/tmp/
 ```bash
 ssh user1@10.0.0.50
 ```
-
-**题目3**：配置在server1上以用户名user2免密登录到server2
-
-**答案**：
-
-```bash
-# 步骤1：生成密钥
-ssh-keygen
-
-# 步骤2：进入密钥目录
-cd ~/.ssh
-
-# 步骤3：复制公钥
-scp id_rsa.pub user2@server2:/home/user2/.ssh/
-
-# 步骤4：服务端追加到授权文件
-cat id_rsa.pub >> authorized_keys
-```
-
----
-
-## 📊 SSH知识点思维导图
-
+**SSH知识点思维导图**
 ```
 SSH (Secure Shell)
 │
@@ -2106,7 +2048,7 @@ SSH (Secure Shell)
 │   ├── 下载：scp 用户@IP:远程文件 本地路径
 │   └── 目录传输：加 -r 参数
 │
-└── 免密登录 ⭐⭐⭐
+└── 免密登录
     ├── 原理：公私钥认证
     ├── 生成密钥：ssh-keygen
     ├── 密钥位置：~/.ssh/
@@ -2115,19 +2057,3 @@ SSH (Secure Shell)
     │   └── authorized_keys（授权公钥）
     └── 配置步骤：生成→复制→追加到authorized_keys
 ```
-
----
-
-## 🎯 考试重点提醒
-
-|优先级|知识点|考查频率|
-|---|---|---|
-|⭐⭐⭐|SSH默认端口22|几乎必考|
-|⭐⭐⭐|SCP命令格式（上传/下载）|高频|
-|⭐⭐⭐|免密登录配置流程|高频|
-|⭐⭐⭐|authorized_keys文件作用|高频|
-|⭐⭐|sshd_config配置文件路径|中频|
-|⭐⭐|SSH服务启动命令|中频|
-|⭐|SSH与FTP/HTTP安全性对比|低频|
-
-希望这份层层剖析的SSH知识点总结能帮助你彻底掌握这个重要考点！如果有任何疑问，随时可以继续问我。
