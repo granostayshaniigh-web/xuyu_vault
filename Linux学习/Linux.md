@@ -594,8 +594,8 @@ sudo ln -s /usr/share/zonrinfo/Asia/Shanghai /etc/localtime
 2. hostnamectl set-hostname 要修改的主机名  修改主机名（需要root）
 3. ![](assets/Linux/file-20260709093608065.png)
 	在@后面的就是主机名
-#### 6.3 域名解析（主机名映射）
-1. 我们访问百度时，www.baidu.com，是百度的网址 我们称为域名
+#### 6.3 DNS域名解析（主机名映射）
+1. 我们访问百度时，www.baidu.com，是百度的网址 我们称为域名 ^hwmn9u
 2. 域名解析过程（由域名得到IP的过程）：
 ![](assets/Linux/file-20260709094438023.png)
 ### 7. 网络请求和下载
@@ -1939,18 +1939,7 @@ Apache/HTTP 默认监听 80。是 HTTP 的"法定"端口，所以浏览器输入
 | ==查已装 java 包== | ==`rpm -qa \| grep java`== |
 | 强制卸载           | `rpm -e --nodeps <包名>` |
 | 解压             | `tar -xzvf xxx.tar.gz` |
-- rpm = Red Hat Package Manager（红帽包管理器，现统称 RPM Package Manager），是 Red Hat 系发行版（RHEL / CentOS / Fedora 等）用来安装、卸载、查询、校验 .rpm 软件包（ 二进制软件包（已编译好，可直接装）。与之相对的是源码包.tar.gz，需自己 `./configure && make && make install 编译`）的底层工具。
-	最常用的安装组合：`rpm -ivh xxx.rpm`
-		-i install：安装。-v verbose：显示详细信息。-h hash：用 # 号打印进度条（看着舒服，确认没卡死）。
-	最常用的升级组合：`rpm -Fvh newpkg-2.0.rpm`
-		-F（freshen）	有旧版→升级；没装过→什么都不做
-	最常用的卸载组合：`rpm -e 包名   # 注意：这里写"包名"，不是 xxx.rpm 文件名！`
-		安装时给的是文件：`rpm -ivh httpd-2.4.6.rpm`
-		卸载时给的是包名：`rpm -e httpd（不带版本号、不带 .rpm）`
-	最常用的卸载组合：`rpm -qa包名`列出所有已安装包
-	               `rpm -ql 包名`列出该包**安装了哪些文件**（l=list）
-	               经典组合：`rpm -qa | grep 关键字`
-
+[rpm知识点](rpm.md)
 - `java -version`：注意是 **`java`** 不是 `jdk`，`jdk -version`、`java -server` 
 - `rpm -qa | grep java`：`-qa` = query all（列出所有已装包），管道 `|` 把结果喂给 `grep java` 做过滤。
 ### 知识点 3.3 四个 Java 环境变量（★★★）
@@ -1961,7 +1950,7 @@ Apache/HTTP 默认监听 80。是 HTTP 的"法定"端口，所以浏览器输入
 - `CLASSPATH`：类路径
 ==**生效**==：`source ~/.bashrc`。
 **剖析扩展（为什么必须 source）**：`.bashrc` 只在**新打开的 shell** 登录时自动读取。你当前这个终端是"旧 shell"，改完文件它并不知道，==所以要用 `source` 让当前 shell **重新读一遍**配置，变量才立即生效。==
-![](assets/Linux/file-20260720211652237)
+![500](assets/Linux/file-20260720211851662.png)
 ### 知识点 3.4 全局 vs 用户级环境变量文件（◆ 易错对比）
 [Linux`/etc/profile`](Linux学习/Linux.md#^xqlvhn)
 [Linux`~/.bashrc`](Linux学习/Linux.md#^g9e65n)
@@ -1975,20 +1964,12 @@ Apache/HTTP 默认监听 80。是 HTTP 的"法定"端口，所以浏览器输入
 **剖析扩展**：`/etc/` 下的配置管"全机器所有人"，`~/`（家目录）下的配置管"我自己"。给全公司配 Java 路径改 `/etc/profile`，只给自己配改 `~/.bashrc`。
 ### 第 4 层 · 服务载体层：Tomcat + 网络三件套（★★）
 
-#### 知识点 4.1 Tomcat（★★）
-
+#### 知识点 4.1 Tomcat（★★）java
 - **定位**：免费开源的**轻量级 Web 应用服务器**，适合中小型系统，**开发调试 JSP 的首选**。
-- **安装**：解压到 `/usr/local` → 删压缩包 → 重命名 `tomcat8`。
-- **启动/关闭**：`/usr/local/tomcat8/bin/startup.sh` / `shutdown.sh`
-- **验证**：浏览器访问 **`localhost:8080`** 见欢迎页即成功。
-- **端口**：Tomcat 默认 **8080**（HTTP 备用/代理端口）。
-
-**剖析扩展**：为什么 Tomcat 用 8080 而不用 80？因为 80 已被 Apache/HTTP 占用，且 80 是"特权端口"。Tomcat 作为应用服务器，退到 8080 这个"备用 HTTP 端口"，避免冲突。**80 vs 8080 的区分是高频考点**。
-
-### 知识点 4.2 DNS 服务（域名解析）（★★）
-
-- **作用**：域名↔IP 互转。**正向**：域名→IP；**反向**：IP→域名。
-- **安装**：`yum install -y bind`；**配置**：`/etc/named.conf`（监听改 `any`、允许查询 `any`、加 zone）。
+### 知识点 4.2 DNS 服务（★★）[LinuxDNS](Linux学习/Linux.md#^hwmn9u)
+- 域名解析
+- **作用**：==域名↔IP 互转==。**正向**：域名→IP；**反向**：IP→域名。
+- **安装**：`yum install -y bind`；**配置**：`/etc/named.conf`（监听改 `any`、允许查询 `any`、加 zone）。          **bind**            **name**
 - **服务管理**：`service named restart`；**端口 53**（卷一·填空）。
 - **正向解析文件**（如 `named.bob.com`）含：SOA、NS、A、MX、CNAME。
 - **反向解析文件**（如 `named.172.16.5`）含：PTR。
@@ -2002,35 +1983,27 @@ Apache/HTTP 默认监听 80。是 HTTP 的"法定"端口，所以浏览器输入
 |**NS**|指明域名服务器|—|
 |**MX**|邮件交换（邮件服务器）|—|
 |**CNAME**|别名|—|
-
-**剖析扩展**：A 和 PTR 是**互逆**的一对——正向用 A，反向用 PTR，考试最爱考"反向解析用哪个记录"，答案是 **PTR**。
-
-### 知识点 4.3 DHCP 服务（动态分配 IP）（★★）
-
+A 和 PTR 是**互逆**的一对——正向用 A，反向用 **PTR**。
+### 知识点 4.3 DHCP 服务（★★）
+- 动态分配 IP
 - **作用**：自动分配 IP、子网掩码、网关、DNS，**避免地址冲突**。
 - **安装**：`yum install -y dhcp`。
-- **关键文件**：`/usr/sbin/dhcpd`（程序）、`/var/lib/dhcpd/dhcpd.leases`（**租约记录**）、`/etc/dhcp/dhcpd.conf`（配置）。
-- **配置参数**：`subnet`、`option routers`（网关）、`option subnet-mask`、`range`（**地址池**）、`default-lease-time`/`max-lease-time`（租约时间）、`host` 块（**给指定 MAC 绑固定 IP**）。
 - **启动**：`service dhcpd restart` + `service network restart`。
-- **网卡启用 DHCP**：`BOOTPROTO=DHCP`（卷二·单选9，D）。
-- **动态获取/释放 IP**：`ifup`（起网卡拿 IP）/ `ifdown`（停网卡放 IP）（卷一·填空）。
-
-**剖析扩展**：DHCP 的"租约"概念——IP 不是永久给你的，是"租"一段时间（lease-time），到期要续。`dhcpd.leases` 就记录谁租了哪个 IP 到几点。`host` 块则实现"虽然走 DHCP，但这台机器永远拿同一个 IP"（按 MAC 绑定）。
-
-### 知识点 4.4 FTP 服务（文件传输）（★）
-
-- 用 **vsftpd**（更安全的 FTP）。安装：`yum install -y vsftpd ftp`。
+- **网卡启用 DHCP**：`BOOTPROTO=DHCP（BOOTPROTO = BOOT Protocol（启动协议 / 引导协议））。`
+- **动态获取/释放 IP**：`ifup`（起网卡拿 IP）/ `ifdown`（停网卡放 IP）。
+### 知识点 4.4 FTP 服务（★）
+- 文件传输
+- 用 **vs==ftp==d**（更安全的 FTP）。安装：`yum install -y vsftpd ftp`。
 - **三种认证模式（安全性递增，◆ 常考排序）**：
     1. **匿名开放**（最不安全）
     2. **本地用户**
     3. **虚拟用户**（最安全，用独立数据库文件认证）
-- 配置 `vsftpd.conf`：`anonymous_enable`、`local_enable`、`write_enable`、`local_umask`、`local_root` 等。
 - 管理：`service vsftpd restart` / `status`；**端口 21**。
 
 **文件归纳**：DNS + DHCP + FTP = Web 服务器的**"网络基础设施三件套"**——**解析、寻址、传输**。
+(未完待续)
 
 ---
-
 ## 第 5 层 · 网络支撑层：端口体系 + hosts（★★★ 必背）
 
 ### 知识点 5.1 端口速查表（★★★）
