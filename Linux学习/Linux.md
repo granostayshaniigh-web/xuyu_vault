@@ -1867,9 +1867,436 @@ helloworld!
 ```
 - 混合链接：某些库静态链接，而其他库动态链接。这种方式结合了静态链接和动态链接的优点。
 ### 6. Makefile基础
-## 第七章 服务器
-### 7.1  Apache
+## 第七章 Linux Web 服务器搭建
 
+> ★★★ = 必考高频核心 ｜ ★★ = 重点常考 ｜ ★ = 理解识记 ｜ ◆ = 易错陷阱
+
+### 7.1 四个阶段★
+每一层都依赖前一层，顺序不可颠倒：
+```
+操作系统 Linux
+  → ① 运行环境  JDK + MySQL          【16.1 准备】
+  → ② 服务载体  Tomcat + DNS/DHCP/FTP 【16.2 搭建】
+  → ③ 开发工具  Eclipse + 插件配置     【16.3 开发环境】
+  → ④ 应用实现  MVC + SSM + 部署       【16.4 开发部署】
+```
+没有 JDK，Tomcat 跑不起 Java；没有 MySQL，Web 应用无处存数据；没有 DNS/DHCP，客户端连服务器都连不上；最后才轮到写代码部署。**搭建 = 按依赖顺序逐层铺地基**。
+
+###  7.2 三大总抓手★★ 
+所有操作归根结底靠三样东西：
+1. **环境变量**（`~/.bashrc`、`/etc/profile`、`export`、`source`）
+2. **配置文件**（`httpd.conf`、`my.cnf`、`named.conf`、`dhcpd.conf`、`vsftpd.conf`、`sshd_config`、`applicationContext.xml`、`struts.xml`）
+3. **服务管理**（`service`、`/etc/init.d/`、`chkconfig`）
+
+### 7.3 Web 服务器到底是什么（★ 识记）
+
+#### 知识点 1.1 Apache 的本质定位（★★）
+
+- **是什么**：Apache 是 **Web 服务器**
+- **地位**：全球最流行的**开源** Web 服务器软件
+- **作用**：把网站内容（HTML、PHP、图片等）发布到网络上，是**连接浏览器与网站文件的"桥梁"**
+常把 Apache 和"DNS 服务器/FTP 服务器/邮件服务器 Sendmail"放一起让你选，记住 Apache 只干一件事——**对外提供网页（HTTP 服务）**，别的功能都不是它的本职。
+#### 知识点 1.2 开源 vs 非开源阵营Web 服务器软件（◆ 高频易错）
+
+| 阵营             | 成员                      |
+| -------------- | ----------------------- |
+| **开源** Web 服务器 | **Apache、Nginx、Tomcat** |
+| **非开源**        | **IIS**                 |
+Unity 是**游戏引擎**，不是 Web 框架。**陷阱规律**：考试喜欢塞一个"听起来像、其实跨界"的选项（IIS 跨了闭源、Unity 跨了游戏）。
+
+**口诀**：**开源Apache/Nginx/Tomcat；闭源 IIS；==框架 SSM==，Unity 是游戏。**
+### 7.4 核心服务层：Apache / httpd（★★★ 最高频，必背）
+#### 知识点 2.1 服务名 = httpd，而非 apache（◆ 头号易错★★）
+1. 启动（service 方式，本质就是去 `/etc/init.d/` 找同名脚本执行）Apache：`service httpd start`"
+	- 服务启动**脚本目录** = `/etc/init.d/`"——`service xxx` 的 `xxx` 就是 `/etc/init.d/` 下的脚本名。
+2.  启动（脚本绝对路径方式**SysV 脚本方式**）：`/etc/init.d/httpd start`
+- **错误写法**：`service apache start`、`httpd start` 均错。
+- 两种方式等价
+**剖析扩展**：Apache 是软件/项目名，而它在 Linux 里注册的**守护进程/服务名叫 httpd**（http daemon，HTTP 守护进程）。==所以"启动 Apache"在命令行里写的是 `httpd`。==这是软件名与服务名不一致的典型，**和后面 SSH 的软件名 OpenSSH、服务名 sshd 是同一类考点**。
+#### 知识点 2.2 主配置文件 = httpd.conf（★★★）
+- 配置 Web 服务器 = 改 **`httpd.conf`**。
+
+| 服务             | 配置文件             | 服务名       | 默认端口   |
+| -------------- | ---------------- | --------- | ------ |
+| ==**Web/Apache**== | ==**`httpd.conf`**== | ==**httpd**== | ==**80**== |
+| ==DNS==            | ==**`named.conf`**== | ==named==     | ==53==     |
+| DHCP           | `dhcpd.conf`     | dhcpd     | —      |
+| FTP            | `vsftpd.conf`    | vsftpd    | 21     |
+| SSH            | `sshd_config`    | sshd      | 22     |
+| MySQL          | `my.cnf`         | mysqld    | 3306   |
+Apache/HTTP 默认监听 80。是 HTTP 的"法定"端口，所以浏览器输入网址不带端口时，默认就是去找 80。这也是为什么 Tomcat 要"退而求其次"用 8080
+### 7.5  运行环境层：JDK / Java 与 MySQL（★★★ 搭建前置）
+
+#### 知识点 3.1 openJDK vs Oracle JDK（★ 理解）
+
+- Linux 通常**自带 openJDK**，但其与 Oracle JDK 标准**不完全一致**，企业开发一般**卸载 openJDK，改用 Oracle JDK**。这就是为什么安装 JDK 的第一步往往是"先卸载系统自带的"——对应下面 3.2 的 `rpm -e --nodeps`。
+
+### 知识点 3.2 JDK 安装与卸载命令链（★★★）
+
+| 目的             | 命令                     |
+| -------------- | ---------------------- |
+| ==查 Java 版本==  | ==`java -version`==        |
+| ==查已装 java 包== | ==`rpm -qa \| grep java`== |
+| 强制卸载           | `rpm -e --nodeps <包名>` |
+| 解压             | `tar -xzvf xxx.tar.gz` |
+- rpm = Red Hat Package Manager（红帽包管理器，现统称 RPM Package Manager），是 Red Hat 系发行版（RHEL / CentOS / Fedora 等）用来安装、卸载、查询、校验 .rpm 软件包（ 二进制软件包（已编译好，可直接装）。与之相对的是源码包.tar.gz，需自己 `./configure && make && make install 编译`）的底层工具。
+	最常用的安装组合：`rpm -ivh xxx.rpm`
+		-i install：安装。-v verbose：显示详细信息。-h hash：用 # 号打印进度条（看着舒服，确认没卡死）。
+	最常用的升级组合：`rpm -Fvh newpkg-2.0.rpm`
+		-F（freshen）	有旧版→升级；没装过→什么都不做
+	最常用的卸载组合：`rpm -e 包名          # 注意：这里写"包名"，不是 xxx.rpm 文件名！
+- `java -version`：注意是 **`java`** 不是 `jdk`，`jdk -version`、`java -server` 
+- `rpm -qa | grep java`：`-qa` = query all（列出所有已装包），管道 `|` 把结果喂给 `grep java` 做过滤。
+### 知识点 3.3 四个 Java 环境变量（★★★）
+
+编辑 `~/.bashrc`，配置：
+
+- `JAVA_HOME`：JDK 安装主目录
+- `JRE_HOME`：JRE 目录
+- `PATH`：把 JDK 的 `bin` 加入系统路径（这样任何地方都能敲 `java`）
+- `CLASSPATH`：类路径
+==**生效**==：`source ~/.bashrc`。
+
+**剖析扩展（为什么必须 source）**：`.bashrc` 只在**新打开的 shell** 登录时自动读取。你当前这个终端是"旧 shell"，改完文件它并不知道，所以要用 `source` 让当前 shell **重新读一遍**配置，变量才立即生效。**这是搭建中最隐蔽的坑**——很多人改完环境变量发现 `java` 还是找不到，就是忘了 source。
+
+### 知识点 3.4 全局 vs 用户级环境变量文件（◆ 易错对比）
+
+|文件|作用范围|出处|
+|---|---|---|
+|`/etc/profile`|**所有用户**（全局）|卷二·单选6，B|
+|`~/.bashrc`|**当前用户**|卷三·单选33|
+
+- `export` 的作用：把普通 shell 变量**声明为环境变量**，使其对**当前 shell 及所有派生子 shell** 生效（卷五·单选8，A）。
+
+**剖析扩展**：`/etc/` 下的配置管"全机器所有人"，`~/`（家目录）下的配置管"我自己"。给全公司配 Java 路径改 `/etc/profile`，只给自己配改 `~/.bashrc`。
+
+### 知识点 3.5 MySQL 安装与初始化（★★ 流程长，记步骤）
+
+按文件，完整步骤与原理：
+
+1. **建用户/组**（安全隔离）：`groupadd mysql` → `useradd -g mysql mysql`
+    - _剖析_：不让数据库用 root 跑，单独建个 mysql 用户，万一被攻破也限制破坏范围——**最小权限原则**。
+2. **解压重命名**：`tar -xvf` + `mv`
+3. **改 `my.cnf`** 关键参数：`default-character-set=utf8`、`port=3306`、`socket`、`basedir`、`datadir`、`max_connections`、`default-storage-engine=INNODB`、`max_allowed_packet=16M`
+    - _剖析_：`basedir`=装在哪，`datadir`=数据存哪，二者分开；`port=3306` 是 MySQL 的"门牌号"。
+4. **改权限**：`chown -R mysql:mysql ./`（把目录属主递归改成 mysql 用户）+ `chmod 777 /etc/my.cnf`
+5. **初始化库**：`scripts/mysql_install_db --user=mysql --basedir=... --datadir=...`
+6. **开机自启四步**：
+    - `cp support-files/mysql.server /etc/rc.d/init.d/mysqld`（复制启动脚本到服务目录）
+    - `chmod +x /etc/rc.d/init.d/mysqld`（加可执行权限）
+    - `chkconfig --add mysqld`（注册为系统服务）
+    - `chkconfig --list mysqld`（检查是否生效）
+7. **加 PATH**：`export PATH=$PATH:/usr/local/mysql/bin`
+8. **登录改密**：`mysql -u root -p` → `use mysql;` → `update user set password=PASSWORD('xxx') where User='root';` → **`flush privileges;`**
+
+**剖析扩展（讲透开机自启逻辑）**：Linux 开机时会去 `/etc/rc.d/init.d/` 执行里面注册过的脚本。所以"让一个程序开机自启"的标准动作就是——**把它的启动脚本放进 init.d → 加执行权限 → 用 chkconfig 注册**。`chkconfig --add` 是登记，`--list` 是查登记结果，构成"配置—验证"闭环。
+
+**剖析扩展（为什么 flush privileges）**：MySQL 的权限信息缓存在内存里，你 `update user` 改的是磁盘上的表，**内存没刷新**，必须 `flush privileges` 让内存重读权限表，新密码才立即生效。这与"改完 bashrc 要 source"是**同一种思想**——改了配置，要通知运行中的程序重新加载。
+
+**文件归纳的四大运维原则**：**用户隔离 + 配置驱动 + 服务化 + 权限刷新**。
+
+---
+
+## 第 4 层 · 服务载体层：Tomcat + 网络三件套（★★）
+
+### 知识点 4.1 Tomcat（★★）
+
+- **定位**：免费开源的**轻量级 Web 应用服务器**，适合中小型系统，**开发调试 JSP 的首选**。
+- **安装**：解压到 `/usr/local` → 删压缩包 → 重命名 `tomcat8`。
+- **启动/关闭**：`/usr/local/tomcat8/bin/startup.sh` / `shutdown.sh`
+- **验证**：浏览器访问 **`localhost:8080`** 见欢迎页即成功。
+- **端口**：Tomcat 默认 **8080**（HTTP 备用/代理端口，卷一·单选35 解析）。
+
+**剖析扩展**：为什么 Tomcat 用 8080 而不用 80？因为 80 已被 Apache/HTTP 占用，且 80 是"特权端口"。Tomcat 作为应用服务器，退到 8080 这个"备用 HTTP 端口"，避免冲突。**80 vs 8080 的区分是高频考点**。
+
+### 知识点 4.2 DNS 服务（域名解析）（★★）
+
+- **作用**：域名↔IP 互转。**正向**：域名→IP；**反向**：IP→域名。
+- **安装**：`yum install -y bind`；**配置**：`/etc/named.conf`（监听改 `any`、允许查询 `any`、加 zone）。
+- **服务管理**：`service named restart`；**端口 53**（卷一·填空）。
+- **正向解析文件**（如 `named.bob.com`）含：SOA、NS、A、MX、CNAME。
+- **反向解析文件**（如 `named.172.16.5`）含：PTR。
+
+**关键记录类型详解（◆ 易混）**：
+
+|记录|含义|方向|
+|---|---|---|
+|**A**|域名→IP|正向|
+|**PTR**|IP→域名|反向|
+|**NS**|指明域名服务器|—|
+|**MX**|邮件交换（邮件服务器）|—|
+|**CNAME**|别名|—|
+
+**剖析扩展**：A 和 PTR 是**互逆**的一对——正向用 A，反向用 PTR，考试最爱考"反向解析用哪个记录"，答案是 **PTR**。
+
+### 知识点 4.3 DHCP 服务（动态分配 IP）（★★）
+
+- **作用**：自动分配 IP、子网掩码、网关、DNS，**避免地址冲突**。
+- **安装**：`yum install -y dhcp`。
+- **关键文件**：`/usr/sbin/dhcpd`（程序）、`/var/lib/dhcpd/dhcpd.leases`（**租约记录**）、`/etc/dhcp/dhcpd.conf`（配置）。
+- **配置参数**：`subnet`、`option routers`（网关）、`option subnet-mask`、`range`（**地址池**）、`default-lease-time`/`max-lease-time`（租约时间）、`host` 块（**给指定 MAC 绑固定 IP**）。
+- **启动**：`service dhcpd restart` + `service network restart`。
+- **网卡启用 DHCP**：`BOOTPROTO=DHCP`（卷二·单选9，D）。
+- **动态获取/释放 IP**：`ifup`（起网卡拿 IP）/ `ifdown`（停网卡放 IP）（卷一·填空）。
+
+**剖析扩展**：DHCP 的"租约"概念——IP 不是永久给你的，是"租"一段时间（lease-time），到期要续。`dhcpd.leases` 就记录谁租了哪个 IP 到几点。`host` 块则实现"虽然走 DHCP，但这台机器永远拿同一个 IP"（按 MAC 绑定）。
+
+### 知识点 4.4 FTP 服务（文件传输）（★）
+
+- 用 **vsftpd**（更安全的 FTP）。安装：`yum install -y vsftpd ftp`。
+- **三种认证模式（安全性递增，◆ 常考排序）**：
+    1. **匿名开放**（最不安全）
+    2. **本地用户**
+    3. **虚拟用户**（最安全，用独立数据库文件认证）
+- 配置 `vsftpd.conf`：`anonymous_enable`、`local_enable`、`write_enable`、`local_umask`、`local_root` 等。
+- 管理：`service vsftpd restart` / `status`；**端口 21**。
+
+**文件归纳**：DNS + DHCP + FTP = Web 服务器的**"网络基础设施三件套"**——**解析、寻址、传输**。
+
+---
+
+## 第 5 层 · 网络支撑层：端口体系 + hosts（★★★ 必背）
+
+### 知识点 5.1 端口速查表（★★★）
+
+|服务|端口|出处|
+|---|---|---|
+|HTTP/Apache|**80**|卷四·单选40|
+|Tomcat|**8080**|卷一·单选35 解析|
+|FTP|**21**|卷一·单选35 解析|
+|SSH|**22**|卷一·单选35，D|
+|telnet|**23**|卷四·单选35，D|
+|DNS|**53**|卷一·填空|
+|MySQL|**3306**|教材 my.cnf|
+
+**剖析扩展**：端口是服务的"门牌号"，**记错端口 = 服务起不来或访问不到**。22/23 易混：**SSH=22（安全），telnet=23（不安全、明文）**——记忆法：SSH 比 telnet 更安全，端口号反而更小（22<23）。
+
+### 知识点 5.2 三大协议一句话定义（★★★ 选择/填空高频）
+
+- **FTP** = 文件传输协议（卷一·单选39，C）
+- **DNS** = 域名系统，域名→IP（卷一·单选39 解析）
+- **DHCP** = 动态主机配置协议，自动分配 IP（卷一·单选39 解析、卷五·填空）
+
+### 知识点 5.3 /etc/hosts 静态映射（★★）
+
+- 定义**本地主机名↔IP 映射**的文件 = **`/etc/hosts`**（卷二·单选7、卷三·单选13，均 C）。
+
+**剖析扩展**：`/etc/hosts` 是**不依赖 DNS 的静态解析**——在本机写死"某域名=某IP"，优先级高于 DNS。搭建内网测试时常用它临时指域名，免去搭 DNS。
+
+**文件归纳**：DNS/hosts 管"**域名解析**"，DHCP 管"**客户端自动联网**"，端口管"**服务定位**"——**网络可达三件套**，缺其一 Web 服务"看得到起不来"或"起得来访问不到"。
+
+---
+
+## 第 6 层 · 应用框架层：MVC + SSM（★★ 概念辨析）
+
+### 知识点 6.1 MVC 设计模式（★★）
+
+**MVC = Model + View + Controller**（卷三·填空；卷五·单选39：C 指**控制器**）。
+
+- **Model 模型**：业务逻辑与数据规则，可被多视图复用，减少重复代码。
+- **View 视图**：用户界面（HTML），只负责展示。
+- **Controller 控制器**：接收输入、调度模型与视图，**本身不输出内容，只做路由**。
+- **优点**：业务与界面分离，易维护扩展。
+
+**剖析扩展**：MVC 的精髓是"**分工**"——视图只管画、模型只管算、控制器只管传话，三者互不越界，改界面不影响逻辑。
+
+### 知识点 6.2 SSM 三框架 vs Unity 干扰项（◆ 必考辨析）
+
+|框架|角色|关键思想|
+|---|---|---|
+|**Spring**|企业级核心容器|**IoC 控制反转**（依赖由容器注入，松耦合）+ **AOP 面向切面**（事务/日志与业务分离）|
+|**Struts2**|MVC 的 Web 框架|以 WebWork 为核心，**拦截器**处理请求，与 Servlet API 解耦|
+|**MyBatis**|**持久层**框架|定制 SQL、避免 JDBC 代码、SQL 与代码解耦|
+|~~Unity~~|**不是 Web 框架**，是**游戏引擎**|卷一/二·单选40，B|
+
+**剖析扩展**：
+
+- **IoC**：以前对象自己 new 依赖，现在交给 Spring 容器"注射"进来——**控制权反转**，于是耦合降低。
+- **AOP**：把"日志、事务"这种横切多个方法的公共逻辑，从业务代码里抽出来"切"出去统一管理。
+- **Struts2 拦截器**：请求到达 Action 前先过一道道拦截器（如登录校验），实现"前置处理"。
+
+**口诀**：**Spring 管对象（IoC/AOP），Struts 管请求（MVC/拦截器），MyBatis 管数据库（持久层）；Unity 是游戏，别选它。**
+
+---
+
+## 第 7 层 · 开发环境与部署实战（★ 流程识记）
+
+### 知识点 7.1 Eclipse 安装与配置 Tomcat（★）
+
+- 解压：`tar xvzf eclipse-jee-...tar.gz` → 运行 `./eclipse` → 选 workspace。
+- 配 Tomcat：`Windows → Preferences → Server → Runtime Environments → Add → Apache Tomcat v8.5` → 指定安装路径与 JRE → Finish。
+- 加实例：`Windows → Show View → Servers`。
+- **改部署路径**：Deploy path 改为 Tomcat 下的 **`webapps`**。
+- 右键 Start 验证。
+
+**文件归纳**：开发环境配置核心 = **"让 IDE 识别运行时（Runtime）并打通部署路径"**。
+
+### 知识点 7.2 Java Web 部署完整流程（★ 综合题流程）
+
+1. 建库建表：`create database` / `create table` / `insert into`
+2. 建 Dynamic Web 工程，包结构：`action`、`dao`、`entity`
+3. 实体类（`UserInfo`，含 getter/setter）
+4. DAO 接口（`ILoginDao`）
+5. Action 类（`LoginAction`，`execute()` 返回 `"success"`/`"error"`）
+6. 配置文件群：
+    - `sqlServer.properties`（url、driver、user、pwd）
+    - `applicationContext.xml`（dataSource、SqlSessionFactory、Mapper 扫描、action 注入）
+    - `struts.xml`（action 映射、result 跳转）
+    - `loginMapper.xml`（resultMap、select）+ MyBatis 主配置（typeAliases、mappers）
+7. JSP 页面：`<s:form>`、`<s:textfield>`、`<s:submit>`（Struts 标签）
+8. 部署：右键 `Add and Remove`
+9. 测试：`localhost:8080/项目名/login.jsp`，正确→success.jsp，错误→error
+
+**剖析扩展**：这套流程把前面所有层串起来了——**entity 对应 Model，JSP 对应 View，Action 对应 Controller，DAO+MyBatis 对应持久层，applicationContext.xml 体现 Spring 的 IoC 注入**。一个登录例子，就是 MVC+SSM 的完整落地。
+
+---
+
+## 第 8 层 · 运维管理层：服务 + 日志 + 软件包（★★）
+
+### 知识点 8.1 服务管理（★★）
+
+- 启动脚本目录：`/etc/init.d/`（卷三·单选22，A）
+- 启动命令：`service`（或 `systemctl`）（卷二·填空）
+
+### 知识点 8.2 日志管理（★★）
+
+|项|内容|出处|
+|---|---|---|
+|日志目录|**`/var/log`**|卷一·单选27、卷二·单选10，A|
+|日志分析工具|**`logwatch`**（解析原始日志→结构化报告）|卷二·单选11，B|
+|日志守护进程|**`rsyslogd`**|卷四·填空|
+
+**剖析扩展**：`/var/log` 是"所有日志的家"；`rsyslogd` 是"写日志的工人"（守护进程）；`logwatch` 是"看日志的分析师"。三者分工：**采集→存储→分析**。
+
+### 知识点 8.3 软件包管理 rpm / yum（★★★）
+
+|操作|命令|出处|
+|---|---|---|
+|卸载|`rpm -e`|卷三·单选6、卷四·单选23，B|
+|查包所含文件|`rpm -ql`|卷二·单选4，D|
+|查所有已装包|`rpm -qa`|卷五·单选40，A|
+|安装（联网）|`yum install -y`|教材|
+|强制卸（忽略依赖）|`rpm -e --nodeps`|教材|
+
+- **软件包两大类**：**源码包**（`.tar.gz`，需编译）与**二进制包**（RPM `.rpm`、Debian `.deb`，已编译直接装）（卷一·填空）。
+- **RPM 默认可执行命令安装目录**：`/usr/bin`（卷五·填空）。
+
+**rpm 参数口诀（★★★ 必背）**：
+
+- **`-i` 装、`-e` 卸、`-q` 查**
+- 查询细分：**`-qa` 全部、`-ql` 列文件、`-qf` 反查归属**
+
+**剖析扩展**：`-ql`（query list）问"这个包装了哪些文件"；`-qf`（query file）反过来问"这个文件属于哪个包"——**一正一反**，是排错利器。
+
+---
+
+## 第 9 层 · 远程部署层：SSH + scp（★★ 综合题常考）
+
+### 知识点 9.1 SSH 远程管理（★★）
+
+- **协议**：SSH = Secure Shell = **安全外壳协议**，加密传输，保障远程登录安全（卷一·单选33、34）。
+- **端口**：TCP **22**（卷一·单选35，D）。
+- **启动**：`service sshd start`（卷五·单选34，A）。
+- **服务端配置**：`/etc/ssh/sshd_config`（卷四·单选38，D）。
+
+### 知识点 9.2 免密登录机制（★★ 综合题）
+
+1. `ssh-keygen` 生成**密钥对**（卷二·单选34、卷五·综合题）
+2. 密钥存于 **`~/.ssh`** 目录（卷二·单选34，B）
+3. 把客户端**公钥**追加进服务器的 **`authorized_keys`** → 免密（卷五·单选33，A）
+
+**剖析扩展**：免密原理 = "**锁和钥匙**"。`ssh-keygen` 生成一对：私钥（自己留，是钥匙）、公钥（给别人，是锁）。把公钥放进服务器的 `authorized_keys`（=在服务器上装好这把锁），以后客户端用私钥（钥匙）一开就进，无需密码。
+
+### 知识点 9.3 scp 安全传文件（★★）
+
+- **scp = Secure Copy**，基于 SSH 的安全传输（卷二·单选35，C）。
+- **传目录必须加 `-r`**（递归）：`scp -r 本地目录 用户@IP:远程目录`（卷五·单选35，A）。
+
+**剖析扩展**：`-r` = recursive。文件可以不加，**目录必须加**，否则只传一层或报错。这是 scp 考点的唯一高频陷阱。
+
+**远程部署标准动作链**：`ssh-keygen` → 公钥写 `authorized_keys`（免密）→ `scp -r` 传 Web 工程 → `ssh` 登录 → `service httpd start`。
+
+---
+
+## 第 10 层 · 附：配套编译工具 GCC / make（★ 综合题）
+
+### 知识点 10.1 GCC 选项（★★）
+
+|选项|作用|出处|
+|---|---|---|
+|`-g`|产生**调试信息**（供 GDB）|卷一·单选37|
+|`-o`|指定**输出文件名**|卷二·单选38|
+|`-c`|**只编译不链接**，生成 `.o`|卷二·单选37|
+|`-L`|指定**库搜索路径**|卷一·填空|
+|`-w`|**关闭所有警告**|卷五·单选38|
+
+**剖析扩展**：编译分"编译→链接"两步。`-c` 只做第一步（得 `.o` 目标文件），不链接成可执行文件；`-g` 是为了让 GDB 调试时能看到源码行号；`-o` 给产物起名（否则默认 `a.out`）。
+
+### 知识点 10.2 make 工具（★）
+
+- makefile 规则：**`目标文件 : 依赖源文件`**（卷一·单选38 强调——**顺序不能反**，C 项把顺序说反即错）。
+- 清理产物：`make clean`（卷四·单选17，D）。
+
+**剖析扩展**：make 的精髓是"**只重编改过的**"——它比较目标与依赖的时间戳，依赖比目标新才重编，节省时间。规则里**冒号左边是产物、右边是原料**，记反就全错。
+
+---
+
+## 横向速查表一：高频命令总表
+
+|目的|命令|
+|---|---|
+|启动 Apache|`service httpd start` 或 `/etc/init.d/httpd start`|
+|改 Web 配置|编辑 `httpd.conf`|
+|查 Java 版本|`java -version`|
+|查已装 java 包|`rpm -qa \| grep java`|
+|强制卸载|`rpm -e --nodeps 包名`|
+|使环境变量生效|`source ~/.bashrc`|
+|注册开机自启|`chkconfig --add 服务名`|
+|刷新 MySQL 权限|`flush privileges;`|
+|启动 SSH|`service sshd start`|
+|生成免密密钥|`ssh-keygen`|
+|传 Web 目录|`scp -r 本地 user@IP:远程`|
+|查日志|`/var/log` 或 `logwatch`|
+|只编译不链接|`gcc -c`|
+
+## 横向速查表二：服务—配置—端口—服务名 对照（★ 通杀配置题）
+
+|服务|配置文件|服务名|端口|
+|---|---|---|---|
+|Web/Apache|`httpd.conf`|httpd|80|
+|Tomcat|—|—|8080|
+|DNS|`named.conf`|named|53|
+|DHCP|`dhcpd.conf`|dhcpd|—|
+|FTP|`vsftpd.conf`|vsftpd|21|
+|SSH|`sshd_config`|sshd|22|
+|MySQL|`my.cnf`|mysqld|3306|
+
+---
+
+## 重点分级总览（分清重点）
+
+- **★★★ 必背核心**：httpd 服务名与 `httpd.conf`、端口 80/8080/22/53/21/3306、`java -version`、`rpm -qa|grep`、`rpm -e/-ql/-qa` 口诀、`source` 生效、`/etc/profile` vs `~/.bashrc`、`flush privileges`、SSH 免密三件套、scp 的 `-r`、GCC 的 `-g/-o/-c`、MVC 三要素、SSM 分工。
+- **★★ 重点常考**：开源阵营 vs IIS、两种启动方式等价、`/etc/init.d/`、`/var/log`+logwatch+rsyslogd、DNS 的 A/PTR 记录、DHCP 租约与 `BOOTPROTO=DHCP`、`/etc/hosts`、FTP 三种认证排序、chkconfig 自启四步、makefile 规则顺序。
+- **★ 理解识记**：openJDK vs Oracle、Eclipse 配 Tomcat、部署全流程、四阶段总蓝图。
+- **◆ 易错陷阱**：`service apache start`（错，应 httpd）、`jdk -version`（错，应 java）、Unity 当 Web 框架（错）、IIS 当开源（错）、`httpd.conf` 与 `named.conf` 混淆、A 与 PTR 方向混淆、makefile 目标/依赖顺序写反、scp 传目录漏 `-r`。
+
+---
+
+## 核心思想提炼（层层剖析后的"道"）
+
+1. **依赖定顺序**：环境→载体→工具→应用，自底向上，不可颠倒。
+2. **配置即服务**：Linux 靠文本配置文件定义一切，**会改配置 + 会重启 = 会运维**。
+3. **生效要闭环**：改 `bashrc` 要 `source`、改 MySQL 权限要 `flush privileges`、改服务配置要 `restart`——**"改了不等于生效，必须通知运行中的程序重读"**，这是贯穿全文的第一隐性主线。
+4. **服务化思维**：`init.d` + `chkconfig` 把程序变服务，实现开机自启与统一管理。
+5. **安全隔离**：独立用户（mysql）、虚拟用户认证、SSH 加密、最小权限——安全是搭建的底色。
+6. **名实要分清**：软件名≠服务名（Apache→httpd、OpenSSH→sshd），配置名各归其主（httpd.conf/named.conf/...），端口各守其位（80/8080/22/53/21）。
+7. **验证成习惯**：每步配置后用命令（`java -version`、`chkconfig --list`）或浏览器（`localhost:8080`）验证，形成 **配置—生效—验证** 闭环。
+
+---
+
+### 一句话总结
+
+> 文件所呈现的 Linux Web 服务器搭建，本质是**以 Apache(httpd) 为核心**，用 **`httpd.conf` + 80 端口 + `service httpd start`** 把服务跑起来；**向上**以 **JDK 环境 + MVC/SSM 框架**承载 Java Web 应用，**向下**以 **DNS/DHCP/hosts + 端口规划**保障网络可达，**外围**以 **`rpm` 软件包管理 + `/var/log` 日志 + SSH/scp 远程部署**完成安装、运维与发布；而贯穿始终的灵魂是 **"配置驱动、端口为纲、改完必生效、服务化运维、远程化部署"**——把握住这条由底向上的依赖链与"配置—生效—验证"闭环，即掌握了全部知识点与考点。
 
 ### 7.2 SSH（Secure Shell 安全外壳协议)
 1. 定义：一种**加密的网络传输协议**，为远程登录会话和其他网络服务提供**安全性**。
