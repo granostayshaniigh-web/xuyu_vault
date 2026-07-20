@@ -436,7 +436,7 @@ sudo 其他命令
 	```
 	选项：
 		-g 指定用户的组，若不指定，则会创建一个与用户名相同的组，并把该用户加入到该组中。若指定则指定的组必须存在。
-		-d 指定用户的HOME路径，若不指定，则HOME目录默认在：/home/用户名 
+		==-d 指定用户的HOME路径==，若不指定，则HOME目录默认在：/home/用户名 
 		![](assets/Linux/file-20260706172435294.png)
 		uid:用户名     group：组别
 	
@@ -468,7 +468,7 @@ sudo 其他命令
 	```
 	==不一定要在root权限下才能使用==
 ![494](assets/Linux/file-20260706185701859.png)
-所得信息依次为  用户名：密码（x）：用户ID：组ID：描述信息（无用）：HOME目录：这个用户使用的终端。
+所得信息依次为  用户名：密码（x）：用户ID：组ID：描述信息（无用）：HOME目录：这个用户使用的终端。 ^1u85ce
 ```
 查用户组
 getent group
@@ -863,11 +863,11 @@ echo ${PATH}/abc
 #### 11.4 自行设置环境变量
 1. 临时设置，语法：```export 变量名=变量值 ```
 2. 永久设置： ^4d8ptq
-	- 只针对当前用户生效，配置在当前用户的：==~==/==.==bashrc 文件中
+	- 只针对**当前用户**生效，配置在当前用户的：==~==/==.==bashrc 文件中
 	![](assets/Linux/file-20260710112415294.png)
 	```[xy@centos ~]$ source ~/.bashrc```
-	![](assets/Linux/file-20260710112603609.png)
-	- 针对所有用户生效，配置在系统的：/etc/profile 文件中==(需要root权限）==。
+	![](assets/Linux/file-20260710112603609.png)  ^g9e65n
+	- 针对**所有用户**生效，配置在系统的：/etc/profile 文件中==(需要root权限）==。 ^xqlvhn
 	- 最后两者生效需要：通过语法：source 配置文件（/etc/profile或~/.bashrc ），立即生效。或重新进入finalshell
 3. 自定义环境变量PATH：
 ```
@@ -1954,64 +1954,34 @@ Apache/HTTP 默认监听 80。是 HTTP 的"法定"端口，所以浏览器输入
 - `java -version`：注意是 **`java`** 不是 `jdk`，`jdk -version`、`java -server` 
 - `rpm -qa | grep java`：`-qa` = query all（列出所有已装包），管道 `|` 把结果喂给 `grep java` 做过滤。
 ### 知识点 3.3 四个 Java 环境变量（★★★）
-
 编辑 `~/.bashrc`，配置：
-
 - `JAVA_HOME`：JDK 安装主目录
-- `JRE_HOME`：JRE 目录
+- `JRE_HOME`：JRE 目录(Java Runtime Environment=JVM（虚拟机，执行字节码+Java核心类库（标准API)+运行支撑文件)
 - `PATH`：把 JDK 的 `bin` 加入系统路径（这样任何地方都能敲 `java`）
 - `CLASSPATH`：类路径
 ==**生效**==：`source ~/.bashrc`。
-
-**剖析扩展（为什么必须 source）**：`.bashrc` 只在**新打开的 shell** 登录时自动读取。你当前这个终端是"旧 shell"，改完文件它并不知道，所以要用 `source` 让当前 shell **重新读一遍**配置，变量才立即生效。**这是搭建中最隐蔽的坑**——很多人改完环境变量发现 `java` 还是找不到，就是忘了 source。
-
+**剖析扩展（为什么必须 source）**：`.bashrc` 只在**新打开的 shell** 登录时自动读取。你当前这个终端是"旧 shell"，改完文件它并不知道，==所以要用 `source` 让当前 shell **重新读一遍**配置，变量才立即生效。==
+![](assets/Linux/file-20260720211652237)
 ### 知识点 3.4 全局 vs 用户级环境变量文件（◆ 易错对比）
+[Linux`/etc/profile`](Linux学习/Linux.md#^xqlvhn)
+[Linux`~/.bashrc`](Linux学习/Linux.md#^g9e65n)
 
-|文件|作用范围|出处|
-|---|---|---|
-|`/etc/profile`|**所有用户**（全局）|卷二·单选6，B|
-|`~/.bashrc`|**当前用户**|卷三·单选33|
+| 文件             | 作用范围         |
+| -------------- | ------------ |
+| `/etc/profile` | **所有用户**（全局） |
+| `~/.bashrc`    | **当前用户**     |
 
-- `export` 的作用：把普通 shell 变量**声明为环境变量**，使其对**当前 shell 及所有派生子 shell** 生效（卷五·单选8，A）。
-
+- `export` 的作用：把普通 shell 变量**声明为环境变量**，使其对**当前 shell 及所有派生子 shell** 生效 [export](Linux学习/Linux.md#^4d8ptq)
 **剖析扩展**：`/etc/` 下的配置管"全机器所有人"，`~/`（家目录）下的配置管"我自己"。给全公司配 Java 路径改 `/etc/profile`，只给自己配改 `~/.bashrc`。
+### 第 4 层 · 服务载体层：Tomcat + 网络三件套（★★）
 
-### 知识点 3.5 MySQL 安装与初始化（★★ 流程长，记步骤）
-
-按文件，完整步骤与原理：
-
-1. **建用户/组**（安全隔离）：`groupadd mysql` → `useradd -g mysql mysql`
-    - _剖析_：不让数据库用 root 跑，单独建个 mysql 用户，万一被攻破也限制破坏范围——**最小权限原则**。
-2. **解压重命名**：`tar -xvf` + `mv`
-3. **改 `my.cnf`** 关键参数：`default-character-set=utf8`、`port=3306`、`socket`、`basedir`、`datadir`、`max_connections`、`default-storage-engine=INNODB`、`max_allowed_packet=16M`
-    - _剖析_：`basedir`=装在哪，`datadir`=数据存哪，二者分开；`port=3306` 是 MySQL 的"门牌号"。
-4. **改权限**：`chown -R mysql:mysql ./`（把目录属主递归改成 mysql 用户）+ `chmod 777 /etc/my.cnf`
-5. **初始化库**：`scripts/mysql_install_db --user=mysql --basedir=... --datadir=...`
-6. **开机自启四步**：
-    - `cp support-files/mysql.server /etc/rc.d/init.d/mysqld`（复制启动脚本到服务目录）
-    - `chmod +x /etc/rc.d/init.d/mysqld`（加可执行权限）
-    - `chkconfig --add mysqld`（注册为系统服务）
-    - `chkconfig --list mysqld`（检查是否生效）
-7. **加 PATH**：`export PATH=$PATH:/usr/local/mysql/bin`
-8. **登录改密**：`mysql -u root -p` → `use mysql;` → `update user set password=PASSWORD('xxx') where User='root';` → **`flush privileges;`**
-
-**剖析扩展（讲透开机自启逻辑）**：Linux 开机时会去 `/etc/rc.d/init.d/` 执行里面注册过的脚本。所以"让一个程序开机自启"的标准动作就是——**把它的启动脚本放进 init.d → 加执行权限 → 用 chkconfig 注册**。`chkconfig --add` 是登记，`--list` 是查登记结果，构成"配置—验证"闭环。
-
-**剖析扩展（为什么 flush privileges）**：MySQL 的权限信息缓存在内存里，你 `update user` 改的是磁盘上的表，**内存没刷新**，必须 `flush privileges` 让内存重读权限表，新密码才立即生效。这与"改完 bashrc 要 source"是**同一种思想**——改了配置，要通知运行中的程序重新加载。
-
-**文件归纳的四大运维原则**：**用户隔离 + 配置驱动 + 服务化 + 权限刷新**。
-
----
-
-## 第 4 层 · 服务载体层：Tomcat + 网络三件套（★★）
-
-### 知识点 4.1 Tomcat（★★）
+#### 知识点 4.1 Tomcat（★★）
 
 - **定位**：免费开源的**轻量级 Web 应用服务器**，适合中小型系统，**开发调试 JSP 的首选**。
 - **安装**：解压到 `/usr/local` → 删压缩包 → 重命名 `tomcat8`。
 - **启动/关闭**：`/usr/local/tomcat8/bin/startup.sh` / `shutdown.sh`
 - **验证**：浏览器访问 **`localhost:8080`** 见欢迎页即成功。
-- **端口**：Tomcat 默认 **8080**（HTTP 备用/代理端口，卷一·单选35 解析）。
+- **端口**：Tomcat 默认 **8080**（HTTP 备用/代理端口）。
 
 **剖析扩展**：为什么 Tomcat 用 8080 而不用 80？因为 80 已被 Apache/HTTP 占用，且 80 是"特权端口"。Tomcat 作为应用服务器，退到 8080 这个"备用 HTTP 端口"，避免冲突。**80 vs 8080 的区分是高频考点**。
 
