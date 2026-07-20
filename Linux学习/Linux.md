@@ -1944,7 +1944,13 @@ Apache/HTTP 默认监听 80。是 HTTP 的"法定"端口，所以浏览器输入
 		-i install：安装。-v verbose：显示详细信息。-h hash：用 # 号打印进度条（看着舒服，确认没卡死）。
 	最常用的升级组合：`rpm -Fvh newpkg-2.0.rpm`
 		-F（freshen）	有旧版→升级；没装过→什么都不做
-	最常用的卸载组合：`rpm -e 包名          # 注意：这里写"包名"，不是 xxx.rpm 文件名！
+	最常用的卸载组合：`rpm -e 包名   # 注意：这里写"包名"，不是 xxx.rpm 文件名！`
+		安装时给的是文件：`rpm -ivh httpd-2.4.6.rpm`
+		卸载时给的是包名：`rpm -e httpd（不带版本号、不带 .rpm）`
+	最常用的卸载组合：`rpm -qa包名`列出所有已安装包
+	               `rpm -ql 包名`列出该包**安装了哪些文件**（l=list）
+	               经典组合：`rpm -qa | grep 关键字`
+
 - `java -version`：注意是 **`java`** 不是 `jdk`，`jdk -version`、`java -server` 
 - `rpm -qa | grep java`：`-qa` = query all（列出所有已装包），管道 `|` 把结果喂给 `grep java` 做过滤。
 ### 知识点 3.3 四个 Java 环境变量（★★★）
