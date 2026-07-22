@@ -82,3 +82,11 @@ public class num_divide {
 14. 三元运算符
 15. 运算符的优先级，小括号的优先级高于所有。
 16. switch语句中小括号中的语句得到的是一个确定的值==（这个值可以是字符，整数不能是小数和长整数，枚举，字符串）==。这个确定值与case后面的值（==不能用变量表示，不能重复==）进行匹配，匹配上了就执行后面的语句。==并且default和case没有先后之分，也可以省略，所以没有和case匹配时，不会有输出。==case后面可以写==多个值==，用逗号隔开。->可以写在case后面,在大括号里面不用写break，但是冒号和->不能同时写。==yield程序最后的分号。==
+17. 无限循环while（true）{}；for（；；）{}；do{}while（true）；其中true不能用1代替，java中int不能转化为bool
+18. 生成随机数：
+```java
+Random r = new Random()
+第一种写法：int n = r.nextInt();默认在int范围随机取值
+第二种写法：int n = r.nextInt(n);默认在 0~n-1 范围随机取值
+第三种写法：int n = r.nextInt(a,b);默认在 a~b-1 范围随机取值
+```
