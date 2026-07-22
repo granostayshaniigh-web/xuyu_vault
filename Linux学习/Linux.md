@@ -1490,6 +1490,10 @@ fi
 welcomeback
 zhonglaonian
 ```
+
+^z6bi7t
+
+
 **6.2 case的多分支结构**
 ```
 [root@centos scripts]# vim case.sh
@@ -1600,7 +1604,7 @@ d
 ```
 ### 8. while循环
 (())与\[ ] 
-for 与 while
+for 与 ==while格式==
 ```
 [root@centos scripts]# vim sum.sh
 #!/bin/bash
@@ -2259,7 +2263,7 @@ tcp
 | **重启SSH服务** | `service sshd restart` | -                |
 | **开机自启**    | `chkconfig sshd on`    | -                |
 **SSH远程登录（应用层）**
-1. 基本登录命令
+1. ==基本登录命令==
 ```bash
 # 语法格式
 ssh 用户名@服务器IP地址
