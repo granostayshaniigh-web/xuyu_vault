@@ -446,7 +446,7 @@ do
 19. **B** | 【解析】硬盘是以块为单位存储数据的块设备（Block Device）。
 20. **C** | 【解析】第一块IDE磁盘为 `/dev/hda`，第二块为 `/dev/hdb`。
 21. **C** | 【解析】`free` 命令可以查看内存及 swap 空间的使用情况。
-22. **B** | 【解析】Linux 中以太网接口通常以 `eth` 开头，如 `eth0`, `eth2`。
+22. **B** | 【解析】Linux 中==以太网接口通常以 `eth`== 开头，如 `eth0`, `eth2`。
 23. **D** | 【解析】`hostname` 命令用于直接显示或设置当前主机名。
 24. **A** | 【解析】`ifconfig` 命令默认列出当前所有活跃的网络接口。
 25. **D** | 【解析】`ping` 命令发送 ICMP 回显请求以测试网络连通性。
@@ -514,14 +514,14 @@ do
   <tr><td width="50%">A. 应用软件</td><td>B. 系统软件</td></tr>
   <tr><td>C. 通用软件</td><td>D. 工具软件</td></tr>
 </table>
-
+B
 **2. 默认情况下，管理员创建了一个用户，就会在(  )目录下创建一个用户主目录。**
 <table>
   <tr><td width="50%">A. /usr</td><td>B. /root</td></tr>
   <tr><td>C. /home</td><td>D. /etc</td></tr>
 </table>
-
-**3. 下面命令的作用是：`PS1="[\u\w]\$"; export PS1` (  )**
+C
+**==3.== 下面命令的作用是：`PS1="[\u\w]\$"; export PS1` (  )**
 <table>
   <tr><td width="50%">A. 改变错误信息提示</td><td>B. 改变命令提示符</td></tr>
   <tr><td>C. 改变一些终端参数</td><td>D. 改变辅助命令提示符</td></tr>
@@ -532,68 +532,68 @@ do
   <tr><td width="50%">A. rpm -qa dhcp</td><td>B. rpm -qf dhcp</td></tr>
   <tr><td>C. rpm -qp dhcp</td><td>D. rpm -ql dhcp</td></tr>
 </table>
-
+D
 **5. 当字符串用单引号括起来时，Shell将(  )**
 <table>
   <tr><td width="50%">A. 解释引号内的特殊字符</td><td>B. 执行引号中的命令</td></tr>
   <tr><td>C. 不解释引号内的特殊字符</td><td>D. 结束进程</td></tr>
 </table>
-
+C
 **6. 对所有用户的变量设置，应当放在哪个文件下？(  )**
 <table>
   <tr><td width="50%">A. /etc/bashrc</td><td>B. /etc/profile</td></tr>
   <tr><td>C. ~/.bash_profile</td><td>D. /etc/skel/.bashrc</td></tr>
 </table>
-
-**7. 下列哪个文件定义本地主机名和IP地址间的转换？(  )**
+B
+**7. 下列哪个文件==定义==本地主机名和IP地址间的转换？(  )**
 <table>
   <tr><td width="50%">A. /etc/ip.conf</td><td>B. /etc/resolv.conf</td></tr>
   <tr><td>C. /etc/hosts</td><td>D. /etc/sysconfig/dns</td></tr>
 </table>
-
-**8. 在Linux中，一般用(  )命令来查看网络接口的状态。**
+D
+==**8.== 在Linux中，一般用(  )命令来查看网络接口的状态。**
 <table>
   <tr><td width="50%">A. ping</td><td>B. ipconfig</td></tr>
   <tr><td>C. winipcfg</td><td>D. ifconfig</td></tr>
 </table>
-
+D
 **9. 在接口配置文件中，下列哪一行指定了应该使用DHCP配置接口？(  )**
 <table>
   <tr><td width="50%">A. DHCP=yes</td><td>B. IPADDR=DHCP</td></tr>
   <tr><td>C. ONBOOT=DHCP</td><td>D. BOOTPROTO=DHCP</td></tr>
 </table>
-
+D
 **10. Linux的日志文件通常保存在(  )**
 <table>
   <tr><td width="50%">A. /var/log</td><td>B. /usr/adm</td></tr>
   <tr><td>C. /etc/</td><td>D. /var/run</td></tr>
 </table>
-
+A
 **11. Linux系统中常用的日志分析工具(  )，能对原始的日志文件进行解析并转换成结构化的文档，也能根据使用情况需求来定制报告。**
 <table>
   <tr><td width="50%">A. logrotate</td><td>B. logwatch</td></tr>
   <tr><td>C. tail</td><td>D. lastlog</td></tr>
 </table>
-
+B
 **12. 用于自动补全功能，输入命令或文件的前一个或几个字母之后按什么键？(  )**
 <table>
   <tr><td width="50%">A. ctrl</td><td>B. tab</td></tr>
   <tr><td>C. alt</td><td>D. esc</td></tr>
 </table>
-
+B
 **13. 如果执行命令 `chmod 746 file`，那么该文件的权限是(  )**
 <table>
   <tr><td width="50%">A. rwxr--rw-</td><td>B. rw-r--r--</td></tr>
   <tr><td>C. --xr--rwx</td><td>D. rwxr--r--</td></tr>
 </table>
-
+A
 **14. 设用户当前所在目录为 `/tmp`，以下(  )指令可以在当前目录下创建目录 `son/grandson`，其中子目录 `son/` 及其下级目录 `grandson/` 当前都不存在。**
 <table>
   <tr><td width="50%">A. mkdir son/grandson</td><td>B. rmdir -p son/grandson</td></tr>
   <tr><td>C. rmdir -r son/grandson</td><td>D. mkdir -p son/grandson</td></tr>
 </table>
-
-**15. 下面关于文件系统i节点描述错误的是(  )**
+D
+==**15.== 下面关于文件系统i节点描述错误的是(  )**
 <table>
   <tr><td width="50%">A. i节点和文件一一对应</td><td>B. i节点能描述文件占用的块数</td></tr>
   <tr><td>C. i节点描述了文件大小和指向数据块的指针</td><td>D. 通过i节点实现文件的逻辑结构和物理结构的转换</td></tr>
@@ -604,25 +604,25 @@ do
   <tr><td width="50%">A. copy file1 file2</td><td>B. cp file1 | file2</td></tr>
   <tr><td>C. cat file2 file1</td><td>D. cat file1 > file2</td></tr>
 </table>
-
+D
 **17. 了解在当前目录下还有多大空间，可执行命令(  )**
 <table>
   <tr><td width="50%">A. df</td><td>B. du /</td></tr>
   <tr><td>C. du .</td><td>D. df .</td></tr>
 </table>
-
-**18. Linux中存放加密用户账户信息的文件是(  )**
+D
+==**18.== Linux中存放加密用户账户信息的文件是(  )**
 <table>
   <tr><td width="50%">A. /etc/passwd</td><td>B. /etc/shadow</td></tr>
   <tr><td>C. /etc/group</td><td>D. /etc/security</td></tr>
 </table>
 
-**19. 下列哪项是Linux系统中以太网网络接口？(  )**
+==**19==. 下列哪项是Linux系统中以太网网络接口？(  )**
 <table>
   <tr><td width="50%">A. eth0</td><td>B. eth2</td></tr>
   <tr><td>C. net0</td><td>D. lo</td></tr>
 </table>
-
+B
 **20. 执行以下命令：**
 ```bash
 [student@localhost ~]$ ls
@@ -635,20 +635,20 @@ file1
   <tr><td width="50%">A. file2也被随之删除</td><td>B. file2仍存在，但属于无效文件</td></tr>
   <tr><td>C. 因为file2未被删除，所以file1会被系统自动重新建立</td><td>D. file2会随着file1的删除而被系统自动删除</td></tr>
 </table>
-
+B
 **21. 设用户所使用计算机系统上有两块IDE硬盘，Linux系统位于第一块硬盘上，查询第二块硬盘分区情况的命令是(  )**
 <table>
   <tr><td width="50%">A. fdisk -l /dev/hda1</td><td>B. fdisk -l /dev/hdb2</td></tr>
   <tr><td>C. fdisk -l /dev/hdb</td><td>D. fdisk -l /dev/hda</td></tr>
 </table>
-
+C
 **22. 用 `ls -al` 命令列出下面的文件列表，(  )是符号连接文件。**
 <table>
   <tr><td width="50%">A. -rw-rw-rw- 2 hel users 56 Sep 09 11:05 hello</td><td>B. -rwxrwxrwx 2 hel users 56 Sep 09 11:05 goodbey</td></tr>
   <tr><td>C. drwxr--r-- 1 hel users 1024 Sep 10 08:10 zhang</td><td>D. lrwxr--r-- 1 hel users 2024 Sep 12 08:12 cheng</td></tr>
 </table>
-
-**23. 以第三个字段对/etc/passwd的内容排序的命令是(  )**
+D
+==**23==. 以第三个字段对/etc/passwd的内容排序的命令是(  )**
 <table>
   <tr><td width="50%">A. sort -t : -k 3 -n /etc/passwd</td><td>B. sort -k 3 -n /etc/passwd</td></tr>
   <tr><td>C. sort -t : -c 3 -n /etc/passwd</td><td>D. sort -c 3 -n /etc/passwd</td></tr>
@@ -659,7 +659,7 @@ file1
   <tr><td width="50%">A. grep "edu" file | wc -l</td><td>B. grep "edu" file | wc -c</td></tr>
   <tr><td>C. find "edu" file | wc -l</td><td>D. find "edu" file | wc -c</td></tr>
 </table>
-
+A
 **25. 对于用户和用户组，一个用户(  )**
 <table>
   <tr><td width="50%">A. 必须只属于一个组</td><td>B. 必须属于多个组</td></tr>
