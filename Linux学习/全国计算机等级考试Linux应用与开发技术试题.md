@@ -665,14 +665,14 @@ A
   <tr><td width="50%">A. 必须只属于一个组</td><td>B. 必须属于多个组</td></tr>
   <tr><td>C. 可以属于一个组或多个组</td><td>D. 可以不属于任何组</td></tr>
 </table>
-
-**26. 系统在启动时，通过访问(  )文件中的信息来自动挂载（mount）某些硬件设备。**
+C
+==**26==. 系统在启动时，通过访问(  )文件中的信息来自动挂载（mount）某些硬件设备。**
 <table>
   <tr><td width="50%">A. /etc/hosts</td><td>B. /etc/inittab</td></tr>
   <tr><td>C. /etc/fstab</td><td>D. /etc/rc.d/init.d</td></tr>
 </table>
-
-**27. 以下关于parted分区工具叙述正确的是(  )**
+B
+**==27.== 以下关于parted分区工具叙述正确的是(  )**
 <table>
   <tr><td width="50%">A. parted不能对高于2TB的硬盘分区</td><td>B. parted不能移动分区</td></tr>
   <tr><td>C. parted不能复制分区</td><td>D. parted对分区的任何改变会立即被写到硬盘中</td></tr>
@@ -683,20 +683,20 @@ A
   <tr><td width="50%">A. 将光标移到第5行的行尾</td><td>B. 将光标移到第5行的行首</td></tr>
   <tr><td>C. 将光标移到本行的第五个字符前</td><td>D. 将光标移到本行的第五个字符后</td></tr>
 </table>
-
+B
 **29. 如果用户想在每次对文件进行编辑时都收到反馈信息，可以输入(  )**
 <table>
   <tr><td width="50%">A. set scroll=0</td><td>B. set shiftwidth=0</td></tr>
   <tr><td>C. set wrapmargin=0</td><td>D. set report=0</td></tr>
 </table>
-
-**30. Emacs编辑器中将光标向前移动一屏的命令是(  )**
+D
+==**30.== Emacs编辑器中将光标向前移动一屏的命令是(  )**
 <table>
   <tr><td width="50%">A. &lt;Ctrl&gt;+v</td><td>B. &lt;Alt&gt;+v</td></tr>
   <tr><td>C. &lt;Ctrl&gt;+b</td><td>D. &lt;Alt&gt;+b</td></tr>
 </table>
 
-**31. Emacs编辑器模式行的显示模式字段中 `**` 表示(  )**
+==**31==. Emacs编辑器模式行的显示模式字段中 `**` 表示(  )**
 <table>
   <tr><td width="50%">A. 缓存区未被编辑</td><td>B. 缓存区中的文本已经被修改</td></tr>
   <tr><td>C. 缓存区中的文本未被修改</td><td>D. 只读缓冲区中的文本已经被修改</td></tr>
@@ -707,14 +707,14 @@ A
   <tr><td width="50%">A. 3</td><td>B. 1</td></tr>
   <tr><td>C. 最后</td><td>D. 倒数第3</td></tr>
 </table>
-
+A
 **33. 以下协议中，为远程登录会话和其他网络服务提供安全性的协议是(  )**
 <table>
   <tr><td width="50%">A. FTP</td><td>B. HTTP</td></tr>
   <tr><td>C. SSH</td><td>D. ICMP</td></tr>
 </table>
-
-**34. 为实现SSH免密登录，需要用ssh-keygen命令生成一对密钥，生成的密钥文件存储在(  )目录下。**
+C
+==**34.== 为实现SSH免密登录，需要用ssh-keygen命令生成一对密钥，生成的密钥文件存储在(  )目录下。**
 <table>
   <tr><td width="50%">A. etc</td><td>B. .ssh</td></tr>
   <tr><td>C. bin</td><td>D. keys</td></tr>
@@ -725,14 +725,14 @@ A
   <tr><td width="50%">A. ftp</td><td>B. ssh</td></tr>
   <tr><td>C. scp</td><td>D. cp</td></tr>
 </table>
-
-**36. 在GDB调试程序下，若要列出当前断点处的源程序源代码应输入命令(  )**
+C
+==**36.== 在GDB调试程序下，若要列出当前断点处的源程序源代码应输入命令(  )**
 <table>
   <tr><td width="50%">A. list</td><td>B. print</td></tr>
   <tr><td>C. show</td><td>D. disp</td></tr>
 </table>
 
-**37. 在使用GCC编译器的过程中，如果只生成目标文件而不进行连接，需要使用选项(  )**
+==**37==. 在使用GCC编译器的过程中，如果只生成目标文件而不进行连接，需要使用选项(  )**
 <table>
   <tr><td width="50%">A. -S</td><td>B. -o</td></tr>
   <tr><td>C. -c</td><td>D. -E</td></tr>
@@ -743,19 +743,19 @@ A
   <tr><td width="50%">A. gcc -i HelloWorld.c Hello</td><td>B. gcc -o Hello HelloWorld.c</td></tr>
   <tr><td>C. gcc -o HelloWorld.c Hello</td><td>D. gcc -i Hello HelloWorld.c</td></tr>
 </table>
-
+C
 **39. 安装JDK后，可以输入(  )命令，查询已经安装的JAVA版本信息。**
 <table>
   <tr><td width="50%">A. java -server</td><td>B. jdk -version</td></tr>
   <tr><td>C. java -help</td><td>D. java -version</td></tr>
 </table>
-
+B
 **40. 下列哪一个不是Web应用开发框架？(  )**
 <table>
   <tr><td width="50%">A. Spring</td><td>B. Unity</td></tr>
   <tr><td>C. Struts2</td><td>D. MyBatis</td></tr>
 </table>
-
+B
 ## 二、填空题（共 10 题）
 
 41. 从资源管理的角度来看，操作系统具备五大基本功能：处理器管理、\_\_\_\_\_\_\_\_\_\_、\_\_\_\_\_\_\_\_\_\_、文件管理和作业管理。
