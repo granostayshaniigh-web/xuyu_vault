@@ -932,13 +932,34 @@ echo "3:"$score
 [student@localhost~]$ for ((i=0; i<4096; i++)); do echo -n a >> file4; done
 [student@localhost~]$ wc -c file? | sort -n
 ```
-结果是（列出这5行结果输出）：
+结果是（列出这5行结果输出）：==输出的是语句：wc -c file? | sort -n的结果==
 【66】\_\_\_\_\_\_\_\_\_\_
 【67】\_\_\_\_\_\_\_\_\_\_
 【68】\_\_\_\_\_\_\_\_\_\_
 【69】\_\_\_\_\_\_\_\_\_\_
 【70】\_\_\_\_\_\_\_\_\_\_
-echo a > file1    ： echo a 	输出 a + 换行符 \n，共 2 字节
+echo a > file1   ： echo a 	输出 a + 换行符 \n，共 2 字节，echo默认有\n。 
+echo -n a	 （无换行）	1 字节。
+加 -n（字典序） 1, 12291, 2, 4096, 8192 按字符逐位比较，1 < 2 < 4 < 8 
+本题中
+```
+wc -c file?
+```
+file? 匹配了 4 个文件（file1, file2, file3, file4），所以：
+```
+  2 file1      ← 第1个文件
+	1 file2      ← 第2个文件
+   8192 file3      ← 第3个文件
+   4096 file4      ← 第4个文件
+  12291 total      ← 自动汇总：2+1+8192+4096 = 12291
+  sort最终输出
+      1 file2
+      2 file1
+   4096 file4
+   8192 file3
+  12291 total
+```
+
 
 ---
 

@@ -2421,3 +2421,4 @@ SSH (Secure Shell)
 1. `passwd` 用于修改用户密码，是一个文件但不存密码。
 2. `PS1` 环境变量用于定义**bash主命令提示符**的格式     $  Linux/macOS 的提示符
 3. ping是连通性
+4. sort命令：
