@@ -526,7 +526,7 @@ C
   <tr><td width="50%">A. 改变错误信息提示</td><td>B. 改变命令提示符</td></tr>
   <tr><td>C. 改变一些终端参数</td><td>D. 改变辅助命令提示符</td></tr>
 </table>
-
+B
 **4. 查询已安装软件包dhcp所包含文件信息的命令是(  )**
 <table>
   <tr><td width="50%">A. rpm -qa dhcp</td><td>B. rpm -qf dhcp</td></tr>
@@ -551,6 +551,7 @@ B
   <tr><td>C. /etc/hosts</td><td>D. /etc/sysconfig/dns</td></tr>
 </table>
 D C
+即：先查 /etc/hosts（本地静态映射）再查 DNS（通过 /etc/resolv.conf 指定的 DNS 服务器）所以 /etc/hosts 的优先级高于 DNS 查询。
 ==**8.== 在Linux中，一般用(  )命令来查看网络接口的状态。**
 <table>
   <tr><td width="50%">A. ping</td><td>B. ipconfig</td></tr>
@@ -598,7 +599,31 @@ D
   <tr><td width="50%">A. i节点和文件一一对应</td><td>B. i节点能描述文件占用的块数</td></tr>
   <tr><td>C. i节点描述了文件大小和指向数据块的指针</td><td>D. 通过i节点实现文件的逻辑结构和物理结构的转换</td></tr>
 </table>
+i节点=inode
+```
+【软链接】—— 快捷方式
+  file_link ──→ "请去找 file1" ──→ inode 12345 ──→ 数据块
+  （如果 file1 被删，快捷方式就失效了）
 
+【硬链接】—— 同一个人的两个名字
+  file1 ──┐
+          ├──→ inode 12345 ──→ 数据块    可以一对多
+  file2 ──┘     硬链接
+  （删掉 file1，file2 照样能访问数据，因为数据还在）
+  
+┌─────────────────────────┐
+│  文件类型与权限           │
+│  文件大小 (size)         │
+│  占用块数 (blocks)       │
+│  时间戳 (atime/mtime/ctime) │
+│  链接计数 (link count)   │      ← 硬链接数
+│  数据块指针              │
+│   ├─ 直接指针 ×12        │
+│   ├─ 一级间接指针 ×1      │
+│   ├─ 二级间接指针 ×1      │
+│   └─ 三级间接指针 ×1      │
+└─────────────────────────┘
+```
 **16. 把当前目录下的文件file1复制为file2，正确的命令是(  )**
 <table>
   <tr><td width="50%">A. copy file1 file2</td><td>B. cp file1 | file2</td></tr>
@@ -616,13 +641,26 @@ D C
   <tr><td width="50%">A. /etc/passwd</td><td>B. /etc/shadow</td></tr>
   <tr><td>C. /etc/group</td><td>D. /etc/security</td></tr>
 </table>
+A	/etc/passwd	存放用户基本信息（UID、GID、主目录、Shell），密码字段仅为 x 占位符	✗
+B	/etc/shadow	存放加密密码哈希及密码策略	✔
+C	/etc/group	    存放用户组信息	✗
+D	/etc/security	PAM 安全模块的配置目录	✗
+```
+早期：/etc/passwd 中直接存放加密密码
+      → 但 passwd 对所有用户可读（ls -l 显示 644）
+      → 存在被暴力破解的风险
+
+改进：密码移到 /etc/shadow（权限 600，仅 root 可读）
+      /etc/passwd 中密码字段改为 "x"
+```
+passwd 管"身份"，shadow 管"密码"
 
 ==**19==. 下列哪项是Linux系统中以太网网络接口？(  )**
 <table>
   <tr><td width="50%">A. eth0</td><td>B. eth2</td></tr>
   <tr><td>C. net0</td><td>D. lo</td></tr>
 </table>
-B
+B（第三块以太网接口）或A（第一块以太网接口）
 **20. 执行以下命令：**
 ```bash
 [student@localhost ~]$ ls
@@ -642,6 +680,7 @@ B
   <tr><td>C. fdisk -l /dev/hdb</td><td>D. fdisk -l /dev/hda</td></tr>
 </table>
 C
+[Linux](Linux学习/Linux.md#^t0cqhz)
 **22. 用 `ls -al` 命令列出下面的文件列表，(  )是符号连接文件。**
 <table>
   <tr><td width="50%">A. -rw-rw-rw- 2 hel users 56 Sep 09 11:05 hello</td><td>B. -rwxrwxrwx 2 hel users 56 Sep 09 11:05 goodbey</td></tr>
@@ -653,13 +692,14 @@ D
   <tr><td width="50%">A. sort -t : -k 3 -n /etc/passwd</td><td>B. sort -k 3 -n /etc/passwd</td></tr>
   <tr><td>C. sort -t : -c 3 -n /etc/passwd</td><td>D. sort -c 3 -n /etc/passwd</td></tr>
 </table>
-
+排序三件套：-t 定分隔，-k 定字段，-n 定数值
+A
 **24. 对于给定的文件file，统计其中所有包含字符串“edu”的行数的一条命令是(  )**
 <table>
   <tr><td width="50%">A. grep "edu" file | wc -l</td><td>B. grep "edu" file | wc -c</td></tr>
   <tr><td>C. find "edu" file | wc -l</td><td>D. find "edu" file | wc -c</td></tr>
 </table>
-A
+A![Linux](Linux学习/Linux.md#^dah0fl)
 **25. 对于用户和用户组，一个用户(  )**
 <table>
   <tr><td width="50%">A. 必须只属于一个组</td><td>B. 必须属于多个组</td></tr>
@@ -672,11 +712,15 @@ C
   <tr><td>C. /etc/fstab</td><td>D. /etc/rc.d/init.d</td></tr>
 </table>
 B C
+fstab = File System TABle = 文件系统表 = 开机自动挂载
 **==27.== 以下关于parted分区工具叙述正确的是(  )**
 <table>
   <tr><td width="50%">A. parted不能对高于2TB的硬盘分区</td><td>B. parted不能移动分区</td></tr>
   <tr><td>C. parted不能复制分区</td><td>D. parted对分区的任何改变会立即被写到硬盘中</td></tr>
 </table>
+parted 与 fdisk 的一个关键区别
+fdisk：修改暂存在内存中，需手动执行 w 写入，可以 q 放弃未保存的修改 
+parted：任何操作立即写入磁盘 ✔无法撤销，操作即生效
 
 **28. 在vi编辑器中，输入命令“5G”表示(  )**
 <table>
