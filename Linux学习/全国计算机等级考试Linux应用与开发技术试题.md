@@ -545,12 +545,12 @@ C
   <tr><td>C. ~/.bash_profile</td><td>D. /etc/skel/.bashrc</td></tr>
 </table>
 B
-**7. 下列哪个文件==定义==本地主机名和IP地址间的转换？(  )**
+==**7.== 下列哪个文件==定义==本地主机名和IP地址间的转换？(  )**
 <table>
   <tr><td width="50%">A. /etc/ip.conf</td><td>B. /etc/resolv.conf</td></tr>
   <tr><td>C. /etc/hosts</td><td>D. /etc/sysconfig/dns</td></tr>
 </table>
-D
+D C
 ==**8.== 在Linux中，一般用(  )命令来查看网络接口的状态。**
 <table>
   <tr><td width="50%">A. ping</td><td>B. ipconfig</td></tr>
@@ -610,7 +610,7 @@ D
   <tr><td width="50%">A. df</td><td>B. du /</td></tr>
   <tr><td>C. du .</td><td>D. df .</td></tr>
 </table>
-D
+D C
 ==**18.== Linux中存放加密用户账户信息的文件是(  )**
 <table>
   <tr><td width="50%">A. /etc/passwd</td><td>B. /etc/shadow</td></tr>
@@ -671,7 +671,7 @@ C
   <tr><td width="50%">A. /etc/hosts</td><td>B. /etc/inittab</td></tr>
   <tr><td>C. /etc/fstab</td><td>D. /etc/rc.d/init.d</td></tr>
 </table>
-B
+B C
 **==27.== 以下关于parted分区工具叙述正确的是(  )**
 <table>
   <tr><td width="50%">A. parted不能对高于2TB的硬盘分区</td><td>B. parted不能移动分区</td></tr>
@@ -719,7 +719,7 @@ C
   <tr><td width="50%">A. etc</td><td>B. .ssh</td></tr>
   <tr><td>C. bin</td><td>D. keys</td></tr>
 </table>
-
+B
 **35. OpenSSH中实现客户端与服务器之间安全的文件传输的命令是(  )**
 <table>
   <tr><td width="50%">A. ftp</td><td>B. ssh</td></tr>
@@ -743,13 +743,13 @@ C
   <tr><td width="50%">A. gcc -i HelloWorld.c Hello</td><td>B. gcc -o Hello HelloWorld.c</td></tr>
   <tr><td>C. gcc -o HelloWorld.c Hello</td><td>D. gcc -i Hello HelloWorld.c</td></tr>
 </table>
-C
+C B
 **39. 安装JDK后，可以输入(  )命令，查询已经安装的JAVA版本信息。**
 <table>
   <tr><td width="50%">A. java -server</td><td>B. jdk -version</td></tr>
   <tr><td>C. java -help</td><td>D. java -version</td></tr>
 </table>
-B
+B D
 **40. 下列哪一个不是Web应用开发框架？(  )**
 <table>
   <tr><td width="50%">A. Spring</td><td>B. Unity</td></tr>
@@ -843,7 +843,7 @@ echo "3:"$score
 
 ### 一、单项选择题
 1. **B** | 【解析】操作系统（OS）是管理计算机硬件与软件资源的程序，属于最基础的系统软件。
-2. **C** | 【解析】普通用户的默认主目录在 `/home` 目录下。
+2. **C** | 【解析】普通用户的默认主目录在 `/home` 目录下。 
 3. ==**B** | 【解析】`PS1` 环境变量用于定义**bash主命令提示符**的格式。==
 4. **D** | 【解析】`rpm -q` 用于查询，`l` 选项表示列出包中包含的所有文件路径。
 5. **C** | 【解析】单引号（强引用）中的所有字符都作为普通字符处理，不会解析内部的特殊字符（如 `$变量` 等）。
