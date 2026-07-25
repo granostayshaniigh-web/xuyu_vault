@@ -2,7 +2,7 @@
 
 ## 一、单项选择题（共 40 题）
 
-**1. 操作系统负责管理计算机系统的(  )，其中包括处理机、存储器、设备和文件。**
+==**1. 操==作系统负责管理计算机系统的(  )，其中包括处理机、存储器、设备和文件。**
 <table>
   <tr><td width="50%">A. 程序</td><td>B. 文件</td></tr>
   <tr><td>C. 资源</td><td>D. 进程</td></tr>
@@ -14,7 +14,7 @@ A C  [Linux](Linux学习/Linux.md#^y7s1oy)
   <tr><td>C. Solaris</td><td>D. RedHat</td></tr>
 </table>
 C
-**3. 下列哪一个指令可以设定使用者的密码？(  )**
+==**3. 下==列哪一个指令可以设定使用者的密码？(  )**
 <table>
   <tr><td width="50%">A. pwd</td><td>B. newpwd</td></tr>
   <tr><td>C. passwd</td><td>D. password</td></tr>
@@ -26,13 +26,13 @@ D C [全国计算机等级考试Linux应用与开发技术试题](Linux学习/�
   <tr><td>C. who</td><td>D. ls</td></tr>
 </table>
 B
-**5. 已知ls命令的结果如下：chapter chapter1 chapter123 oschapter1，执行 `ls chapter[0-9]*` 的结果是(  )**
+==**5. 已==知ls命令的结果如下：chapter chapter1 chapter123 oschapter1，执行 `ls chapter[0-9]*` 的结果是(  )**
 <table>
   <tr><td width="50%">A. chapter1 chapter123</td><td>B. chapter chapter1 chapter123</td></tr>
   <tr><td>C. chapter1 chapter123 oschapter1</td><td>D. chapter chapter1 chapter123 oschapter1</td></tr>
 </table>
-A  []这也是一种通配符，题中表示0-9任意一个数字
-**6. 在bash中，在一条命令后输入 `"2>&1"`，表示(  )**
+A  \[]这也是一种通配符，题中表示0-9任意一个数字
+**==6. 在==bash中，在一条命令后输入 `"2>&1"`，表示(  )**
 <table>
   <tr><td width="50%">A. 标准错误输出重定向到标准输入</td><td>B. 标准输入重定向到标准错误输出</td></tr>
   <tr><td>C. 标准错误输出重定向到标准输出</td><td>D. 标准输出重定向到标准输入</td></tr>
@@ -89,19 +89,28 @@ A[Linux](Linux学习/Linux.md#^308w21)-a和-e其实都行
 </table>
 D
 虽然 killall 最常用于按进程名杀死进程，但它支持 -u 参数。通过执行 killall -u 用户名，可以终止该指定用户的所有进程。在给定选项中，它是最标准、最被广泛认可的答案。
-**15. 在应用程序启动时，可以使用以下哪个命令设置进程的优先级？(  )**
+==**15. 在==应用程序启动时，可以使用以下哪个命令设置进程的优先级？(  )**
 <table>
   <tr><td width="50%">A. priority</td><td>B. nice</td></tr>
   <tr><td>C. renice</td><td>D. setpri</td></tr>
 </table>
 __ B   [进程优先级PR](assets/全国计算机等级考试Linux应用与开发技术试题/file-20260712095504602.png)
+用法示例
+`启动时就把 nice 值设为 10（优先级降低，更“谦让”）`
+`nice -n 10 ./myapp`
+`nice 值范围：-20（最高优先级）~ 19（最低优先级），默认 0`
+`普通用户只能调“更低”的优先级（增大 nice 值），root 才能调高`
+一句话区分 nice 与 renice
+nice：进程还没出生时，给它定好“出身优先级” → 对应==「启动时」==。
+renice：进程已经活着，事后改它的优先级 → 例如 renice -n 5 -p 1234。
+
 **16. 如何从当前系统中卸载一个已装载的文件系统？(  )**
 <table>
   <tr><td width="50%">A. umount</td><td>B. dismount</td></tr>
   <tr><td>C. mount -u</td><td>D. 从/etc/fstab中删除这个文件系统项</td></tr>
 </table>
 A Linux 中用于卸载（unmount）已挂载==文件系统==的标准命令。用法如：umount /mnt/usb 或 umount /dev/sdb1。
-D中修改 /etc/fstab 只是==取消了该文件系统的开机自动挂载设置==，并不会立即卸载当前正在使用的文件系统。
+D中修改 /etc/fstab 只是取消了该文件系统的==开机自动挂载==设置，并不会立即卸载当前正在使用的文件系统。
 **17. 哪个命令用来显示系统中各个分区中inode的使用情况？(  )**
 [Linux](Linux学习/Linux.md#^zp2kpd)
 
@@ -110,7 +119,7 @@ D中修改 /etc/fstab 只是==取消了该文件系统的开机自动挂载设�
 | Inode 数量 | df -i | 存储文件元数据（权限、所有者、时间戳等）的索引数量。每个文件/目录占用 1 个 inode。文件的==数量限制== |
 | 磁盘空间     | df -h | 存储文件**数据内容**的物理空间大小（如 100GB）。文件的==存储空间限制==                |
 
-**18. 为了能够将新建立的文件系统mount到系统目录中，还需要指定该文件系统在整个目录树中的位置，称为(  )**
+==**18. 为==了能够将新建立的文件系统mount到系统目录中，还需要指定该文件系统在整个目录树中的位置，称为(  )**
 <table>
   <tr><td width="50%">A. 子目录</td><td>B. 挂载点</td></tr>
   <tr><td>C. 新分区</td><td>D. 目录树</td></tr>
@@ -128,9 +137,9 @@ __ B
   <tr><td>C. 虚拟终端</td><td>D. 打印机</td></tr>
 </table>
 __ B
-- 在 Linux 系统中，设备文件主要分为两大类：块设备（Block Devices）和字符设备（Character Devices）。
-- 块设备：随机访问（可以直接跳到文件的任意位置读写）并且数据是以“块”单位（Block，通常为 512 字节或 4KB）为单位进行传输和缓存的。使用 ls -l 查看 /dev 目录，文件类型标识为 b。如硬盘（如 /dev/sda）、固态硬盘（SSD）、U盘、光驱等存储介质都属于块设备。
-- 字符设备：顺序访问（像流水一样，只能按顺序读写），以“字符/字节”为单位。使用 ls -l 查看 /dev 目录，文件类型标识为 c。如终端，串行口，打印机，键盘、鼠标，声卡
+- 在 Linux 系统中，设备文件主要分为两大类：==块设备（Block Devices）和字符设备（Character Devices）。==
+- 块设备：==随机访问==（可以直接跳到文件的任意位置读写）并且数据是以“块”单位（Block，通常为 512 字节或 4KB）为单位进行传输和缓存的。使用 ls -l 查看 /dev 目录，文件类型标识为 b。如硬盘（如 /dev/sda）、固态硬盘（SSD）、U盘、**光驱**等存储介质都属于块设备。
+- 字符设备：==顺序访问==（像流水一样，只能按顺序读写），以“字符/字节”为单位。使用 ls -l 查看 /dev 目录，文件类型标识为 c。如**终端**，**串行口**，**打印机**，键盘、鼠标，声卡
 **20. 在Linux中第一个IDE磁盘的名字为(  )**
 <table>
   <tr><td width="50%">A. /dev/hdb</td><td>B. /dev/hdc</td></tr>
@@ -152,7 +161,7 @@ __ C
 第一个磁盘：/dev/nvme0n1
 第二个磁盘：/dev/nvme1n1
 备注：现代高速 M.2 固态硬盘所使用的接口，直接通过 PCIe 通道与 CPU 通信，速度极快。
-**21. 查看swap空间的使用情况该使用哪个命令？(  )**
+==**21. 查看==swap空间的使用情况该使用哪个命令？(  )**
 <table>
   <tr><td width="50%">A. df</td><td>B. swapon</td></tr>
   <tr><td>C. free</td><td>D. fdisk</td></tr>
@@ -219,7 +228,7 @@ __ C
   <tr><td>C. set wrapmargin=0</td><td>D. set report=0</td></tr>
 </table>
 D
-**30. 在Emacs中，以下哪种操作可以实现打开另一个文件以==替换==当前打开的文件？(  )**
+==**30. 在==Emacs中，以下哪种操作可以实现打开另一个文件以==替换==当前打开的文件？(  )**
 <table>
   <tr><td width="50%">A. 先同时按Ctrl+x组合键, 再同时按Ctrl+s组合键</td><td>B. 先同时按Ctrl+x组合键,再同时按Ctrl+f组合键</td></tr>
   <tr><td>C. 先同时按Ctrl+x组合键, 再同时按Ctrl+b组合键</td><td>D. 先同时按Ctrl+x组合键, 再同时按Ctrl+v组合键</td></tr>
