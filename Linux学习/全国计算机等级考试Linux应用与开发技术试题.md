@@ -1061,246 +1061,246 @@ file? 匹配了 4 个文件（file1, file2, file3, file4），所以：
 
 ## 一、单项选择题（共 40 题）
 
-**1. 下列操作系统特征中，(  )是操作系统最重要的特征，其它三个都以它为前提。**
+==**1.== 下列操作系统特征中，(  )是操作系统最重要的特征，其它三个都以它为前提。**
 <table>
   <tr><td width="50%">A. 共享</td><td>B. 并发</td></tr>
   <tr><td>C. 虚拟</td><td>D. 异步</td></tr>
 </table>
-
+B
 **2. 默认情况下，管理员创建了一个用户，就会在(  )目录下创建一个用户主目录。**
 <table>
   <tr><td width="50%">A. /usr</td><td>B. /home</td></tr>
   <tr><td>C. /root</td><td>D. /etc</td></tr>
 </table>
-
+B
 **3. `"cd"` 命令可以改变用户的当前目录。当用户输入命令 `"cd"` 并按Enter键后(  )**
 <table>
   <tr><td width="50%">A. 当前目录改为根目录</td><td>B. 当前目录不变，屏幕显示当前目录</td></tr>
   <tr><td>C. 当前目录改为用户home目录</td><td>D. 当前目录改为上一级目录</td></tr>
 </table>
-
+C
 **4. 在Shell脚本中，用来读取键盘输入内容并将其赋值给Shell变量的命令是(  )**
 <table>
   <tr><td width="50%">A. fold</td><td>B. join</td></tr>
   <tr><td>C. tr</td><td>D. read</td></tr>
 </table>
-
+D
 **5. 下面用于定义Shell全局变量的命令是(  )**
 <table>
   <tr><td width="50%">A. exportfs</td><td>B. alias</td></tr>
   <tr><td>C. exports</td><td>D. export</td></tr>
 </table>
-
+D
 **6. 为卸载一个软件包，应使用(  )**
 <table>
   <tr><td width="50%">A. rpm -i</td><td>B. rpm -e</td></tr>
   <tr><td>C. rpm -q</td><td>D. rpm -V</td></tr>
 </table>
-
-**7. 如果想列出一个目录下的所有文件，但不包括 `"."` 与 `".."` 这两个目录，需要使用命令行(  )**
+B
+==**7.== 如果想列出一个目录下的所有文件，但不包括 `"."` 与 `".."` 这两个目录，需要使用命令行(  )**
 <table>
   <tr><td width="50%">A. ls -l</td><td>B. ls</td></tr>
   <tr><td>C. ls -a</td><td>D. ls -A</td></tr>
 </table>
-
-**8. 当使用mount进行设备或者文件系统挂载的时候，需要用到的设备名称位于(  )目录。**
+D
+==**8.== 当使用mount进行设备或者文件系统挂载的时候，需要用到的设备名称位于(  )目录。**
 <table>
   <tr><td width="50%">A. /home</td><td>B. /bin</td></tr>
   <tr><td>C. /etc</td><td>D. /dev</td></tr>
 </table>
-
+D
 **9. 以下可以终止一个用户所有进程的命令是(  )**
 <table>
   <tr><td width="50%">A. skillall</td><td>B. skill</td></tr>
   <tr><td>C. kill</td><td>D. killall</td></tr>
 </table>
-
-**10. Linux文件系统中的文件有三个时间戳，下列哪一个不是Linux文件时间戳？(  )**
+D
+==**10. L==inux文件系统中的文件有三个时间戳，下列哪一个不是Linux文件时间戳？(  )**
 <table>
   <tr><td width="50%">A. 创建时间</td><td>B. 修改时间</td></tr>
   <tr><td>C. 访问时间</td><td>D. 状态改变时间</td></tr>
 </table>
-
-**11. 关于文件 `/etc/sysconfig/network-scripts/ifcfg-eth0` 的描述哪个是正确的？(  )**
+C  A
+==**11.== 关于文件 `/etc/sysconfig/network-scripts/ifcfg-eth0` 的描述哪个是正确的？(  )**
 <table>
   <tr><td width="50%">A. 它是一个系统脚本文件</td><td>B. 它是可执行文件</td></tr>
   <tr><td>C. 它存放本机的名字</td><td>D. 它指定本机eth0的IP地址</td></tr>
 </table>
-
+D
 **12. 用户编写了一个文本文件atxt，想将该文件名称改为txta，下列哪个命令可以实现？(  )**
 <table>
   <tr><td width="50%">A. cd atxt txta</td><td>B. echo atxt > txta</td></tr>
   <tr><td>C. rm atxt txta</td><td>D. mv atxt txta</td></tr>
 </table>
-
+B ==mv== D
 **13. 下列文件中，包含了本地主机名到IP地址的映射关系的文件是(  )**
 <table>
   <tr><td width="50%">A. /etc/HOSTNAME</td><td>B. /etc/hosts</td></tr>
   <tr><td>C. /etc/resolv.conf</td><td>D. /etc/networks</td></tr>
 </table>
-
-**14. 当用户与某远程网络连接不上时，就需要跟踪路由查看，以便了解在网络的什么位置出现了问题，满足该目的的命令是(  )**
+B
+==**14.== 当用户与某远程网络连接不上时，就需要跟踪路由查看，以便了解在网络的什么位置出现了问题，满足该目的的命令是(  )**
 <table>
   <tr><td width="50%">A. ping</td><td>B. checkroute</td></tr>
   <tr><td>C. traceroute</td><td>D. netstat</td></tr>
 </table>
-
+C
 **15. 在给定文件中查找与设定条件相符的字符串的命令为(  )**
 <table>
   <tr><td width="50%">A. grep</td><td>B. gzip</td></tr>
   <tr><td>C. find</td><td>D. sort</td></tr>
 </table>
-
+A
 **16. 在Linux中，更改普通用户为超级用户的命令是(  )**
 <table>
   <tr><td width="50%">A. super</td><td>B. su</td></tr>
   <tr><td>C. tar</td><td>D. passwd</td></tr>
 </table>
-
+B
 **17. 以下经常用于分屏显示文件内容的命令是(  )**
 <table>
   <tr><td width="50%">A. ls</td><td>B. cat</td></tr>
   <tr><td>C. file</td><td>D. more</td></tr>
 </table>
-
+D
 **18. 以下不是文件或目录访问权限的是(  )**
 <table>
   <tr><td width="50%">A. r</td><td>B. w</td></tr>
   <tr><td>C. g</td><td>D. x</td></tr>
 </table>
-
-**19. 在Linux目录结构中，Linux的内核及引导程序所需要的文件位于(  )目录。**
+C
+==**19.== 在Linux目录结构中，Linux的内核及引导程序所需要的文件位于(  )目录。**
 <table>
   <tr><td width="50%">A. /bin</td><td>B. /boot</td></tr>
   <tr><td>C. /root</td><td>D. /proc</td></tr>
 </table>
-
-**20. 文件exer1的访问权限为 `rw-r--r--`，现要增加所有用户的执行权限和同组用户的写权限，下列命令正确的是(  )**
+A
+==**20.== 文件exer1的访问权限为 `rw-r--r--`，现要增加所有用户的执行权限和同组用户的写权限，下列命令正确的是(  )**
 <table>
   <tr><td width="50%">A. chmod a+x,g+w exer1</td><td>B. chmod 765 exer1</td></tr>
   <tr><td>C. chmod o+x exer1</td><td>D. chmod g+w exer1</td></tr>
 </table>
-
+A
 **21. 在Linux系统中添加新用户的命令是(  )**
 <table>
   <tr><td width="50%">A. groupadd</td><td>B. usermod</td></tr>
   <tr><td>C. userdel</td><td>D. useradd</td></tr>
 </table>
-
-**22. 系统服务的启动脚本通常都存放在(  )目录中。**
+D
+==**22.== 系统服务的启动脚本通常都存放在(  )目录中。**
 <table>
   <tr><td width="50%">A. /etc/init.d/</td><td>B. /bin/init.d/</td></tr>
   <tr><td>C. /etc/init/</td><td>D. /bin/init</td></tr>
 </table>
-
-**23. 以下日志等级最高（最严重）的是(  )**
+B
+==**23.== 以下日志等级最高（最严重）的是(  )**
 <table>
   <tr><td width="50%">A. info</td><td>B. alert</td></tr>
   <tr><td>C. notice</td><td>D. warning</td></tr>
 </table>
-
-**24. 当进程当前分配的时间片用完时，进程状态会转换为(  )**
+B
+==**24.== 当进程当前分配的时间片用完时，进程状态会转换为(  )**
 <table>
   <tr><td width="50%">A. 运行态</td><td>B. 就绪态</td></tr>
   <tr><td>C. 等待态</td><td>D. 终止态</td></tr>
 </table>
-
+C
 **25. 存放用户账号基本信息的文件是(  )**
 <table>
   <tr><td width="50%">A. shadow</td><td>B. group</td></tr>
   <tr><td>C. passwd</td><td>D. gshadow</td></tr>
 </table>
-
+C
 **26. 检查磁盘空间占用情况应该使用哪个命令？(  )**
 <table>
   <tr><td width="50%">A. df -k</td><td>B. ps -k</td></tr>
   <tr><td>C. format</td><td>D. disk</td></tr>
 </table>
-
+A
 **27. 下列哪个命令可以查看系统中所有进程？(  )**
 <table>
   <tr><td width="50%">A. ps</td><td>B. ps -la</td></tr>
   <tr><td>C. top</td><td>D. ps -le</td></tr>
 </table>
-
+B
 **28. 在vi编辑器里，命令 `dd` 用来删除当前的(  )**
 <table>
   <tr><td width="50%">A. 行</td><td>B. 变量</td></tr>
   <tr><td>C. 字</td><td>D. 字符</td></tr>
 </table>
-
+A
 **29. 在vi编辑器中，哪条命令是不保存强制退出？(  )**
 <table>
   <tr><td width="50%">A. :wq</td><td>B. :wq!</td></tr>
   <tr><td>C. :q!</td><td>D. :quit</td></tr>
 </table>
-
+C
 **30. 在vi编辑器中的命令模式下，重复上一次对编辑的文本进行的操作，可使用(  )命令。**
 <table>
   <tr><td width="50%">A. 上箭头</td><td>B. 下箭头</td></tr>
   <tr><td>C. “.”</td><td>D. “*”</td></tr>
 </table>
-
+A
 **31. 在vi编辑器打开文档，默认是不显示行号的，输入(  )让它显示行号。**
 <table>
   <tr><td width="50%">A. set ruler</td><td>B. set nu</td></tr>
   <tr><td>C. set ic</td><td>D. set nonu</td></tr>
 </table>
-
+B
 **32. 以下哪种不是vi编辑器的工作模式？(  )**
 <table>
   <tr><td width="50%">A. 命令模式</td><td>B. 编辑模式</td></tr>
   <tr><td>C. 末行模式</td><td>D. 检查模式</td></tr>
 </table>
-
+D
 **33. 编辑 `.bashrc` 配置完java环境变量，在终端应执行(  )命令使环境变量立即生效。**
 <table>
   <tr><td width="50%">A. source ~/.bashrc</td><td>B. export ~/.bashrc</td></tr>
   <tr><td>C. ~/.bashrc</td><td>D. ~/.bashrc &</td></tr>
 </table>
-
+A
 **34. 以下哪个GDB调试命令是单步执行下一条语句，如遇到函数则进入函数内部？(  )**
 <table>
   <tr><td width="50%">A. next</td><td>B. step</td></tr>
   <tr><td>C. nexti</td><td>D. stepi</td></tr>
 </table>
-
+B
 **35. gcc可以对编译阶段进行控制，其中(  )选项设定库文件的路径。**
 <table>
   <tr><td width="50%">A. -L path</td><td>B. -l path</td></tr>
   <tr><td>C. -l library</td><td>D. -static</td></tr>
 </table>
-
+A
 **36. 使用scp从服务器10.1.0.2下下载目录 `/opt/www/` 到本地目录 `/opt` 下的命令是(  )**
 <table>
   <tr><td width="50%">A. scp -r /opt/ root@10.1.0.2:/opt/www/</td><td>B. scp root@10.1.0.2:/opt/www/ /opt/</td></tr>
   <tr><td>C. scp -r root@10.1.0.2:/opt/www/ /opt/</td><td>D. scp /opt /root@10.1.0.2:/opt/www/</td></tr>
 </table>
-
+A
 **37. 在GDB调试程序时，若需要查看当前断点处的堆栈情况应输入命令(  )**
 <table>
   <tr><td width="50%">A. l</td><td>B. bt</td></tr>
   <tr><td>C. s</td><td>D. disp</td></tr>
 </table>
-
+B
 **38. 为了使生成的目标文件能够用于GDB调试，在编译时GCC应使用(  )选项。**
 <table>
   <tr><td width="50%">A. -c</td><td>B. -w</td></tr>
   <tr><td>C. -g</td><td>D. -o</td></tr>
 </table>
-
+C
 **39. Apache服务器是(  )**
 <table>
   <tr><td width="50%">A. DNS服务器</td><td>B. Web服务器</td></tr>
   <tr><td>C. FTP服务器</td><td>D. Sendmail服务器</td></tr>
 </table>
-
+B
 **40. 以下不是开源的Web服务器的是(  )**
 <table>
   <tr><td width="50%">A. Apache</td><td>B. Nginx</td></tr>
   <tr><td>C. Tomcat</td><td>D. IIS</td></tr>
 </table>
-
+D
 ## 二、填空题（共 10 题）
 
 41. 多道程序环境下，操作系统分配资源以\_\_\_\_\_\_\_\_\_\_为基本单位。
