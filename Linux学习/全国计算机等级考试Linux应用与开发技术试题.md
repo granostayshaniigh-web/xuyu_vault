@@ -1067,6 +1067,11 @@ file? 匹配了 4 个文件（file1, file2, file3, file4），所以：
   <tr><td>C. 虚拟</td><td>D. 异步</td></tr>
 </table>
 B
+特征	含义
+并发	两个或多个事件在同一时间间隔内发生
+共享	系统资源可供多个并发进程共同使用
+虚拟	将物理实体变为若干逻辑对应物
+异步	进程以不可预知的速度向前推进
 **2. 默认情况下，管理员创建了一个用户，就会在(  )目录下创建一个用户主目录。**
 <table>
   <tr><td width="50%">A. /usr</td><td>B. /home</td></tr>
@@ -1103,13 +1108,15 @@ B
   <tr><td>C. ls -a</td><td>D. ls -A</td></tr>
 </table>
 D
+-a（all）：全部显示，包括 . 和 ..
+-A（almost all）：几乎全部显示，唯独排除 . 和 ..
 ==**8.== 当使用mount进行设备或者文件系统挂载的时候，需要用到的设备名称位于(  )目录。**
 <table>
   <tr><td width="50%">A. /home</td><td>B. /bin</td></tr>
   <tr><td>C. /etc</td><td>D. /dev</td></tr>
 </table>
 D
-**9. 以下可以终止一个用户所有进程的命令是(  )**
+==**9. 以==下可以终止一个用户所有进程的命令是(  )**
 <table>
   <tr><td width="50%">A. skillall</td><td>B. skill</td></tr>
   <tr><td>C. kill</td><td>D. killall</td></tr>
@@ -1121,18 +1128,32 @@ D
   <tr><td>C. 访问时间</td><td>D. 状态改变时间</td></tr>
 </table>
 C  A
+
+mtime（修改时间）	        ls -l	    文件内容最后被修改的时间
+atime（访问时间）	        ls -lu	文件最后被读取/访问的时间
+ctime（状态改变时间）	ls -lc	文件元数据（权限、所有者、链接数等）最后改变的时间
+
 ==**11.== 关于文件 `/etc/sysconfig/network-scripts/ifcfg-eth0` 的描述哪个是正确的？(  )**
 <table>
   <tr><td width="50%">A. 它是一个系统脚本文件</td><td>B. 它是可执行文件</td></tr>
   <tr><td>C. 它存放本机的名字</td><td>D. 它指定本机eth0的IP地址</td></tr>
 </table>
 D
+命名规则：ifcfg-<接口名>，如 ifcfg-eth0、ifcfg-ens33 等，每个网卡接口对应一个配置文件。
+![Linux_etc](Linux学习/Linux.md#^wg7k37)
+
 ==**12. 用==户编写了一个文本文件atxt，想将该文件名称改为txta，下列哪个命令可以实现？(  )**
 <table>
   <tr><td width="50%">A. cd atxt txta</td><td>B. echo atxt > txta</td></tr>
   <tr><td>C. rm atxt txta</td><td>D. mv atxt txta</td></tr>
 </table>
 B ==mv== D
+
+B	echo atxt > txta	❌ 创建一个新文件 txta，内容为字符串 "atxt"，原文件 atxt 仍存在
+D	mv atxt txta	✅ 将文件 atxt 重命名为 txta
+记忆：mv = move = 移动/重命名，Linux 中没有专门的 rename 命令用于单个文件重命名（rename 命令用于批量重命名）。
+![Linux](Linux学习/Linux.md#^zmluns)
+
 **13. 下列文件中，包含了本地主机名到IP地址的映射关系的文件是(  )**
 <table>
   <tr><td width="50%">A. /etc/HOSTNAME</td><td>B. /etc/hosts</td></tr>
@@ -1145,6 +1166,8 @@ B
   <tr><td>C. traceroute</td><td>D. netstat</td></tr>
 </table>
 C
+[nmap命令](Linux学习/Linux.md#8%201%20nmap命令)本机对外暴露的接口 
+[netstat命令](Linux学习/Linux.md#8%202%20netstat命令)本机接口占用情况 
 **15. 在给定文件中查找与设定条件相符的字符串的命令为(  )**
 <table>
   <tr><td width="50%">A. grep</td><td>B. gzip</td></tr>
@@ -1169,6 +1192,8 @@ D
   <tr><td>C. g</td><td>D. x</td></tr>
 </table>
 C
+
+---
 ==**19.== 在Linux目录结构中，Linux的内核及引导程序所需要的文件位于(  )目录。**
 <table>
   <tr><td width="50%">A. /bin</td><td>B. /boot</td></tr>
