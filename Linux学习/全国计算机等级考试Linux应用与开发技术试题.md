@@ -1127,7 +1127,7 @@ C  A
   <tr><td>C. 它存放本机的名字</td><td>D. 它指定本机eth0的IP地址</td></tr>
 </table>
 D
-**12. 用户编写了一个文本文件atxt，想将该文件名称改为txta，下列哪个命令可以实现？(  )**
+==**12. 用==户编写了一个文本文件atxt，想将该文件名称改为txta，下列哪个命令可以实现？(  )**
 <table>
   <tr><td width="50%">A. cd atxt txta</td><td>B. echo atxt > txta</td></tr>
   <tr><td>C. rm atxt txta</td><td>D. mv atxt txta</td></tr>
@@ -1174,7 +1174,7 @@ C
   <tr><td width="50%">A. /bin</td><td>B. /boot</td></tr>
   <tr><td>C. /root</td><td>D. /proc</td></tr>
 </table>
-A
+A B
 ==**20.== 文件exer1的访问权限为 `rw-r--r--`，现要增加所有用户的执行权限和同组用户的写权限，下列命令正确的是(  )**
 <table>
   <tr><td width="50%">A. chmod a+x,g+w exer1</td><td>B. chmod 765 exer1</td></tr>
@@ -1192,7 +1192,7 @@ D
   <tr><td width="50%">A. /etc/init.d/</td><td>B. /bin/init.d/</td></tr>
   <tr><td>C. /etc/init/</td><td>D. /bin/init</td></tr>
 </table>
-B
+B A
 ==**23.== 以下日志等级最高（最严重）的是(  )**
 <table>
   <tr><td width="50%">A. info</td><td>B. alert</td></tr>
@@ -1204,7 +1204,7 @@ B
   <tr><td width="50%">A. 运行态</td><td>B. 就绪态</td></tr>
   <tr><td>C. 等待态</td><td>D. 终止态</td></tr>
 </table>
-C
+C B
 **25. 存放用户账号基本信息的文件是(  )**
 <table>
   <tr><td width="50%">A. shadow</td><td>B. group</td></tr>
@@ -1222,7 +1222,7 @@ A
   <tr><td width="50%">A. ps</td><td>B. ps -la</td></tr>
   <tr><td>C. top</td><td>D. ps -le</td></tr>
 </table>
-B
+B D
 **28. 在vi编辑器里，命令 `dd` 用来删除当前的(  )**
 <table>
   <tr><td width="50%">A. 行</td><td>B. 变量</td></tr>
@@ -1235,12 +1235,12 @@ A
   <tr><td>C. :q!</td><td>D. :quit</td></tr>
 </table>
 C
-**30. 在vi编辑器中的命令模式下，重复上一次对编辑的文本进行的操作，可使用(  )命令。**
+==**30. 在==vi编辑器中的命令模式下，重复上一次对编辑的文本进行的操作，可使用(  )命令。**
 <table>
   <tr><td width="50%">A. 上箭头</td><td>B. 下箭头</td></tr>
   <tr><td>C. “.”</td><td>D. “*”</td></tr>
 </table>
-A
+A C
 **31. 在vi编辑器打开文档，默认是不显示行号的，输入(  )让它显示行号。**
 <table>
   <tr><td width="50%">A. set ruler</td><td>B. set nu</td></tr>
@@ -1271,12 +1271,12 @@ B
   <tr><td>C. -l library</td><td>D. -static</td></tr>
 </table>
 A
-**36. 使用scp从服务器10.1.0.2下下载目录 `/opt/www/` 到本地目录 `/opt` 下的命令是(  )**
+==**36. 使==用scp从服务器10.1.0.2下下载目录 `/opt/www/` 到本地目录 `/opt` 下的命令是(  )**
 <table>
   <tr><td width="50%">A. scp -r /opt/ root@10.1.0.2:/opt/www/</td><td>B. scp root@10.1.0.2:/opt/www/ /opt/</td></tr>
   <tr><td>C. scp -r root@10.1.0.2:/opt/www/ /opt/</td><td>D. scp /opt /root@10.1.0.2:/opt/www/</td></tr>
 </table>
-A
+A C
 **37. 在GDB调试程序时，若需要查看当前断点处的堆栈情况应输入命令(  )**
 <table>
   <tr><td width="50%">A. l</td><td>B. bt</td></tr>
