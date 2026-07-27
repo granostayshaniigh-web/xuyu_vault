@@ -1496,7 +1496,7 @@ zhonglaonian
 ^z6bi7t
 
 
-**6.2 case的多分支结构**
+**6.2 case的多分支结构**   ==in   esac  \*) ==
 ```
 [root@centos scripts]# vim case.sh
 #!/bin/bash
