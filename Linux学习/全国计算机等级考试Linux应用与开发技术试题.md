@@ -1200,12 +1200,21 @@ C
   <tr><td>C. /root</td><td>D. /proc</td></tr>
 </table>
 A B
+![Linux](Linux学习/Linux.md#^un740l)
+![Linux](Linux学习/Linux.md#^dx13dt)
+![Linux](Linux学习/Linux.md#^tljz5v)
+
 ==**20.== 文件exer1的访问权限为 `rw-r--r--`，现要增加所有用户的执行权限和同组用户的写权限，下列命令正确的是(  )**
 <table>
   <tr><td width="50%">A. chmod a+x,g+w exer1</td><td>B. chmod 765 exer1</td></tr>
   <tr><td>C. chmod o+x exer1</td><td>D. chmod g+w exer1</td></tr>
 </table>
 A
+Owner **(u)**	
+Group **(g)**	
+Others **(o)**	
+All  **(a)**
+
 **21. 在Linux系统中添加新用户的命令是(  )**
 <table>
   <tr><td width="50%">A. groupadd</td><td>B. usermod</td></tr>
@@ -1218,18 +1227,36 @@ D
   <tr><td>C. /etc/init/</td><td>D. /bin/init</td></tr>
 </table>
 B A
+![Linux_etc](Linux学习/Linux.md#^wg7k37)
+![Linux](Linux学习/Linux.md#^dx13dt)
+/etc/init.d/ 是 Linux 系统中存放系统服务启动脚本的标准目录
+
 ==**23.== 以下日志等级最高（最严重）的是(  )**
 <table>
   <tr><td width="50%">A. info</td><td>B. alert</td></tr>
   <tr><td>C. notice</td><td>D. warning</td></tr>
 </table>
 B
+	级	名称	        说明
+	1 **emerg**	    系统不可用
+	2 alert	        必须立即处理 
+	3 **crit**	        严重错误
+	4 err	            错误
+	5 warning	警告
+	6 notice	    正常但重要
+	7 info	        一般信息
+	8 debug	    调试信息
 ==**24.== 当进程当前分配的时间片用完时，进程状态会转换为(  )**
 <table>
   <tr><td width="50%">A. 运行态</td><td>B. 就绪态</td></tr>
   <tr><td>C. 等待态</td><td>D. 终止态</td></tr>
 </table>
 C B
+创建态	                    进程正在被创建，尚未进入就绪队列
+就绪态		                已具备运行条件，**等待分配** CPU
+运行态		                正在 CPU 上执行
+等待态（阻塞态）		等待某事件发生（如 I/O 完成）
+终止态		                进程执行完毕或被强制终止
 **25. 存放用户账号基本信息的文件是(  )**
 <table>
   <tr><td width="50%">A. shadow</td><td>B. group</td></tr>
@@ -1266,6 +1293,23 @@ C
   <tr><td>C. “.”</td><td>D. “*”</td></tr>
 </table>
 A C
+.（点号）	 重复上一次对文本的编辑操作
+上箭头 ↑	光标上移一行（移动操作，不是编辑操作）
+下箭头 ↓	光标下移一行
+\*	            向前搜索光标所在的单词
+```
+假设你执行了：
+    dw          （删除一个单词）
+
+之后按 "."：
+    再次删除一个单词（重复 dw）
+
+假设你执行了：
+    3dd         （删除3行）
+
+之后按 "."：
+    再次删除3行（重复 3dd）
+```
 **31. 在vi编辑器打开文档，默认是不显示行号的，输入(  )让它显示行号。**
 <table>
   <tr><td width="50%">A. set ruler</td><td>B. set nu</td></tr>
@@ -1302,6 +1346,13 @@ A
   <tr><td>C. scp -r root@10.1.0.2:/opt/www/ /opt/</td><td>D. scp /opt /root@10.1.0.2:/opt/www/</td></tr>
 </table>
 A C
+```bash
+# 下载（远程 → 本地）
+scp -r user@remote_host:/remote/path/ /local/path/
+# 上传（本地 → 远程）
+scp -r /local/path/ user@remote_host:/remote/path/
+```
+
 **37. 在GDB调试程序时，若需要查看当前断点处的堆栈情况应输入命令(  )**
 <table>
   <tr><td width="50%">A. l</td><td>B. bt</td></tr>
