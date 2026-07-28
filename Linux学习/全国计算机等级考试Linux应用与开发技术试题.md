@@ -1566,97 +1566,98 @@ echo "计算机的出拳是:" $computer
 
 ## 一、单项选择题（共 40 题）
 
-**1. Linux是“free software”，free的含义是(  )**
+==**1. L==inux是“free software”，free的含义是(  )**
 <table>
   <tr><td width="50%">A. 使用Linux不需要付费</td><td>B. Linux发行商不能向任何用户收费</td></tr>
   <tr><td>C. Linux可以自由修改和发布</td><td>D. 只有Linux开发者才能向用户收费</td></tr>
 </table>
-
+A
 **2. 改变bash的提示符实际上就是改变变量(  )**
 <table>
   <tr><td width="50%">A. $HOME</td><td>B. $PWD</td></tr>
   <tr><td>C. $PS1</td><td>D. $PS2</td></tr>
 </table>
-
+C
 **3. 下列对shell变量FRUIT的操作中，正确的是(  )**
 <table>
   <tr><td width="50%">A. 为变量赋值：$FRUIT=apple</td><td>B. 显示变量的值：fruit=apple</td></tr>
   <tr><td>C. 显示变量的值：echo $FRUIT</td><td>D. 判断变量是否有值：[ -f $FRUIT ]</td></tr>
 </table>
-
+C
+![Linux](Linux学习/Linux.md#^luv9vd)
 **4. 下面哪项不属于shell中的通配符？(  )**
 <table>
   <tr><td width="50%">A. *</td><td>B. ?</td></tr>
   <tr><td>C. #</td><td>D. [ ]</td></tr>
 </table>
-
+C
 **5. 下列变量名中有效的shell变量名是(  )**
 <table>
   <tr><td width="50%">A. -2-time</td><td>B. _2$3</td></tr>
   <tr><td>C. trust_no_1</td><td>D. 2004file</td></tr>
 </table>
-
+D
 **6. 从后台启动进程，应在命令的结尾加上符号(  )**
 <table>
   <tr><td width="50%">A. &</td><td>B. @</td></tr>
   <tr><td>C. #</td><td>D. $</td></tr>
 </table>
-
+A
 **7. 在Linux中，每个进程都由一个唯一的ID号来标识，这个ID是(  )**
 <table>
   <tr><td width="50%">A. NID</td><td>B. PID</td></tr>
   <tr><td>C. UID</td><td>D. CID</td></tr>
 </table>
-
-**8. 下列关于链接描述，错误的是(  )**
+B
+==**8. 下==列关于链接描述，错误的是(  )**
 <table>
   <tr><td width="50%">A. 硬链接就是让链接文件的i节点号指向被链接文件的i节点</td><td>B. 硬链接和符号链接都是产生一个新的i节点</td></tr>
   <tr><td>C. 链接分为硬链接和符号链接</td><td>D. 硬链接不能链接目录文件</td></tr>
 </table>
-
+D
 **9. 对file文件执行 `chmod 551 file` 进行了修改，则它的权限是(  )**
 <table>
   <tr><td width="50%">A. -rwxr-xr-x</td><td>B. -rwxr--r--</td></tr>
   <tr><td>C. -r--r--r--</td><td>D. -r-xr-x--x</td></tr>
 </table>
-
+D
 **10. Linux文件系统的文件都按其作用分门别类地存放在相应的目录中，对于外部设备文件，一般应将其放在(  )目录中。**
 <table>
   <tr><td width="50%">A. /bin</td><td>B. /etc</td></tr>
   <tr><td>C. /dev</td><td>D. /lib</td></tr>
 </table>
-
+C
 **11. 超级用户root当前所在目录为 `/usr/local`，键入 `cd` 命令后，用户当前所在目录为(  )**
 <table>
   <tr><td width="50%">A. /home</td><td>B. /root</td></tr>
   <tr><td>C. /home/root</td><td>D. /usr/local</td></tr>
 </table>
-
+B
 **12. 分页显示当前目录下所有文件的文件名和目录名、用户组、用户、文件大小、文件或目录权限、文件创建时间等信息的命令是(  )**
 <table>
   <tr><td width="50%">A. more ls -al</td><td>B. more -al ls</td></tr>
   <tr><td>C. more &lt; ls -al</td><td>D. ls -al | more</td></tr>
 </table>
-
-**13. 系统中有一用户user1和user2，同属于users组。在user1用户目录下有一文件file1，如果user2用户想修改user1用户目录下的file1文件，应拥有(  )权限。**
+D
+**13. 系统中有一用户user1和user2，同属于users组。在user1用户目录下有一文件file1，如果user2用户想==修改==user1用户目录下的file1文件，应拥有(  )权限。**
 <table>
   <tr><td width="50%">A. 744</td><td>B. 664</td></tr>
   <tr><td>C. 646</td><td>D. 746</td></tr>
 </table>
-
-**14. 假设umask为002，则新建立的文件的权限是(  )**
+B
+==**14. 假==设umask为002，则新建立的文件的权限是(  )**
 <table>
   <tr><td width="50%">A. rw-rw-r--</td><td>B. rwxrwx-w-</td></tr>
   <tr><td>C. -------w-</td><td>D. rwxrwxr-x</td></tr>
 </table>
-
+C
 **15. 下面哪个命令不是磁盘管理命令？(  )**
 <table>
   <tr><td width="50%">A. dd</td><td>B. du</td></tr>
   <tr><td>C. df</td><td>D. fsck</td></tr>
 </table>
-
-**16. 在ps的返回信息中，其中stat标记位显示为z，该显示表示该进程(  )**
+A
+==**16. 在==ps的返回信息中，其中stat标记位显示为z，该显示表示该进程(  )**
 <table>
   <tr><td width="50%">A. 正在运行</td><td>B. 僵死</td></tr>
   <tr><td>C. 睡眠</td><td>D. 停止</td></tr>
@@ -1667,62 +1668,62 @@ echo "计算机的出拳是:" $computer
   <tr><td width="50%">A. make tidy</td><td>B. make close</td></tr>
   <tr><td>C. make clear</td><td>D. make clean</td></tr>
 </table>
-
+C
 **18. 匹配以 `.001` 结尾的行，可以使用正则表达式(  )**
 <table>
   <tr><td width="50%">A. ^001</td><td>B. 001$</td></tr>
   <tr><td>C. *001</td><td>D. /001</td></tr>
 </table>
-
+C
 **19. 每个硬盘主分区的个数最多可以有(  )**
 <table>
   <tr><td width="50%">A. 1个</td><td>B. 3个</td></tr>
   <tr><td>C. 4个</td><td>D. 无限制</td></tr>
 </table>
-
-**20. 让普通用户以超级管理员的身份执行文件，应用命令(  )来修改文件权限。**
+B
+==**20. 让==普通用户以超级管理员的身份执行文件，应用命令(  )来修改文件权限。**
 <table>
   <tr><td width="50%">A. chmod a+v</td><td>B. usermod a+v</td></tr>
   <tr><td>C. chmod u+s</td><td>D. usermod a+s</td></tr>
 </table>
-
+C
 **21. 下面关于passwd命令的说法错误的是(  )**
 <table>
   <tr><td width="50%">A. 普通用户可以用passwd命令修改自己的密码</td><td>B. 超级用户可以用passwd命令修改自己和其他用户的密码</td></tr>
   <tr><td>C. 普通用户不可以用passwd命令修改其他用户的密码</td><td>D. 普通用户可以用passwd命令修改自己和其他用户的密码</td></tr>
 </table>
-
+D
 **22. 当父目录不存在的时候，用mkdir命令创建新目录应添加参数(  )**
 <table>
   <tr><td width="50%">A. -P</td><td>B. -d</td></tr>
   <tr><td>C. -f</td><td>D. -p</td></tr>
 </table>
-
+D
 **23. 卸载一个软件包，应用用命令(  )**
 <table>
   <tr><td width="50%">A. rpm -i</td><td>B. rpm -e</td></tr>
   <tr><td>C. rpm -q</td><td>D. rpm -V</td></tr>
 </table>
-
-**24. 观察系统动态进程的命令是(  )**
+B
+**==24. 观==察系统动态进程的命令是(  )**
 <table>
   <tr><td width="50%">A. free</td><td>B. top</td></tr>
   <tr><td>C. lastcomm</td><td>D. df</td></tr>
 </table>
-
+B
 **25. 在给定文件中查找与设定条件相符的字符串的命令为(  )**
 <table>
   <tr><td width="50%">A. grep</td><td>B. gzip</td></tr>
   <tr><td>C. find</td><td>D. sort</td></tr>
 </table>
-
+A
 **26. 引用useradd命令添加新用户时，使用(  )参数可以指定用户目录。**
 <table>
   <tr><td width="50%">A. -d</td><td>B. -p</td></tr>
   <tr><td>C. -u</td><td>D. -c</td></tr>
 </table>
-
-**27. Linux缺省的文件系统是(  )**
+D
+==**27.== Linux缺省的文件系统是(  )**
 <table>
   <tr><td width="50%">A. VFAT</td><td>B. ISO9660</td></tr>
   <tr><td>C. EXT系列</td><td>D. NTFS</td></tr>
@@ -1733,50 +1734,50 @@ echo "计算机的出拳是:" $computer
   <tr><td width="50%">A. :wq</td><td>B. :wq!</td></tr>
   <tr><td>C. :q!</td><td>D. :quit</td></tr>
 </table>
-
+B
 **29. 退出交互模式的shell，应键入(  )**
 <table>
   <tr><td width="50%">A. :wq!</td><td>B. &lt;ctrl&gt;+q</td></tr>
   <tr><td>C. exit</td><td>D. quit</td></tr>
 </table>
-
+C
 **30. 以下不是vi工作模式的是(  )**
 <table>
   <tr><td width="50%">A. 命令模式</td><td>B. 删除模式</td></tr>
   <tr><td>C. 编辑模式</td><td>D. 末行模式</td></tr>
 </table>
-
+B
 **31. 在vi中，输入哪条命令可以撤销上次操作？(  )**
 <table>
   <tr><td width="50%">A. d</td><td>B. u</td></tr>
   <tr><td>C. $</td><td>D. x</td></tr>
 </table>
-
+B
 **32. 在vi编辑器的命令模式下，键入(  )可在光标当前行下添加一新行。**
 <table>
   <tr><td width="50%">A. O</td><td>B. o</td></tr>
   <tr><td>C. i</td><td>D. a</td></tr>
 </table>
-
+B
 **33. 下列哪项命令常用于检测网络主机是否可达？(  )**
 <table>
   <tr><td width="50%">A. ssh</td><td>B. netstat</td></tr>
   <tr><td>C. ping</td><td>D. exit</td></tr>
 </table>
-
-**34. 实现从IP地址到以太网MAC地址转换的命令为(  )**
+C
+==**34. 实==现从IP地址到以太网MAC地址转换的命令为(  )**
 <table>
   <tr><td width="50%">A. ping</td><td>B. ifconfig</td></tr>
   <tr><td>C. arp</td><td>D. traceroute</td></tr>
 </table>
-
-**35. telnet服务通常使用哪个服务端口？(  )**
+C
+==**35. t==elnet服务通常使用哪个服务端口？(  )**
 <table>
   <tr><td width="50%">A. 20</td><td>B. 21</td></tr>
   <tr><td>C. 22</td><td>D. 23</td></tr>
 </table>
-
-**36. NFS提供的服务是(  )**
+D
+==**36. N==FS提供的服务是(  )**
 <table>
   <tr><td width="50%">A. 文件服务</td><td>B. 远程登录</td></tr>
   <tr><td>C. 共享服务</td><td>D. 配置IP地址</td></tr>
@@ -1787,25 +1788,26 @@ echo "计算机的出拳是:" $computer
   <tr><td width="50%">A. 需要启动sshd服务</td><td>B. 采用加密的方式保证连接安全</td></tr>
   <tr><td>C. 监听TCP 22端口</td><td>D. 以上都正确</td></tr>
 </table>
-
+D
+==TCP==
 **38. SSH服务端默认的配置文件是(  )**
 <table>
   <tr><td width="50%">A. /etc/ssh/sshd.conf</td><td>B. /etc/sshd.conf</td></tr>
   <tr><td>C. /etc/ssh.conf</td><td>D. /etc/ssh/sshd_config</td></tr>
 </table>
-
+D
 **39. 配置Apache服务器需要修改的配置文件为(  )**
 <table>
   <tr><td width="50%">A. httpd.conf</td><td>B. access.conf</td></tr>
   <tr><td>C. srm.conf</td><td>D. named.conf</td></tr>
 </table>
-
-**40. Apache服务器默认的监听连接端口号是(  )**
+A
+**==40. A==pache服务器默认的监听连接端口号是(  )**
 <table>
   <tr><td width="50%">A. 1024</td><td>B. 800</td></tr>
   <tr><td>C. 80</td><td>D. 8</td></tr>
 </table>
-
+C
 ## 二、填空题（共 10 题）
 
 41. 在Linux的两种链接文件方式中，\_\_\_\_\_\_\_\_\_\_不能实现对目录链接。
