@@ -1740,8 +1740,10 @@ B C
   <tr><td>C. chmod u+s</td><td>D. usermod a+s</td></tr>
 </table>
 C
-```
 usermod 是修改用户账户的
+![Linux](Linux学习/Linux.md#^wx44j7)
+```
+
 设置 SUID 后：
   普通用户执行文件 → 以【文件所有者】身份运行（通常是 root）
 
@@ -1780,24 +1782,42 @@ B
   <tr><td>C. lastcomm</td><td>D. df</td></tr>
 </table>
 B
+![Linux](Linux学习/Linux.md#^to5qus)
 **25. 在给定文件中查找与设定条件相符的字符串的命令为(  )**
 <table>
   <tr><td width="50%">A. grep</td><td>B. gzip</td></tr>
   <tr><td>C. find</td><td>D. sort</td></tr>
 </table>
 A
-**26. 引用useradd命令添加新用户时，使用(  )参数可以指定用户目录。**
+==**26. 引==用useradd命令添加新用户时，使用(  )参数可以指定用户目录。**
 <table>
   <tr><td width="50%">A. -d</td><td>B. -p</td></tr>
   <tr><td>C. -u</td><td>D. -c</td></tr>
 </table>
 D A
+2.1 创建用户：
+	``` 
+	useradd 用户名 [ -g -d ]
+	例：useradd test2 -g test -d /home/xy/Desktop/test1
+	```
+	选项：
+		-g 指定用户的组，若不指定，则会创建一个与用户名相同的组，并把该用户加入到该组中。若指定则指定的组必须存在。
+		==-d 指定用户的HOME路径==，若不指定，则HOME目录默认在：/home/用户名 
+		![](assets/Linux/file-20260706172435294.png)
+		uid:用户名     group：组别
+
 ==**27.== Linux缺省的文件系统是(  )**
 <table>
   <tr><td width="50%">A. VFAT</td><td>B. ISO9660</td></tr>
   <tr><td>C. EXT系列</td><td>D. NTFS</td></tr>
 </table>
 __ C
+```
+A	VFAT	❌	Windows 的 FAT 文件系统，用于 U盘、FAT32 分区
+B	ISO9660	❌	光盘（CD/DVD）的文件系统
+C	EXT系列	✅	Linux 原生默认文件系统
+D	NTFS	❌	Windows NT/10/11 的默认文件系统
+```
 **28. 在vi编辑器中，保存并强制退出的命令是(  )**
 <table>
   <tr><td width="50%">A. :wq</td><td>B. :wq!</td></tr>
@@ -1840,6 +1860,13 @@ C
   <tr><td>C. arp</td><td>D. traceroute</td></tr>
 </table>
 C
+地址解析：这是 ARP (Address Resolution Protocol) 协议，用于==将 IP 地址解析为 MAC 地址==
+```
+为什么需要？
+  网络层用 IP 地址通信
+  数据链路层（以太网）用 MAC 地址传输帧
+  所以必须有一个"翻译"过程：IP → MAC
+```
 ==**35. t==elnet服务通常使用哪个服务端口？(  )**
 <table>
   <tr><td width="50%">A. 20</td><td>B. 21</td></tr>
@@ -1852,13 +1879,15 @@ D
   <tr><td>C. 共享服务</td><td>D. 配置IP地址</td></tr>
 </table>
 __ C
+B ssh
+D DHCP
 **37. 关于SSH描述正确的是(  )**
 <table>
   <tr><td width="50%">A. 需要启动sshd服务</td><td>B. 采用加密的方式保证连接安全</td></tr>
   <tr><td>C. 监听TCP 22端口</td><td>D. 以上都正确</td></tr>
 </table>
 D
-==TCP==
+==TCP==（Transmission Control Protocol，传输控制协议）
 **38. SSH服务端默认的配置文件是(  )**
 <table>
   <tr><td width="50%">A. /etc/ssh/sshd.conf</td><td>B. /etc/sshd.conf</td></tr>
