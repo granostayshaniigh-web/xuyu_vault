@@ -830,6 +830,7 @@ B
 	- /boot 分区：是推荐单独划分的引导分区，不是"必须"的
 44. 通常用\_\_\_ping\_\_\_命令来测试两台机器间网络的连通性。
 45. ==每==个设备文件名由主设备号和从设备号描述。第二块IDE硬盘的设备名为 `hdb`，它上面的第三个主分区对应的文件名是\_\_\_\_\_\_\_\_\_\_。
+	解释： 
 ```
 /dev/hd  b  3
      │   │  │
@@ -844,6 +845,7 @@ B
 /dev/hdb5	第2块IDE硬盘，第1个逻辑分区
 /dev/hdb6	第2块IDE硬盘，第2个逻辑分区
 ```
+
 41. ==用==一个命令行读取文件 `file` 第5~10行：\_\_\_\_\_\_\_\_\_\_。
 ```
 head -10 file  |  tail -6
@@ -1571,7 +1573,8 @@ echo "计算机的出拳是:" $computer
   <tr><td width="50%">A. 使用Linux不需要付费</td><td>B. Linux发行商不能向任何用户收费</td></tr>
   <tr><td>C. Linux可以自由修改和发布</td><td>D. 只有Linux开发者才能向用户收费</td></tr>
 </table>
-A
+A C
+自由软件运动
 **2. 改变bash的提示符实际上就是改变变量(  )**
 <table>
   <tr><td width="50%">A. $HOME</td><td>B. $PWD</td></tr>
@@ -1596,7 +1599,10 @@ C
   <tr><td width="50%">A. -2-time</td><td>B. _2$3</td></tr>
   <tr><td>C. trust_no_1</td><td>D. 2004file</td></tr>
 </table>
-D
+D C
+① 字符范围	只能包含字母（a-z, A-Z）、数字（0-9）和下划线（\_）
+② 首字符	不能以数字开头==（必须以字母或下划线开头）==
+③ 特殊字符	==不能包含 -、$、@、# 等特殊符号==
 **6. 从后台启动进程，应在命令的结尾加上符号(  )**
 <table>
   <tr><td width="50%">A. &</td><td>B. @</td></tr>
@@ -1614,7 +1620,17 @@ B
   <tr><td width="50%">A. 硬链接就是让链接文件的i节点号指向被链接文件的i节点</td><td>B. 硬链接和符号链接都是产生一个新的i节点</td></tr>
   <tr><td>C. 链接分为硬链接和符号链接</td><td>D. 硬链接不能链接目录文件</td></tr>
 </table>
-D
+D B
+D中的目录是错的。符号链接就是软链接
+```
+硬链接（共享 inode）：          符号链接（新 inode）：
+
+fileA ──┐                      fileA ──→ [inode 100] ──→ 数据
+        ├──→ [inode 100] ──→ 数据
+fileB ──┘                      linkB ──→ [inode 200] ──→ "/path/fileA"
+                                        （新inode，存的是路径字符串）
+因此，B 说"都是产生一个新的 i 节点"是错误的，硬链接不产生新 inode。
+```
 **9. 对file文件执行 `chmod 551 file` 进行了修改，则它的权限是(  )**
 <table>
   <tr><td width="50%">A. -rwxr-xr-x</td><td>B. -rwxr--r--</td></tr>
@@ -1645,12 +1661,19 @@ D
   <tr><td>C. 646</td><td>D. 746</td></tr>
 </table>
 B
+![Linux](Linux学习/Linux.md#^px06tj)
 ==**14. 假==设umask为002，则新建立的文件的权限是(  )**
 <table>
   <tr><td width="50%">A. rw-rw-r--</td><td>B. rwxrwx-w-</td></tr>
   <tr><td>C. -------w-</td><td>D. rwxrwxr-x</td></tr>
 </table>
-C
+C A
+```
+ 类型	      默认权限	    计算方式
+新文件	666（rw-rw-rw-）	666 - umask
+新目录	777（rwxrwxrwx）	777 - umask
+```
+`最终权限 = 默认权限 - umask（屏蔽掉的权限）`
 **15. 下面哪个命令不是磁盘管理命令？(  )**
 <table>
   <tr><td width="50%">A. dd</td><td>B. du</td></tr>
@@ -1662,31 +1685,77 @@ A
   <tr><td width="50%">A. 正在运行</td><td>B. 僵死</td></tr>
   <tr><td>C. 睡眠</td><td>D. 停止</td></tr>
 </table>
-
+__ B
+```
+标记	 含义	        说明
+R	Running	    正在运行或可运行
+S	Sleeping	可中断睡眠（等待事件）
+D	Disk sleep	不可中断睡眠（通常在等 I/O）
+Z	Zombie	    僵死进程 
+T	sTopped	    被信号停止（如 Ctrl+Z）
+什么是僵尸进程？子进程退出 → 父进程未调用 wait() 回收 → 子进程变成僵尸
+等待父进程来"收尸"
+```
 **17. 编辑和编译在产生许多临时文件，所以在源代码软件安装包完成后，通常使用命令(  )清除临时文件。**
 <table>
   <tr><td width="50%">A. make tidy</td><td>B. make close</td></tr>
   <tr><td>C. make clear</td><td>D. make clean</td></tr>
 </table>
-C
+C D
 **18. 匹配以 `.001` 结尾的行，可以使用正则表达式(  )**
 <table>
   <tr><td width="50%">A. ^001</td><td>B. 001$</td></tr>
   <tr><td>C. *001</td><td>D. /001</td></tr>
 </table>
-C
+C B
+```
+ab*c  →  匹配 "ac", "abc", "abbc", "abbbc", ...(0个或多个b)
+关键点：* 必须跟在某个字符后面，修饰的是它左边的那个字符。
+🔹 通配符：管文件名，* 是万能王，简单粗暴
+🔹 正则：管文本内容，. 才是万能王，* 只是跟班（重复修饰符）
+```
 **19. 每个硬盘主分区的个数最多可以有(  )**
 <table>
   <tr><td width="50%">A. 1个</td><td>B. 3个</td></tr>
   <tr><td>C. 4个</td><td>D. 无限制</td></tr>
 </table>
-B
+B C
+```
+/dev/hd  b  3
+     │   │  │
+     │   │  └── 分区号（主分区 1~4）
+     │   └───── 磁盘序号（a=第1块, b=第2块, c=第3块, d=第4块）
+     └───────── 设备类型（hd = IDE硬盘）
+/dev/hdb1	第2块IDE硬盘，第1个主分区
+/dev/hdb2	第2块IDE硬盘，第2个主分区
+/dev/hdb3	第2块IDE硬盘，第3个主分区 
+/dev/hdb4	第2块IDE硬盘，第4个主分区（或扩展分区）
+
+/dev/hdb5	第2块IDE硬盘，第1个逻辑分区
+/dev/hdb6	第2块IDE硬盘，第2个逻辑分区
+```
 ==**20. 让==普通用户以超级管理员的身份执行文件，应用命令(  )来修改文件权限。**
 <table>
   <tr><td width="50%">A. chmod a+v</td><td>B. usermod a+v</td></tr>
   <tr><td>C. chmod u+s</td><td>D. usermod a+s</td></tr>
 </table>
 C
+```
+usermod 是修改用户账户的
+设置 SUID 后：
+  普通用户执行文件 → 以【文件所有者】身份运行（通常是 root）
+
+经典例子：passwd 命令
+$ ls -l /usr/bin/passwd
+-rwsr-xr-x 1 root root 54256 /usr/bin/passwd
+   ↑
+   s = SUID 已设置
+
+特殊权限	     设置方式	         效果
+SUID	    chmod u+s	执行时以文件所有者身份运行
+SGID	    chmod g+s	执行时以文件所属组身份运行
+Sticky Bit	chmod o+t	只有文件所有者才能删除（如 /tmp）
+```
 **21. 下面关于passwd命令的说法错误的是(  )**
 <table>
   <tr><td width="50%">A. 普通用户可以用passwd命令修改自己的密码</td><td>B. 超级用户可以用passwd命令修改自己和其他用户的密码</td></tr>
@@ -1722,13 +1791,13 @@ A
   <tr><td width="50%">A. -d</td><td>B. -p</td></tr>
   <tr><td>C. -u</td><td>D. -c</td></tr>
 </table>
-D
+D A
 ==**27.== Linux缺省的文件系统是(  )**
 <table>
   <tr><td width="50%">A. VFAT</td><td>B. ISO9660</td></tr>
   <tr><td>C. EXT系列</td><td>D. NTFS</td></tr>
 </table>
-
+__ C
 **28. 在vi编辑器中，保存并强制退出的命令是(  )**
 <table>
   <tr><td width="50%">A. :wq</td><td>B. :wq!</td></tr>
@@ -1782,7 +1851,7 @@ D
   <tr><td width="50%">A. 文件服务</td><td>B. 远程登录</td></tr>
   <tr><td>C. 共享服务</td><td>D. 配置IP地址</td></tr>
 </table>
-
+__ C
 **37. 关于SSH描述正确的是(  )**
 <table>
   <tr><td width="50%">A. 需要启动sshd服务</td><td>B. 采用加密的方式保证连接安全</td></tr>
