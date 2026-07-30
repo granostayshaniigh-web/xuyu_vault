@@ -638,6 +638,7 @@ i节点=inode
 │   └─ 三级间接指针 ×1      │
 └─────────────────────────┘
 ```
+==时间戳 (atime/mtime/ctime)== 
 **16. 把当前目录下的文件file1复制为file2，正确的命令是(  )**
 <table>
   <tr><td width="50%">A. copy file1 file2</td><td>B. cp file1 | file2</td></tr>
@@ -1139,7 +1140,7 @@ C  A
 
 mtime（修改时间）	        ls -l	    文件内容最后被修改的时间
 atime（访问时间）	        ls -lu	文件最后被读取/访问的时间
-ctime（状态改变时间）	ls -lc	文件元数据（权限、所有者、链接数等）最后改变的时间
+ctime（状态改变时间）	ls -lc	文件元数据（权限、所有者、链接数等）最后改变的时间 ^c7grva
 
 ==**11.== 关于文件 `/etc/sysconfig/network-scripts/ifcfg-eth0` 的描述哪个是正确的？(  )**
 <table>
@@ -2149,25 +2150,25 @@ exist
   <tr><td width="50%">A. 4.6.22</td><td>B. 2.5.32</td></tr>
   <tr><td>C. 3.3.21</td><td>D. 4.5.24</td></tr>
 </table>
-
+__
 **2. 以下不属于Linux发行版本的是(  )**
 <table>
   <tr><td width="50%">A. Gentoo</td><td>B. Debian</td></tr>
   <tr><td>C. Solaris</td><td>D. Fedora</td></tr>
 </table>
-
+C
 **3. 用来查看当前Linux发行版使用了哪种桌面的环境变量是(  )**
 <table>
   <tr><td width="50%">A. DESKTOP_SESSION</td><td>B. DESKTOP</td></tr>
   <tr><td>C. DESKTOP_SHOW</td><td>D. DESKTOP_ENV</td></tr>
 </table>
-
+D
 **4. Linux文件有三种时间戳，以下错误的是(  )**
 <table>
   <tr><td width="50%">A. mtime</td><td>B. ntime</td></tr>
   <tr><td>C. ctime</td><td>D. atime</td></tr>
 </table>
-
+![全国计算机等级考试Linux应用与开发技术试题](Linux学习/全国计算机等级考试Linux应用与开发技术试题.md#^c7grva)
 **5. 命令行 `echo -e "ab\bc"` 的结果是(  )**
 <table>
   <tr><td width="50%">A. ac</td><td>B. abc</td></tr>
