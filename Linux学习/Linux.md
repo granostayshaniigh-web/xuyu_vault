@@ -1342,7 +1342,7 @@ bash: [hello: 未找到命令...
 	不等于(not equal)：-ne
 	小于(less than)：-lt
 	小于等于(less equal)：-le
-	大于(greater than)：-gt
+	大于(greater than)：**==-==gt**
 	大于等于(greater equal)：-ge
 	 ^zy3cil
 ```

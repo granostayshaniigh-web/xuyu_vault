@@ -2013,9 +2013,9 @@ min=3
 ```
 按 Ctrl+D，read 失败，循环结束
 【56】read x
-【57】\[ $x gt $max ] 
+【57】==\[ $x -gt $max ]== 
 或\[ ((\$x>$max)) eq 1 ]
-【58】\[ $x lt $min ]
+【58】\[ $x -lt $min ]
 或\[ ((\$x<$min)) eq 1 ]
 
 **2. 已知目录状态：**
@@ -2027,24 +2027,51 @@ file1 file2 file3 file4
 (1) 则执行下列命令后，得到的输出结果是：
 `[student@localhost~]$ echo $x`
 【61】\_\_\_\_\_\_\_\_\_\_*
+
+```bash
+[student@localhost~]$ echo *
+file1 file2 file3 file4        ← 文件名（一行，空格分隔）
+
+[student@localhost~]$ ls
+file1  file2  file3  file4     ← 文件名（有排版）
+
+[student@localhost~]$ pwd
+/home/student                  ← 这才是"当前目录路径"
+```
+
+file1 file2 file3 file4
+
 `[student@localhost~]$ echo '$x'`
 【62】\_\_\_\_\_\_\_\_\_\_*
+
+$x
+
 `[student@localhost~]$ echo "$x"`
-【63】\_\_\_\_\_\_\_\_\_\_*
+==【63】==\_\_\_\_\_\_\_\_\_\_*
+
+【63】 `*` （双引号==弱引用==，解析变量x的值，x本就是字面量 `*`，未遇到文件操作时仅作字符串）
+
 `[student@localhost~]$ ls file || echo "not exist" && echo "exist"`
 【64】\_\_\_\_\_\_\_\_\_\_
 【65】\_\_\_\_\_\_\_\_\_\_
 
+①	ls file	                失败（目录中没有名为 file 的文件，只有 file1~file4）
+②	echo "not exist"	因为 ① 失败，|| 右侧执行，输出 not exist，返回 0
+③	echo "exist"	        因为 ② 成功（返回0），&& 右侧执行，输出 exist
+
+not exis
+exist
+
 (2) 已知 `[student@localhost~]$ nu=aaa`，分别执行下列命令后，得到的输出结果是：
 `[student@localhost~]$ nu="$nu"bbb`
 `[student@localhost~]$ echo $nu`
-【66】\_\_\_\_\_\_\_\_\_\_"$nu"bbb
+【66】\_\_\_\_\_\_\_\_\_\_aaabbb
 `[student@localhost~]$ nu={$nu}bbb`
 `[student@localhost~]$ echo $nu`
-【67】\_\_\_\_\_\_\_\_\_\_{$nu}bbb
+==【67】==\_\_\_\_\_\_\_\_\_\_{aaabbb}bbb
 `[student@localhost~]$ nu=${nu}bbb`
 `[student@localhost~]$ echo $nu`
-【68】\_\_\_\_\_\_\_\_\_\_aaabbb
+【68】\_\_\_\_\_\_\_\_\_\_{aaabbb}bbbbbb
 若继续执行
 `[student@localhost~]$ nu1=111`
 `[student@localhost~]$ nu2=222`
@@ -2052,11 +2079,17 @@ file1 file2 file3 file4
 `[student@localhost~]$ echo $nu3`
 则输出结果为：
 【69】\_\_\_\_\_\_\_\_\_\_111222
+
+111==+==222
+
 继续执行
 `[student@localhost~]$ city=(Beijing Shanghai)`
 `[student@localhost~]$ echo $city[0]`
 则输出结果为：
 【70】\_\_\_\_\_\_\_\_\_\_Beijing
+
+【70】 `Beijing[0]` （由于Shell==数组通常写为== `${city[0]}`，直接写 `$city[0]` 时 ==`$city` 取数组第一个元素 Beijing==，后面的 `[0]` 作为普通字符追加在后面）`${nu}` 是标准的变量边界限定符
+
 
 ---
 
