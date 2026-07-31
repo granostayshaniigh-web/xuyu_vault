@@ -2144,24 +2144,24 @@ exist
 
 ## 一、单项选择题（共 40 题）
 
-**1. 以下Linux内核版本属于稳定版的是(  )**
+==**1. 以==下Linux内核版本属于稳定版的是(  )**
 <table>
   <tr><td width="50%">A. 4.6.22</td><td>B. 2.5.32</td></tr>
   <tr><td>C. 3.3.21</td><td>D. 4.5.24</td></tr>
 </table>
-__
-**2. 以下不属于Linux发行版本的是(  )**
+__ A
+**==2. 以==下不属于Linux发行版本的是(  )**
 <table>
   <tr><td width="50%">A. Gentoo</td><td>B. Debian</td></tr>
   <tr><td>C. Solaris</td><td>D. Fedora</td></tr>
 </table>
 C
-**3. 用来查看当前Linux发行版使用了哪种桌面的环境变量是(  )**
+==**3. 用==来查看当前Linux发行版使用了哪种桌面的环境变量是(  )**
 <table>
   <tr><td width="50%">A. DESKTOP_SESSION</td><td>B. DESKTOP</td></tr>
   <tr><td>C. DESKTOP_SHOW</td><td>D. DESKTOP_ENV</td></tr>
 </table>
-D
+D A
 ==**4. Linu==x文件有三种时间戳，以下错误的是(  )**
 <table>
   <tr><td width="50%">A. mtime</td><td>B. ntime</td></tr>
@@ -2173,13 +2173,13 @@ D
   <tr><td width="50%">A. ac</td><td>B. abc</td></tr>
   <tr><td>C. abbc</td><td>D. ab\bc</td></tr>
 </table>
-B
-**6. 为显示当前已经登录的用户信息，包括用户执行任务的情况，应执行命令(  )**
+B A
+==**6. 为==显示当前已经登录的用户信息，包括用户执行任务的情况，应执行命令(  )**
 <table>
   <tr><td width="50%">A. ps</td><td>B. who</td></tr>
   <tr><td>C. who -l</td><td>D. w -s</td></tr>
 </table>
-C
+C D
 ==**7. 用== `ps -le` 命令列出系统中所有进程的详细信息如下：**
 <table style="border:1px solid black;border-collapse:collapse;font-family:monospace">
   <tr>
@@ -2220,7 +2220,7 @@ C
   <tr><td width="50%">A. rcu_gp</td><td>B. init</td></tr>
   <tr><td>C. cpuhp</td><td>D. migration</td></tr>
 </table>
-D PRI?
+D PRI? C
 **8. 在bash中，`export` 命令的作用是(  )**
 <table>
   <tr><td width="50%">A. 为其它应用程序设置环境变量</td><td>B. 在子shell中运行命令</td></tr>
@@ -2298,7 +2298,7 @@ A
   <tr><td width="50%">A. shadow</td><td>B. group</td></tr>
   <tr><td>C. passwd</td><td>D. gshadow</td></tr>
 </table>
-A
+A D
 **21. 文本文件fruits内容示例如下：**
 <table style="border:1px solid black;border-collapse:collapse;font-family:monospace">
   <tr><td style="border:none;padding:4px 8px;font-weight:normal;text-align:left">banana:30:5.5</td></tr>
@@ -2342,13 +2342,13 @@ D
   <tr><td width="50%">A. /etc/sysconfig/network</td><td>B. /etc/hosts</td></tr>
   <tr><td>C. /etc/sysconfig/network-scripts/ifcfg-eth0</td><td>D. /etc/fstab</td></tr>
 </table>
-B
+B A
 ==**27. 可==以启动httpd服务的命令是(  )**
 <table>
   <tr><td width="50%">A. /etc/init.d/httpd start</td><td>B. httpd start</td></tr>
   <tr><td>C. /etc/init.d/httpd status</td><td>D. service httpd</td></tr>
 </table>
-D
+D A
 **28. 在Vi编辑器的命令模式下，要删除光标所在位置的一个字（单词），应使用命令(  )**
 <table>
   <tr><td width="50%">A. db</td><td>B. dd</td></tr>
@@ -2366,7 +2366,7 @@ A
   <tr><td width="50%">A. set</td><td>B. set all</td></tr>
   <tr><td>C. set list</td><td>D. set c?</td></tr>
 </table>
-C
+C B
 ==**31. 在==Emacs编辑器中，将光标移到当前行的行首的命令是(  )**
 <table>
   <tr><td width="50%">A. &lt;Ctrl&gt;+a</td><td>B. &lt;Ctrl&gt;+e</td></tr>
@@ -2431,41 +2431,70 @@ A
 
 41. ==现==代操作系统中，\_\_\_\_\_\_进程\_\_\_\_通常是处理器调度运行的最小单位。
 
+线程
+
 42. ==Lin==ux内核版本号由3组数字组成，如4.16.13，该内核次版本号是\_\_\_\_\_\_\_\_\_\_。
+
+16
+
 43. ==通==常情况下，RPM软件包采用系统默认的安装路径，可执行的命令会安装在\_\_\_\_\_\_\_\_\_\_目录下。
+
+/usr/bin
+
 44. 通过配置\_\_\_\_\_DHCP\_\_\_\_\_协议，服务器控制器一段IP地址范围，客户机登录服务器时就可以自动获得服务器分配的IP地址和子网掩码。
 45. 在 `/home` 目录下查找后缀为 `.dat` 的文件应使用命令\_\_\_find -name"* .dat" /home\_\_\_\_\_\_\_。
 46. 改变当前目录下文件file1的访问权限为所属组用户都可执行，应使用命令\_\_\_\_\_chmod g+x file1\_\_\_\_\_。
 47. 一般使用\_\_hostname\_\_\_\_\_\_\_\_命令查看当前机器的主机名。
 48. ==以==MB为单位，显示当前内存的使用情况，应使用命令\_\_free\_\_\_\_\_\_\_\_。
+
+free -m
+
 49. ==统==计文件file1中包含字符串“ASDF”的行数，可使用命令\_\_\_\_\_\_\_\_\_\_。
+
+grep "ASDF" file1 | wc -l
+
 50. ==在==Linux系统中，表示进程优先级的有两个参数：Priority和Nice，这两个数值越\_\_\_\_小\_\_\_\_\_\_代表该进程越被优先CPU处理。
 
 ## 三、综合应用题（共 2 题）
 
 **1. 假设有两台服务器，主机名分别是server1和server2。如果想配置在server1上以用户名user2免密登录到server2上：**
 (1) 首先，应该在服务器server1上运行【51】\_\_\_\_\_\_ssh keygen\_\_\_\_命令来生成密钥；
+
+ssh-keygen
+
 (2) 然后进入当前用户（user1）的 `/home/user1/`【52】\_\_\_\_工作\_\_\_\_\_\_目录；
+
+.ssh(存放秘钥的隐藏目录)
+
 (3) 执行如下命令把生成的公钥复制到server2上：
    【53】\_\_\_\_scp\_\_\_\_\_\_ `user2@server2:/home/user2/.ssh/id_rsa.pub.s1`
+
+scp id_rsa.pub(将公钥远程复制过去)
+
 (4) 登录server2，进入相应目录后执行追加操作：
    `cat id_rsa.pub.s1 >>` 【54】\_\_\_\_\_\_\_\_\_\_
+
+authorized_keys
+
 (5) 再调用sshd restart重新启动ssh服务之后，就能使用server1上的user1免密登录server2上的user2账号了。用户登录到server2上以后，要编译和调试 `/home/user2/tmp` 下的一个c语言程序 `tmp.c`。首先调用如下命令进行编译链接：
    `gcc tmp.c` 【55】\_\_\_\_\_\_\_\_\_\_ `../include -Wall` 【56】\_\_\_\_\_\_\_\_\_\_ `-O2 -o tmp`
+
+-I(大写的i)   -g
+
 (6) 如果有多个源文件且依赖关系比较复杂，应编写【57】\_\_\_\_\_Makefile\_\_\_\_\_文件描述编译规则。
 (7) 输入【58】\_\_\_\_gdb tmp\_\_\_\_\_\_对编译生成的tmp程序启动gdb调试；
 (8) 在调试器中输入【59】\_\_\_\_b fun1\_\_\_\_\_\_对函数 `func1` 位置设置断点。
 (9) 然后输入run命令开始执行程序，程序停留在断点处。如需进入函数内部单步执行，应输入【60】\_\_\_\_step\_\_\_\_\_\_命令。
 
-**2. (1) 编写脚本程序 `prune.sh`，功能为删除给定文件中的倒数第2和第3两行后形成新文件，用法如下：`prune.sh file[file…]`**
+==**2. (1) 编写==脚本程序 `prune.sh`，功能为删除给定文件中的倒数第2和第3两行后形成新文件，用法如下：`prune.sh file[file…]`**
 ```bash
 #!/bin/sh
-for file 【61】__________ #对每个文件进行处理
+for file 【61】____in______ #对每个文件进行处理
 do
     LINES=`wc 【62】__________ | awk '{print $1}'` #计算行数
     LINES=`expr 【63】__________ `
     head 【64】__________ $file > $file.new #输出前 LINES 行
-    【65】__________ -n 1 $file >> $file.new #输出最后一行
+    【65】___echo_ -n 1 $file >> $file.new #输出最后一行 
 done
 ```
 
@@ -2479,14 +2508,14 @@ done
 #!/bin/bash
 while :
 do
-    【66】__________ -p "Please input a number: " n
+    【66】_____read_____ -p "Please input a number: " n
     n1=`echo $n|sed 's/[0-9]//g'`
     if [ -n "$n1" ]
     then
         echo "$n is not a number."
-        【67】__________
+        【67】__continue________
     else
-        【68】__________
+        【68】____break______
     fi
 done
 
@@ -2494,9 +2523,9 @@ for i in `seq 1 $n`
 do
     for j in `seq 1 $n`
     do
-        echo 【69】__________ "*"
+        echo 【69】____-n______ "*"
     done
-    【70】__________
+    【70】_____echo ""_____
 done
 ```
 
