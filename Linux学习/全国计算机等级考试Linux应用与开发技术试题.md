@@ -2162,25 +2162,25 @@ C
   <tr><td>C. DESKTOP_SHOW</td><td>D. DESKTOP_ENV</td></tr>
 </table>
 D
-**4. Linux文件有三种时间戳，以下错误的是(  )**
+==**4. Linu==x文件有三种时间戳，以下错误的是(  )**
 <table>
   <tr><td width="50%">A. mtime</td><td>B. ntime</td></tr>
   <tr><td>C. ctime</td><td>D. atime</td></tr>
 </table>
 ![全国计算机等级考试Linux应用与开发技术试题](Linux学习/全国计算机等级考试Linux应用与开发技术试题.md#^c7grva)
-**5. 命令行 `echo -e "ab\bc"` 的结果是(  )**
+==**5. 命==令行 `echo -e "ab\bc"` 的结果是(  )**
 <table>
   <tr><td width="50%">A. ac</td><td>B. abc</td></tr>
   <tr><td>C. abbc</td><td>D. ab\bc</td></tr>
 </table>
-
+B
 **6. 为显示当前已经登录的用户信息，包括用户执行任务的情况，应执行命令(  )**
 <table>
   <tr><td width="50%">A. ps</td><td>B. who</td></tr>
   <tr><td>C. who -l</td><td>D. w -s</td></tr>
 </table>
-
-**7. 用 `ps -le` 命令列出系统中所有进程的详细信息如下：**
+C
+==**7. 用== `ps -le` 命令列出系统中所有进程的详细信息如下：**
 <table style="border:1px solid black;border-collapse:collapse;font-family:monospace">
   <tr>
     <td colspan="14" style="border:none;padding:4px 8px;text-align:left;font-weight:normal">[root@localhost ~]# ps -le</td>
@@ -2220,85 +2220,85 @@ D
   <tr><td width="50%">A. rcu_gp</td><td>B. init</td></tr>
   <tr><td>C. cpuhp</td><td>D. migration</td></tr>
 </table>
-
+D PRI?
 **8. 在bash中，`export` 命令的作用是(  )**
 <table>
   <tr><td width="50%">A. 为其它应用程序设置环境变量</td><td>B. 在子shell中运行命令</td></tr>
   <tr><td>C. 使在子shell中可以使用命令历史记录</td><td>D. 提供NFS分区给网络中的其它程序使用</td></tr>
 </table>
-
-**9. 用来装载所有在 `/etc/fstab` 中定义的文件系统的命令是(  )**
+A
+==**9. 用==来装载所有在 `/etc/fstab` 中定义的文件系统的命令是(  )**
 <table>
   <tr><td width="50%">A. amount</td><td>B. mount -a</td></tr>
   <tr><td>C. fmount</td><td>D. mount -f</td></tr>
 </table>
-
+B
 **10. 显示一个文件最后几行内容的命令是(  )**
 <table>
   <tr><td width="50%">A. tail</td><td>B. tac</td></tr>
   <tr><td>C. rear</td><td>D. last</td></tr>
 </table>
-
+A
 **11. 使用 `ln` 命令生成一个指向文件old的符号链接new，如果将文件夹old删除，是否还能够访问文件中的数据？(  )**
 <table>
   <tr><td width="50%">A. 仍旧可以访问</td><td>B. 不能再访问</td></tr>
   <tr><td>C. 能否访问取决于文件夹之下文件的所有者</td><td>D. 能否访问取决于文件的权限</td></tr>
 </table>
-
-**12. 显示Linux系统中已注册的用户数（包含系统用户）的命令是(  )**
+B
+==**12. 显示==Linux系统中已注册的用户数（包含系统用户）的命令是(  )**
 <table>
   <tr><td width="50%">A. wc --lines /etc/passwd</td><td>B. nl /etc/passwd | head</td></tr>
   <tr><td>C. wc --users /etc/passwd</td><td>D. account -l</td></tr>
 </table>
-
+A
 **13. 下面不能用来查看网络故障的命令是(  )**
 <table>
   <tr><td width="50%">A. netstat</td><td>B. ping</td></tr>
   <tr><td>C. traceroute</td><td>D. init</td></tr>
 </table>
-
+D
 **14. 删除非空子目录 `/tmp` ，应使用命令(  )**
 <table>
   <tr><td width="50%">A. rm -rf /tmp</td><td>B. del /tmp/*</td></tr>
   <tr><td>C. rm -Ra /tmp/*</td><td>D. rm -rf /tmp/*</td></tr>
 </table>
-
-**15. Linux系统中，文件描述符0表示(  )**
+A
+==**15. Li==nux系统中，文件描述符0表示(  )**
 <table>
   <tr><td width="50%">A. 标准输出设备</td><td>B. 标准输入设备</td></tr>
   <tr><td>C. 管道</td><td>D. 标准错误输出设备</td></tr>
 </table>
-
+B
 **16. 如果想列出当前目录及其子目录下所有扩展名为“.txt”的文件，可以使用命令(  )**
 <table>
   <tr><td width="50%">A. find . -name "*.txt"</td><td>B. ls *.txt</td></tr>
   <tr><td>C. ls -d .txt</td><td>D. find . ".txt"</td></tr>
 </table>
-
+A
 **17. 执行命令 `chmod 664 file1` 后，该文件的访问权限是(  )**
 <table>
   <tr><td width="50%">A. rw-r-r--</td><td>B. rw-rw-r--</td></tr>
   <tr><td>C. rwxr--rw-</td><td>D. rwxrw-rw-</td></tr>
 </table>
-
+B
 **18. 下列可以设定使用者密码的命令是(  )**
 <table>
   <tr><td width="50%">A. password</td><td>B. pwd</td></tr>
   <tr><td>C. newpwd</td><td>D. passwd</td></tr>
 </table>
-
+D
 **19. 以下可以切换使用者身份的命令是(  )**
 <table>
   <tr><td width="50%">A. su</td><td>B. who</td></tr>
   <tr><td>C. log</td><td>D. passwd</td></tr>
 </table>
-
+A
 **20. 用户组的密码信息存储在哪个文件？(  )**
 <table>
   <tr><td width="50%">A. shadow</td><td>B. group</td></tr>
   <tr><td>C. passwd</td><td>D. gshadow</td></tr>
 </table>
-
+A
 **21. 文本文件fruits内容示例如下：**
 <table style="border:1px solid black;border-collapse:collapse;font-family:monospace">
   <tr><td style="border:none;padding:4px 8px;font-weight:normal;text-align:left">banana:30:5.5</td></tr>
@@ -2312,121 +2312,121 @@ D
   <tr><td width="50%">A. sort -r -n -k 2 -t ":" fruits</td><td>B. sort -r -n -k 1 -t ":" fruits</td></tr>
   <tr><td>C. sort -n -k 2 -t ":" fruits</td><td>D. sort -n -k 1 -t ":" fruits</td></tr>
 </table>
-
+A
 **22. 下列关于kill命令的说法错误的是(  )**
 <table>
   <tr><td width="50%">A. 使用kill命令一定可以终止一个进程</td><td>B. kill命令只能识别 PID，而不识别进程名</td></tr>
   <tr><td>C. kill命令用来向进程发送一个信号</td><td>D. kill -9常用来强制中止进程</td></tr>
 </table>
-
-**23. 在 `top` 命令的显示窗口中，如果要使显示按照内存占用率排序，则应按下(  )**
+A
+==**23. 在== `top` 命令的显示窗口中，如果要使显示按照内存占用率排序，则应按下(  )**
 <table>
   <tr><td width="50%">A. m</td><td>B. M</td></tr>
   <tr><td>C. p</td><td>D. q</td></tr>
 </table>
-
+B
 **24. 为了显示当前目录下的磁盘占用量大小，应使用命令(  )**
 <table>
   <tr><td width="50%">A. du -sh</td><td>B. df</td></tr>
   <tr><td>C. ls -l</td><td>D. ls -r</td></tr>
 </table>
-
+A
 **25. 能够列出系统中的所有可用于块设备的信息，并显示他们之间依赖关系的命令是(  )**
 <table>
   <tr><td width="50%">A. lscpu</td><td>B. dmesg</td></tr>
   <tr><td>C. vmstat</td><td>D. lsblk</td></tr>
 </table>
-
-**26. 可以配置机器主机名的文件是(  )**
+D
+==**26. 可==以配置机器主机名的文件是(  )**
 <table>
   <tr><td width="50%">A. /etc/sysconfig/network</td><td>B. /etc/hosts</td></tr>
   <tr><td>C. /etc/sysconfig/network-scripts/ifcfg-eth0</td><td>D. /etc/fstab</td></tr>
 </table>
-
-**27. 可以启动httpd服务的命令是(  )**
+B
+==**27. 可==以启动httpd服务的命令是(  )**
 <table>
   <tr><td width="50%">A. /etc/init.d/httpd start</td><td>B. httpd start</td></tr>
   <tr><td>C. /etc/init.d/httpd status</td><td>D. service httpd</td></tr>
 </table>
-
+D
 **28. 在Vi编辑器的命令模式下，要删除光标所在位置的一个字（单词），应使用命令(  )**
 <table>
   <tr><td width="50%">A. db</td><td>B. dd</td></tr>
   <tr><td>C. dw</td><td>D. cc</td></tr>
 </table>
-
+C db cc
 **29. 在vi编辑器中，用字符串str2替换正文中所有的出现的字符串str1，应使用命令(  )**
 <table>
   <tr><td width="50%">A. :1,$ s/str1/str2/g</td><td>B. :s/str/str2/</td></tr>
   <tr><td>C. :s/str1/str2/g</td><td>D. :%s/str/str2/</td></tr>
 </table>
-
-**30. 用来显示vi编辑器所有设置选项的命令是(  )**
+A
+==**30. 用==来显示vi编辑器所有设置选项的命令是(  )**
 <table>
   <tr><td width="50%">A. set</td><td>B. set all</td></tr>
   <tr><td>C. set list</td><td>D. set c?</td></tr>
 </table>
-
-**31. 在Emacs编辑器中，将光标移到当前行的行首的命令是(  )**
+C
+==**31. 在==Emacs编辑器中，将光标移到当前行的行首的命令是(  )**
 <table>
   <tr><td width="50%">A. &lt;Ctrl&gt;+a</td><td>B. &lt;Ctrl&gt;+e</td></tr>
   <tr><td>C. &lt;Alt&gt;+&lt;</td><td>D. &lt;Alt&gt;+v</td></tr>
 </table>
-
-**32. 在Emacs编辑器中，保存文件并退出的正确做法是(  )**
+A
+==**32. 在==Emacs编辑器中，保存文件并退出的正确做法是(  )**
 <table>
   <tr><td width="50%">A. 先按&lt;Ctrl&gt;+x，再按&lt;Ctrl&gt;+w</td><td>B. 先按&lt;Ctrl&gt;+x，再按&lt;Ctrl&gt;+c</td></tr>
   <tr><td>C. 先按&lt;Ctrl&gt;+x，再按&lt;Ctrl&gt;+s</td><td>D. 按&lt;Ctrl&gt;+w</td></tr>
 </table>
-
+C
 **33. 用于存储所有授权的远程客户系统的公钥，使远程客户端系统能够ssh免密登录的文件是(  )**
 <table>
   <tr><td width="50%">A. authorized_keys</td><td>B. ssh_keys</td></tr>
   <tr><td>C. authorized_hosts</td><td>D. know_hosts</td></tr>
 </table>
-
+A
 **34. 用于启动SSH服务的命令是(  )**
 <table>
   <tr><td width="50%">A. service sshd start</td><td>B. service ssh start</td></tr>
   <tr><td>C. chkconfig sshd on</td><td>D. chkconfig ssh on</td></tr>
 </table>
-
+A
 **35. 使用scp上传本地目录 `/opt/www` 到服务器10.1.0.2目录/opt下的命令是(  )**
 <table>
   <tr><td width="50%">A. scp -r /opt/www/ root@10.1.0.2:/opt/</td><td>B. scp root@10.1.0.2:/opt/ /opt/www/</td></tr>
   <tr><td>C. scp -r root@10.1.0.2:/opt/ /opt/www/</td><td>D. scp /opt/www/ root@10.1.0.2:/opt/</td></tr>
 </table>
-
+A
 **36. 在GDB中，要删除行号为22处的断点，应使用命令(  )**
 <table>
   <tr><td width="50%">A. delete 22</td><td>B. clear 22</td></tr>
   <tr><td>C. d 22</td><td>D. r 22</td></tr>
 </table>
-
+B
 **37. 在GDB调试中，如果想单步执行下一条指令，而不是下一行程序，应使用命令(  )**
 <table>
   <tr><td width="50%">A. next</td><td>B. nexti</td></tr>
   <tr><td>C. step</td><td>D. continue</td></tr>
 </table>
-
+B
 **38. gcc编译参数 `-w` 的作用是(  )**
 <table>
   <tr><td width="50%">A. 关闭所有警告</td><td>B. 输出所有警告信息</td></tr>
   <tr><td>C. 指定输出文件名</td><td>D. 产生调试信息</td></tr>
 </table>
-
+A
 **39. MVC模式中，C指的是(  )**
 <table>
   <tr><td width="50%">A. 视图</td><td>B. 模型</td></tr>
   <tr><td>C. 控制器</td><td>D. 客户端</td></tr>
 </table>
-
-**40. 如果要查看已经被安装的JDK的包信息，可以用该命令(  )**
+C
+**==40. 如==果要查看已经被安装的JDK的包信息，可以用该命令(  )**
 <table>
   <tr><td width="50%">A. rpm -qa | grep java</td><td>B. rpm -e java</td></tr>
   <tr><td>C. java -version</td><td>D. java -path</td></tr>
 </table>
-
+A
 ## 二、填空题（共 10 题）
 
 41. 现代操作系统中，\_\_\_\_\_\_\_\_\_\_通常是处理器调度运行的最小单位。
