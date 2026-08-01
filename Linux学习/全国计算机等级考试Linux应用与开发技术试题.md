@@ -2150,18 +2150,38 @@ exist
   <tr><td>C. 3.3.21</td><td>D. 4.5.24</td></tr>
 </table>
 __ A
+
+Linux 内核版本号格式为：主版本号.次版本号.修订号
+次版本号为偶数 → 稳定版（stable）
+次版本号为奇数 → 开发版（development）
+
 **==2. 以==下不属于Linux发行版本的是(  )**
 <table>
   <tr><td width="50%">A. Gentoo</td><td>B. Debian</td></tr>
   <tr><td>C. Solaris</td><td>D. Fedora</td></tr>
 </table>
 C
+
+| A. Ubuntu  | B. CentOS |
+|------------|-----------|
+| C. Solaris | D. RedHat |
+A. Ubuntu	Linux 发行版	基于 Debian，使用 apt 包管理
+B. CentOS	Linux 发行版	基于 RedHat 的社区免费版
+C. Solaris	    Unix 系统	Sun/Oracle 开发，不是 Linux
+D. RedHat	Linux 发行版	商业 Linux，使用 yum/dnf 包管理
+
 ==**3. 用==来查看当前Linux发行版使用了哪种桌面的环境变量是(  )**
 <table>
   <tr><td width="50%">A. DESKTOP_SESSION</td><td>B. DESKTOP</td></tr>
   <tr><td>C. DESKTOP_SHOW</td><td>D. DESKTOP_ENV</td></tr>
 </table>
 D A
+
+A. DESKTOP_SESSION	✅ 真实存在的环境变量
+B. DESKTOP	❌ 不存在
+C. DESKTOP_SHOW	❌ 不存在
+D. DESKTOP_ENV	❌ 不存在
+
 ==**4. Linu==x文件有三种时间戳，以下错误的是(  )**
 <table>
   <tr><td width="50%">A. mtime</td><td>B. ntime</td></tr>
@@ -2173,6 +2193,13 @@ D A
   <tr><td width="50%">A. ac</td><td>B. abc</td></tr>
   <tr><td>C. abbc</td><td>D. ab\bc</td></tr>
 </table>
+```
+字符串 "ab\bc" 中，\b 是退格符（backspace）：
+步骤1: 输出 a    → 显示: a
+步骤2: 输出 b    → 显示: ab
+步骤3: \b 退格   → 光标回退一格，覆盖/删除 b → 显示: a
+步骤4: 输出 c    → 显示: ac
+```
 B A
 ==**6. 为==显示当前已经登录的用户信息，包括用户执行任务的情况，应执行命令(  )**
 <table>
@@ -2180,6 +2207,35 @@ B A
   <tr><td>C. who -l</td><td>D. w -s</td></tr>
 </table>
 C D
+
+| 选项            | 命令                   | 功能            | 是否满足 |
+| ------------- | -------------------- | ------------- | ---- |
+| A. `ps`       | 查看系统进程               | 不针对登录用户       | ❌    |
+| B. `who`      | 仅显示谁登录了              | **不显示用户在做什么** | ❌    |
+| C. `who -l`   | 显示登录进程               | 仍不显示用户任务      | ❌    |
+| **D. `w -s`** | **显示登录用户 + 正在执行的任务** | ✅ **完全满足**    | ✅    |
+
+**`w` 命令输出示例**
+```
+$ w -s
+USER     TTY      FROM             WHAT
+root     pts/0    192.168.1.5      -bash
+alice    pts/1    192.168.1.8      vim test.c
+bob      pts/2    192.168.1.10     top
+```
+- **USER / TTY / FROM**：登录用户信息
+- **WHAT**：用户当前正在执行的任务 ✅
+
+**`w` vs `who` 对比**
+
+| 命令    | 显示内容                             |
+| ----- | -------------------------------- |
+| `who` | 用户名、终端、登录时间（仅此而已）                |
+| `w`   | 用户名、终端、登录时间、**空闲时间、CPU 使用、当前任务** |
+
+> ：**`w` = who + what（谁在做什么）**
+
+
 ==**7. 用== `ps -le` 命令列出系统中所有进程的详细信息如下：**
 <table style="border:1px solid black;border-collapse:collapse;font-family:monospace">
   <tr>
@@ -2489,7 +2545,7 @@ authorized_keys
 ==**2. (1) 编写==脚本程序 `prune.sh`，功能为删除给定文件中的倒数第2和第3两行后形成新文件，用法如下：`prune.sh file[file…]`**
 ```bash
 #!/bin/sh
-for file 【61】____in______ #对每个文件进行处理
+for file 【61】____in______ #对每个文件进行处理     in $*
 do
     LINES=`wc 【62】__________ | awk '{print $1}'` #计算行数
     LINES=`expr 【63】__________ `
@@ -2497,6 +2553,10 @@ do
     【65】___echo_ -n 1 $file >> $file.new #输出最后一行 
 done
 ```
+【62】-l $file
+【63】LINES - 3
+【64】==-n== $LINES
+【65】tail 
 
 **(2) 编写脚本，提示用户输入一个数字作为参数，然后打印出一个*号组成的方形区域。例如用户输入5，最终显示5x5的星号矩阵：**
 `*****`
