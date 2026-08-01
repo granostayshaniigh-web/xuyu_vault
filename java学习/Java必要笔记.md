@@ -145,3 +145,5 @@ d1.color = "白色";
 26. javabean:描述一类事物的类`public class Dog{}`
 27. 带有main方法的类叫测试类`public static void main (String[] args){}`
 28. javabean类可以写属性和行为；此处的行为就是方法（成员方法）（函数）,这个类可以做的事
+29. 面向对象中数据安全的问题：private（私有化成员变量）、set和get方法
+![](assets/Java必要笔记/file-20260801204804615.png)
