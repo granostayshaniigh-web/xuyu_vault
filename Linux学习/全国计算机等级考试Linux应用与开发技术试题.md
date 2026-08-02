@@ -2162,13 +2162,23 @@ Linux 内核版本号格式为：主版本号.次版本号.修订号
 </table>
 C
 
+A. Gentoo	Linux 发行版（源码编译型）	✅ 是
+B. Debian	Linux 发行版（apt 包管理）	✅ 是
+C. Solaris	Unix 系统（Oracle）	❌ 不是
+D. Fedora	Linux 发行版（RedHat 社区版）	✅ 是
+
 | A. Ubuntu  | B. CentOS |
 |------------|-----------|
 | C. Solaris | D. RedHat |
 A. Ubuntu	Linux 发行版	基于 Debian，使用 apt 包管理
 B. CentOS	Linux 发行版	基于 RedHat 的社区免费版
-C. Solaris	    Unix 系统	Sun/Oracle 开发，不是 Linux
+C. Solaris	    ==Unix 系统==	Sun/Oracle 开发，不是 Linux
 D. RedHat	Linux 发行版	商业 Linux，使用 yum/dnf 包管理
+
+```
+非 Linux：  Solaris、AIX、HP-UX、FreeBSD和
+             OpenBSD等BSD系列、macOS、Windows、QNX...
+```
 
 ==**3. 用==来查看当前Linux发行版使用了哪种桌面的环境变量是(  )**
 <table>
@@ -2210,9 +2220,9 @@ C D
 
 | 选项            | 命令                   | 功能            | 是否满足 |
 | ------------- | -------------------- | ------------- | ---- |
-| A. `ps`       | 查看系统进程               | 不针对登录用户       | ❌    |
-| B. `who`      | 仅显示谁登录了              | **不显示用户在做什么** | ❌    |
-| C. `who -l`   | 显示登录进程               | 仍不显示用户任务      | ❌    |
+| A. `ps`       | 查看系统==进程==           | 不针对登录用户       | ❌    |
+| B. `who`      | 仅显示==谁==登录了          | **不显示用户在做什么** | ❌    |
+| C. `who -l`   | 显示登录==进程==           | 仍不显示用户任务      | ❌    |
 | **D. `w -s`** | **显示登录用户 + 正在执行的任务** | ✅ **完全满足**    | ✅    |
 
 **`w` 命令输出示例**
@@ -2276,7 +2286,7 @@ bob      pts/2    192.168.1.10     top
   <tr><td width="50%">A. rcu_gp</td><td>B. init</td></tr>
   <tr><td>C. cpuhp</td><td>D. migration</td></tr>
 </table>
-D PRI? C
+D PRI
 **8. 在bash中，`export` 命令的作用是(  )**
 <table>
   <tr><td width="50%">A. 为其它应用程序设置环境变量</td><td>B. 在子shell中运行命令</td></tr>
@@ -2288,7 +2298,13 @@ A
   <tr><td width="50%">A. amount</td><td>B. mount -a</td></tr>
   <tr><td>C. fmount</td><td>D. mount -f</td></tr>
 </table>
-B
+B 
+
+A	amount	     不存在的命令（干扰项）	❌
+B	mount -a	     装载 ==**fstab 中**所有文件系统==	✅
+C	fmount	     不存在的命令（干扰项）	❌
+D	mount -f	"fake"模式，只模拟不真正挂载	❌
+
 **10. 显示一个文件最后几行内容的命令是(  )**
 <table>
   <tr><td width="50%">A. tail</td><td>B. tac</td></tr>
@@ -2307,6 +2323,22 @@ B
   <tr><td>C. wc --users /etc/passwd</td><td>D. account -l</td></tr>
 </table>
 A
+
+Linux 中每个用户（包括系统用户）都对应 /etc/passwd 中的一行，因此统计行数即为已注册用户总数。
+A	wc --lines /etc/passwd	 统计 passwd 文件行数 = 用户总数	✅
+B	nl /etc/passwd | head	     仅显示前 10 行并加行号，不是总数	❌
+C	wc --users /etc/passwd	 ==wc 没有 --users 选项==（不存在）	❌
+D	account -l	                     不存在的命令（干扰项）	❌
+
+2.5 getent命令：==passwd==
+	``` 
+	查用户
+	getent passwd
+	```
+	==不一定要在root权限下才能使用==
+![494](assets/Linux/file-20260706185701859.png)
+所得信息依次为  用户名：密码（x）：用户ID：组ID：描述信息（无用）：HOME目录：这个用户使用的终端。
+
 **13. 下面不能用来查看网络故障的命令是(  )**
 <table>
   <tr><td width="50%">A. netstat</td><td>B. ping</td></tr>
@@ -2349,12 +2381,15 @@ D
   <tr><td>C. log</td><td>D. passwd</td></tr>
 </table>
 A
-**20. 用户组的密码信息存储在哪个文件？(  )**
+==**20. 用==户组的密码信息存储在哪个文件？(  )**
 <table>
   <tr><td width="50%">A. shadow</td><td>B. group</td></tr>
   <tr><td>C. passwd</td><td>D. gshadow</td></tr>
 </table>
 A D
+
+A是用户密码
+
 **21. 文本文件fruits内容示例如下：**
 <table style="border:1px solid black;border-collapse:collapse;font-family:monospace">
   <tr><td style="border:none;padding:4px 8px;font-weight:normal;text-align:left">banana:30:5.5</td></tr>
@@ -2381,6 +2416,12 @@ A
   <tr><td>C. p</td><td>D. q</td></tr>
 </table>
 B
+
+A	m（小写）	切换内存==显示模式（KiB/MiB/GiB）==	❌
+B	M（大写）	按内存占用率 %MEM 排序	✅
+C	p（小写）	切换 PID 列的显示	❌
+D	q	退出 top	❌
+
 **24. 为了显示当前目录下的磁盘占用量大小，应使用命令(  )**
 <table>
   <tr><td width="50%">A. du -sh</td><td>B. df</td></tr>
@@ -2399,12 +2440,84 @@ D
   <tr><td>C. /etc/sysconfig/network-scripts/ifcfg-eth0</td><td>D. /etc/fstab</td></tr>
 </table>
 B A
+
+A	/etc/sysconfig/network	                            配置==主机名（HOSTNAME）及全局网络==参数	
+B	/etc/hosts	                                                IP 地址与主机名的==映射==关系（本地 DNS 解析）	
+C	/etc/sysconfig/network-scripts/ifcfg-eth0	配置==网卡参数==（IP、子网掩码、网关）	
+D	/etc/fstab	                                                配置文件系统挂载（磁盘分区）	
+
 ==**27. 可==以启动httpd服务的命令是(  )**
 <table>
   <tr><td width="50%">A. /etc/init.d/httpd start</td><td>B. httpd start</td></tr>
   <tr><td>C. /etc/init.d/httpd status</td><td>D. service httpd</td></tr>
 </table>
 D A
+启动 httpd 服务的正确命令是 `/etc/init.d/httpd start`，即调用 init 脚本并传入 `start` 参数。
+
+**逐项分析**
+
+| 选项    | 命令                            | 分析                                    | 是否正确 |
+| ----- | ----------------------------- | ------------------------------------- | ---- |
+| **A** | **`/etc/init.d/httpd start`** | **调用 init 脚本 + start 参数，正确启动服务**      | ✅    |
+| B     | `httpd start`                 | `httpd` 是 Apache 可执行程序，不接受 `start` 参数 | ❌    |
+| C     | `/etc/init.d/httpd status`    | `status` 是查看状态，不是启动                   | ❌    |
+| D     | `service httpd`               | 缺少 `start` 参数，命令不完整                   | ❌    |
+
+ **启动服务的正确方式对比**
+
+|方式|命令|说明|
+|---|---|---|
+|init 脚本|`/etc/init.d/httpd start`|✅ 本题正确|
+|service 命令|`service httpd start`|✅ 等价写法（注意必须有 start）|
+|systemctl（RHEL7+）|`systemctl start httpd`|✅ 新版写法|
+
+## 各选项错误原因详解
+
+### B. `httpd start` ❌
+
+```bash
+# httpd 是 Apache 的二进制程序，直接运行即可启动
+httpd          # 直接启动（无 start 参数）
+httpd -k start # 正确语法（-k 选项）
+httpd start    # ❌ 语法错误，"start" 被当作无效参数
+```
+
+### C. `/etc/init.d/httpd status` ❌
+
+```bash
+# status 只是查看运行状态，不会启动服务
+/etc/init.d/httpd status
+# 输出：httpd (pid 1234) is running...
+```
+
+### D. `service httpd` ❌
+
+```bash
+# 缺少动作参数（start/stop/restart/status）
+service httpd        # ❌ 不完整
+service httpd start  # ✅ 正确
+```
+
+## init 脚本支持的操作
+
+```bash
+/etc/init.d/httpd {start|stop|restart|reload|status}
+```
+
+|参数|作用|
+|---|---|
+|`start`|启动服务|
+|`stop`|停止服务|
+|`restart`|重启服务|
+|`reload`|重新加载配置|
+|`status`|查看状态|
+
+## 记忆要点
+
+> 启动服务 = **脚本路径** + **start**，两者缺一不可。
+
+答案是 **A**。
+
 **28. 在Vi编辑器的命令模式下，要删除光标所在位置的一个字（单词），应使用命令(  )**
 <table>
   <tr><td width="50%">A. db</td><td>B. dd</td></tr>
