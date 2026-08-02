@@ -2478,6 +2478,10 @@ D A
   <tr><td>C. dw</td><td>D. cc</td></tr>
 </table>
 C db cc
+
+cc	（change line）	         更改整行（删除整行并进入插入模式）
+db（delete backward）	从光标处向前删到当前单词的词首（删的是光标之前的部分，不是一个完整单词）
+
 **29. 在vi编辑器中，用字符串str2替换正文中所有的出现的字符串str1，应使用命令(  )**
 <table>
   <tr><td width="50%">A. :1,$ s/str1/str2/g</td><td>B. :s/str/str2/</td></tr>
@@ -2669,7 +2673,7 @@ do
     do
         echo 【69】____-n______ "*"
     done
-    【70】_____echo ""_____
+    【70】_____echo ""_____                 echo
 done
 ```
 
