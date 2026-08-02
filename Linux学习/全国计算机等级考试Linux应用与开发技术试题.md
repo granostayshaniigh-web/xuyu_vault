@@ -2463,7 +2463,7 @@ D A
 | C     | `/etc/init.d/httpd status`    | `status` 是查看状态，不是启动                   | ❌    |
 | D     | `service httpd`               | 缺少 `start` 参数，命令不完整                   | ❌    |
 
- **启动服务的正确方式对比**
+ ==**启动服务的正确方式对比**==
 
 |方式|命令|说明|
 |---|---|---|
@@ -2471,52 +2471,6 @@ D A
 |service 命令|`service httpd start`|✅ 等价写法（注意必须有 start）|
 |systemctl（RHEL7+）|`systemctl start httpd`|✅ 新版写法|
 
-## 各选项错误原因详解
-
-### B. `httpd start` ❌
-
-```bash
-# httpd 是 Apache 的二进制程序，直接运行即可启动
-httpd          # 直接启动（无 start 参数）
-httpd -k start # 正确语法（-k 选项）
-httpd start    # ❌ 语法错误，"start" 被当作无效参数
-```
-
-### C. `/etc/init.d/httpd status` ❌
-
-```bash
-# status 只是查看运行状态，不会启动服务
-/etc/init.d/httpd status
-# 输出：httpd (pid 1234) is running...
-```
-
-### D. `service httpd` ❌
-
-```bash
-# 缺少动作参数（start/stop/restart/status）
-service httpd        # ❌ 不完整
-service httpd start  # ✅ 正确
-```
-
-## init 脚本支持的操作
-
-```bash
-/etc/init.d/httpd {start|stop|restart|reload|status}
-```
-
-|参数|作用|
-|---|---|
-|`start`|启动服务|
-|`stop`|停止服务|
-|`restart`|重启服务|
-|`reload`|重新加载配置|
-|`status`|查看状态|
-
-## 记忆要点
-
-> 启动服务 = **脚本路径** + **start**，两者缺一不可。
-
-答案是 **A**。
 
 **28. 在Vi编辑器的命令模式下，要删除光标所在位置的一个字（单词），应使用命令(  )**
 <table>
@@ -2536,18 +2490,33 @@ A
   <tr><td>C. set list</td><td>D. set c?</td></tr>
 </table>
 C B
+
+A	:set	    仅显示已修改过的选项（非默认值的）	❌
+B	:set all	**显示所有设置选项**（含默认值）	✅
+C	:set list	==显示不可见字符==（Tab 显示为 ^I，行尾显示为 $）	❌
+D	:set c?	无效命令	❌
+
 ==**31. 在==Emacs编辑器中，将光标移到当前行的行首的命令是(  )**
 <table>
   <tr><td width="50%">A. &lt;Ctrl&gt;+a</td><td>B. &lt;Ctrl&gt;+e</td></tr>
   <tr><td>C. &lt;Alt&gt;+&lt;</td><td>D. &lt;Alt&gt;+v</td></tr>
 </table>
 A
+
+A	Ctrl+a	移到当前行行首（beginning）	✅
+B	Ctrl+e	移到当前行行尾（end）	❌
+C	Alt+<	移到文件开头（beginning of buffer）	❌
+D	Alt+v	向上翻页（scroll up / page up）	❌
+
 ==**32. 在==Emacs编辑器中，保存文件并退出的正确做法是(  )**
 <table>
   <tr><td width="50%">A. 先按&lt;Ctrl&gt;+x，再按&lt;Ctrl&gt;+w</td><td>B. 先按&lt;Ctrl&gt;+x，再按&lt;Ctrl&gt;+c</td></tr>
   <tr><td>C. 先按&lt;Ctrl&gt;+x，再按&lt;Ctrl&gt;+s</td><td>D. 按&lt;Ctrl&gt;+w</td></tr>
 </table>
 C
+A 另存为文件
+B 不保存文件的修改
+
 **33. 用于存储所有授权的远程客户系统的公钥，使远程客户端系统能够ssh免密登录的文件是(  )**
 <table>
   <tr><td width="50%">A. authorized_keys</td><td>B. ssh_keys</td></tr>
@@ -2596,6 +2565,8 @@ C
   <tr><td>C. java -version</td><td>D. java -path</td></tr>
 </table>
 A
+| ==**`rpm -ql 包名`**== | 列出该包**安装的所有文件**（l = list） |
+| ==**`rpm -qa`**==         | 列出**所有**已安装的包（a = all）        |
 ## 二、填空题（共 10 题）
 
 41. ==现==代操作系统中，\_\_\_\_\_\_进程\_\_\_\_通常是处理器调度运行的最小单位。
