@@ -180,4 +180,14 @@ ps：idea快捷键：alt+（fn）+insert
 34. this 本质是指所在方法调用者的内存地址
 ![](assets/Java必要笔记/file-20260803210850283.png)
 # 第九章
-35. 
+35. static  -> 静态变量
+```java
+//两种方式访问静态变量：1.通过类名.变量名 2.通过对象名.变量名          
+Student.teacherName="Ms.wang";  
+s1.teacherName="Ms.wang";
+```
+36. static  -> 内存中的表示
+	- 静态变量储存在堆内存中
+	- 静态变量==随着类==的加载而加载的，优先于对象的出现。（ 静态变量属于类）
+	- ![](assets/Java必要笔记/file-20260803215156537.png)
+	- 第98个视频的第6分钟。
