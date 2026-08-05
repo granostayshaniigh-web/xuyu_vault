@@ -180,7 +180,7 @@ ps：idea快捷键：alt+（fn）+insert
 34. this 本质是指所在方法调用者的内存地址
 ![](assets/Java必要笔记/file-20260803210850283.png)
 # 第九章
-35. static  -> 静态变量
+35. static修饰变量：static  -> 静态变量
 ```java
 //两种方式访问静态变量：1.通过类名.变量名 2.通过对象名.变量名          
 Student.teacherName="Ms.wang";  
@@ -191,3 +191,4 @@ s1.teacherName="Ms.wang";
 	- 静态变量==随着类==的加载而加载的，优先于对象的出现。（ 静态变量属于类）
 	- ![](assets/Java必要笔记/file-20260803215156537.png)
 	- 第98个视频的第6分钟。
+37. static修饰方法 -> 静态方法，该方法用于测试类和工具类中
