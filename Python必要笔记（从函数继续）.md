@@ -2,8 +2,8 @@
 2. 默认参数（缺省参数）放在正常参数之后，可在传参时被修改
 3. 传参时每个参数都要传递。
 4. 不定长参数：二者混用时，先位置传参后关键字传参
-	1. 基于位置传参：不定长位置参数`def calc_data(*args)`args可以接受多个值，形成元组类型的数据。（点奶茶这一主要的数据）
-	2. 基于关键字传参：不定长关键字参数`def calc_data(**kwargs)`kwargs可以接受多个值，形成字典类型的数据。通过kwargs.get（）获取键对应的值。（点完后加冰，加糖的选项）
+	1. 基于位置传参：不定长位置参数`def calc_data(*args)`args可以接受多个值，形成==元组类型的数据==。（点奶茶这一主要的数据）
+	2. 基于关键字传参：不定长关键字参数`def calc_data(**kwargs)`   kwargs可以接受多个值，形成字典类型的数据。通过kwargs.get（）获取键对应的值。（点完后加冰，加糖的选项）
 ![](assets/Python必要笔记（从函数继续）/file-20260805125056041.png)
 5. 传递的参数可以是函数类型的
 ```python
@@ -24,4 +24,23 @@ def 函数名(参数列表):
 	函数体
 	return
 a = 函数名(参数列表)
+```
+7. // 是整除，得到整数。
+8. python中没有double
+9. 示例加类型注解：
+```python
+#类型注解 -> 变量: 数据类型
+arg: tuple [str,int|float,int]
+
+def cost(*args,youhui,score = 0):
+	a = [good[1]*good[2] for good in args]
+	total = sum(a)
+	if total >= 5000 and youhui < total :
+		total = total - youhui
+	if total >= 5000 and score // 100 < total :
+		total = total -  score //100;
+	return total
+
+res = cost(("鼠标",88,2),("键盘",388,1),youhui = 100 score = 100)
+print(res)
 ```
