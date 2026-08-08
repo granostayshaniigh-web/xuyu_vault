@@ -162,6 +162,8 @@ public Student(String name,int age,char gender,double hight){
     this.gender=gender;  
     this.hight=hight;  
 }
+-----------------------------------------------------------------------------------
+Student s2=new Student("张三",18,'男',1.8);
 ```
 - 特点：
 public后没有返回值类型，也没有返回值。其中方法名和类名相同，大小写也一致
@@ -202,3 +204,5 @@ s1.teacherName="Ms.wang";
 	2. 而非静态方法可以访问静态变量和方法以及非静态的成员变量和成员方法
 	3. 静态方法中没有this关键字
 	4. 即总结：非静态可以调用所有，静态只能调用静态
+40. final 关键字：表示不可变，修饰变量、类、方法
+	1. 变量字母要大写。
