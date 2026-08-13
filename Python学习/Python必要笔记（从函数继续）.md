@@ -66,7 +66,7 @@ improt 模块名 as 别名
 4. 面向对象：利用对象进行软件开发
 5. 类：一个类来描述对象，其中属性是类中的变量（成员变量）
 	- 同一类事物的属性必须是一致的
-6. 定义类的语法：==# 可以动态的添加属性==
+6. 定义类（大驼峰）属性的语法：==# 可以动态的添加属性==
 ```Python
 class 类名:
 	pass
@@ -75,8 +75,47 @@ class 类名:
 对象名.属性名 = 属性值
 # 可以动态的添加属性
 ```
+推荐：
 ```python
 class Car:
-	
+	def __init__(self,c_brand,c_name,c_price):
+		self.brand = c_brand
+		self.name = c_name
+		self.price = c_price
+c1 = Car("bmw","x5",500000)
+print(c1.__dict__)
+print(c1)        #输出的是对象的内存地址
 ```
 7. `__dict__`是Python中自定义类的一个特殊的属性，用字典的形式==存储对象的所有属性==
+8. `__init__`初始化方法，对象创建后自动调用，设置对象的初始属性
+9. self 不用传递，表示当前创建的实例对象`c1`
+10. 定义类的方法，传递参数和函数一致
+```python
+class Car:
+	def __init__(self,c_brand,c_name,c_price):
+		self.brand = c_brand
+		self.name = c_name
+		self.price = c_price
+	def total_cost(self,discount):
+		return self.price*discount
+c1 = Car("bmw","x5",500000)
+print(c1.__dict__)
+total = c1.total_cost(0.9)
+print(total)
+```
+11. 魔法方法：以双下划线开头和结尾的特殊方法，用于定义类的特殊行为，不需要我们手动调用，python在合适时机自动调用。主要有：
+```python
+class Car:
+	def __init__(self,c_brand,c_name,c_price):
+		self.brand = c_brand
+		self.name = c_name
+		self.price = c_price
+	def runnig(self):
+		print("...")
+	def __str__(self):
+		return f"{self.brand}{self.name}{self.price}"
+	def __eq__(self,other):
+		return self.price == other.price and self.brand == other.brand and 
+		self.name == other.name
+	def __
+```
