@@ -103,7 +103,7 @@ print(c1.__dict__)
 total = c1.total_cost(0.9)
 print(total)
 ```
-11. 魔法方法：以双下划线开头和结尾的特殊方法，用于定义类的特殊行为，不需要我们手动调用，python在合适时机自动调用。主要有：
+11. 魔法方法：以双下划线开头和结尾的特殊方法，用于定义类的特殊行为，不需要我们手动调用，python在合适时机自动调用。主要有：`__init__ __str__ __eq__ __lt__ __le__   __gt__ __ge__`
 ```python
 class Car:
 	def __init__(self,c_brand,c_name,c_price):
@@ -117,5 +117,29 @@ class Car:
 	def __eq__(self,other):
 		return self.price == other.price and self.brand == other.brand and 
 		self.name == other.name
-	def __
+	def __lt__(self,other):
+		return self.price < other.price
+c2 = Car("bmw","x5",500000)
+print(c2.__dict__)
+c1 = Car("bmw","x5",500000)
+print(c1.__dict__)
+print(c1) # 自动调用 __str__
+ bmw x5 500000
+print(c1 == c2)# 自动调用 __eq__
+True
+print(c1 < c2)# 自动调用  __lt__
+False
+```
+12. 实例属性：每个实例具有的属性，每个实例都是独立的
+13. 类属性：所有实例共享的，例：
+```python
+class Car:
+	wheel = 4 # ---------------------------------------- >  类属性
+	def __init__(self,c_brand,c_name,c_price):           (通过 类名.属性 操作)或(通过                                                          实例对象.属性 操作)
+		self.brand = c_brand
+		self.name = c_name     # ----------------------- >  实例属性
+		self.price = c_price                             (通过 实例对象.属性 操作)
+c1 = Car("bmw","x5",500000)
+print(c1.__dict__)
+print(c1)        
 ```
