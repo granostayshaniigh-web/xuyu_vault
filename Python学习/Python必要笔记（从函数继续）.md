@@ -28,7 +28,7 @@ a = 函数名(参数列表)
 ```
 7. // 是整除，得到整数。
 8. python中没有double，float可以兼容int
-9. 示例加类型注解：
+9. 示例加类型注解：List 大写的L
 ```python
 #类型注解 -> 变量: 数据类型                                  -> 标明返回值类型
 #arg: tuple[tuple [str,int|float,int]]
@@ -45,16 +45,18 @@ def cost(*args: tuple [str,int|float,int],youhui,score = 0) -> float|int:
 res = cost(("鼠标",88,2),("键盘",388,1),youhui = 100 score = 100)
 print(res)
 ```
-10. Python模块：
+10. Union联合类型注解
+`arg: tuple [str,int|float,int]] = tuple [Union[float,int]]`
+11. Python模块：
 ```Python
 # 导入模块
 improt 模块名 as 别名
 ```
-11. 每一个模块都是一个Python文件，模块的名字就是Python文件的名字
-12. 变量名大写相当于常量。
-13. _ _ name _ _ :Python中的内置变量。所以不需要提前赋值。_ _ name _ _ 在本模块运行时返回字符串"_ _ main _ _ "，在其他模块中运行时返回所在模块的模块名称。 用于测试模块中的函数是否可用。`if __name__ == "__main__"： 测试函数`
-14. _ _ all _ _ = \[ ]，指定from … import * 导入的内容
-15. 导入软件包：
+12. 每一个模块都是一个Python文件，模块的名字就是Python文件的名字
+13. 变量名大写相当于常量。
+14. _ _ name _ _ :Python中的内置变量。所以不需要提前赋值。_ _ name _ _ 在本模块运行时返回字符串"_ _ main _ _ "，在其他模块中运行时返回所在模块的模块名称。 用于测试模块中的函数是否可用。`if __name__ == "__main__"： 测试函数`
+15. _ _ all _ _ = \[ ]，指定from … import * 导入的内容
+16. 导入软件包：
 	1. ![](assets/Python必要笔记（从函数继续）/file-20260807134942502.png)
 	2. `__init__.py`文件加入一个普通文件夹就可以让这个文件夹变为包，这个文件可以说明作者，版本……
 	3. 注意：在使用`from 包名.模块名 import *`时，需要在`__init__`文件中加上`__all__ = [模块1,模块2…]`来说明
